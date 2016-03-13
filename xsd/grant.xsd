@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema version="1.1" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://researchgraph.com/schema/v1.1/xml/nodes"
+    targetNamespace="http://researchgraph.com/schema/v1.1/xml/nodes" elementFormDefault="qualified"
+    attributeFormDefault="unqualified">
+    
+    <xsd:include schemaLocation="propertyTypes.xsd"/>
+    
+    <xsd:element name="grant">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">
+                Research grant or project.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                <xsd:element name="urn" type="xsd:anyURI" minOccurs="1" maxOccurs="1">
+                    <xsd:annotation>
+                        <xsd:documentation>
+                            A URN that identifies the grant by Grant ID and the grant funder. 
+                            
+                            Syntax
+                            urn:{funder-namespace}:grant:{supporting-namespace}:{grant-ID}
+                            
+                            Notes:
+                            supporting-namespace is optional.
+                            the urn is not case sensitive. 
+                            
+                            Examples:
+                            urn:arc.org.au:grant:fellowship:FT0991045
+                            urn:nih.gov:grant:1522206 
+                            
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="purl" type="xsd:anyURI" minOccurs="0" maxOccurs="1">
+                    <xsd:annotation>
+                        <xsd:documentation>
+                            A PURL that uniquely identfies the grant:
+                            http://purl.org/au-research/grants/arc/FT0991045
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="url" type="xsd:anyURI" minOccurs="0" maxOccurs="1">
+                    <xsd:annotation>
+                        <xsd:documentation>
+                            A URL that uniquely identfies the grant.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="title" type="xsd:string" minOccurs="0" maxOccurs="1">
+                    <xsd:annotation>
+                        <xsd:documentation xml:lang="en">
+                            Grant title.
+                            This field provides human readable information about the grant; however, it has been set to optional because of limited available public information in some cases.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="participant_list" type="xsd:string" minOccurs="0" maxOccurs="1">
+                    <xsd:annotation>
+                        <xsd:documentation xml:lang="en">
+                            Comma separated list of grant participants. It is derived from the grant proposal, and often complement the grant title to make the grant recognisable for human users. 
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="start_year" type="xsd:gYear" minOccurs="0" maxOccurs="1">
+                    <xsd:annotation>
+                        <xsd:documentation>
+                            The start year (YYYY) of the grant.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="end_year" type="xsd:gYear" minOccurs="0" maxOccurs="1">
+                    <xsd:annotation>
+                        <xsd:documentation>
+                            The end year (YYYY) of the grant.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="anzsrc_purl" type="xsd:anyURI" minOccurs="0"
+                    maxOccurs="unbounded">
+                    <xsd:annotation>
+                        <xsd:documentation xml:lang="en">
+                            PURL for ANCSRC-FOR subjects.
+                            Complete list available at http://www.abs.gov.au/ausstats/abs@.nsf/0/6BB427AB9696C225CA2574180004463E
+                            Syntax:
+                            http://purl.org/au-research/vocabulary/anzsrc-for/{YYYY}/{subject-code}
+                            
+                            Example:
+                            http://purl.org/au-research/vocabulary/anzsrc-for/2008/0601
+                            
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="related_urn" type="xsd:anyURI" minOccurs="0"
+                    maxOccurs="unbounded">
+                    <xsd:annotation>
+                        <xsd:documentation>
+                            The urn for a related node.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="related_publication_doi" type="doi_type" minOccurs="0"
+                    maxOccurs="unbounded">
+                    <xsd:annotation>
+                        <xsd:documentation xml:lang="en">
+                            DOI of the related publication.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="related_dataset_doi" type="doi_type" minOccurs="0"
+                    maxOccurs="unbounded">
+                    <xsd:annotation>
+                        <xsd:documentation xml:lang="en">
+                            DOI of the related dataset.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="related_orcid" type="xsd:string" minOccurs="0"
+                    maxOccurs="unbounded">
+                    <xsd:annotation>
+                        <xsd:documentation xml:lang="en">
+                            ORCID of the related researcher.
+                            
+                            Example: 0000-0002-1825-0097
+                            
+                            More info:
+                            http://support.orcid.org/knowledgebase/articles/116780-structure-of-the-orcid-identifier
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="related_scopus_author_id" type="xsd:string" minOccurs="0"
+                    maxOccurs="unbounded">
+                    <xsd:annotation>
+                        <xsd:documentation xml:lang="en">
+                            Related Author Scopus ID.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="related_researcher_url" type="xsd:string" minOccurs="0"
+                    maxOccurs="unbounded">
+                    <xsd:annotation>
+                        <xsd:documentation xml:lang="en">
+                            A URL that uniquely identfies the researcher such as researcher home/profile page.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="related_grant_purl" type="xsd:anyURI" minOccurs="0"
+                    maxOccurs="unbounded">
+                    <xsd:annotation>
+                        <xsd:documentation xml:lang="en">
+                            A Related grant identified by PURL (purl.org/...) .
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+            </xsd:choice>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

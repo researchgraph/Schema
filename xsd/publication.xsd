@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema version="1.1" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://researchgraph.com/schema/v1.1/xml/nodes"
+    targetNamespace="http://researchgraph.com/schema/v1.1/xml/nodes"
+    elementFormDefault="qualified"
+    attributeFormDefault="unqualified">
+    
+    <xsd:include schemaLocation="propertyTypes.xsd"/>
+    
+    <xsd:element name="publication">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">
+                Journla or Conference Publication
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:choice minOccurs="0" maxOccurs="unbounded">                
+                <xsd:element name="doi" type="doi_type" minOccurs="1" maxOccurs="1">
+                    <xsd:annotation>
+                        <xsd:documentation>
+                            DOI for the publication
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="title" type="xsd:string" minOccurs="1" maxOccurs="1">
+                    <xsd:annotation>
+                        <xsd:documentation xml:lang="en">
+                            Publication title. This field provides human readable information about the publication.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="authors_list" type="xsd:string" minOccurs="1" maxOccurs="1">
+                    <xsd:annotation>
+                        <xsd:documentation xml:lang="en">
+                            Comma separated list of authors. It complements the title to make the publication easly recognisable for human readers. 
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="publication_year" type="xsd:gYear" minOccurs="0" maxOccurs="1">
+                    <xsd:annotation>
+                        <xsd:documentation>
+                            The publication year (YYYY).
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="scopus_author_eid" type="xsd:string" minOccurs="0"
+                    maxOccurs="unbounded">
+                    <xsd:annotation>
+                        <xsd:documentation xml:lang="en">
+                            Scopue EID for the article.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="anzsrc_purl" type="xsd:anyURI" minOccurs="0" maxOccurs="unbounded">
+                    <xsd:annotation>
+                        <xsd:documentation xml:lang="en">
+                            PURL for ANCSRC-FOR subjects.
+                            Complete list available at http://www.abs.gov.au/ausstats/abs@.nsf/0/6BB427AB9696C225CA2574180004463E
+                            Syntax:
+                            http://purl.org/au-research/vocabulary/anzsrc-for/{YYYY}/{subject-code}
+                            
+                            Example:
+                            http://purl.org/au-research/vocabulary/anzsrc-for/2008/0601
+                            
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>                
+                <xsd:element name="related_key" type="xsd:anyURI" minOccurs="0" maxOccurs="unbounded">
+                    <xsd:annotation>
+                        <xsd:documentation>
+                            The key for a related node.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="related_publication_doi" type="doi_type" minOccurs="0"
+                    maxOccurs="unbounded">
+                    <xsd:annotation>
+                        <xsd:documentation xml:lang="en">
+                            DOI of the related publication.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="related_dataset_doi" type="doi_type" minOccurs="0"
+                    maxOccurs="unbounded">
+                    <xsd:annotation>
+                        <xsd:documentation xml:lang="en">
+                            DOI of the related dataset.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="related_orcid" type="xsd:string" minOccurs="0"
+                    maxOccurs="unbounded">
+                    <xsd:annotation>
+                        <xsd:documentation xml:lang="en">
+                            ORCID of the related researcher.
+                            
+                            Example: 0000-0002-1825-0097
+                            
+                            More info:
+                            http://support.orcid.org/knowledgebase/articles/116780-structure-of-the-orcid-identifier
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="related_scopus_author_id" type="xsd:string" minOccurs="0"
+                    maxOccurs="unbounded">
+                    <xsd:annotation>
+                        <xsd:documentation xml:lang="en">
+                            Related Author Scopus ID.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="related_researcher_url" type="xsd:string" minOccurs="0"
+                    maxOccurs="unbounded">
+                    <xsd:annotation>
+                        <xsd:documentation xml:lang="en">
+                            A URL that uniquely identfies the researcher such as researcher home/profile page.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="related_grant_purl" type="xsd:anyURI" minOccurs="0"
+                    maxOccurs="unbounded">
+                    <xsd:annotation>
+                        <xsd:documentation xml:lang="en">
+                            A Related grant identified by PURL (purl.org/...) .
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+            </xsd:choice>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>
+
