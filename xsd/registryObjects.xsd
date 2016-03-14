@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema version="1.1" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://researchgraph.org/schema/v1.1/xml/nodes"
+    targetNamespace="http://researchgraph.org/schema/v1.1/xml/nodes" elementFormDefault="qualified"
+    attributeFormDefault="unqualified">
+
+    <xsd:annotation>
+        <xsd:documentation xml:lang="en">
+            ResearchGraph schema has been based on RIF-CS schema.
+        </xsd:documentation>
+    </xsd:annotation>
+
+    <xsd:include schemaLocation="researcher.xsd"/>
+    <xsd:include schemaLocation="publication.xsd"/>
+    <xsd:include schemaLocation="dataset.xsd"/>
+    <xsd:include schemaLocation="grant.xsd"/>
+    <xsd:include schemaLocation="relation.xsd"/>
+
+    <xsd:element name="registryObjects">
+        <xsd:annotation>
+            <xsd:documentation>
+                Wrapper element for registryObjects' elements.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="researcher" minOccurs="1" maxOccurs="1"/>
+                <xsd:element ref="publication" minOccurs="1" maxOccurs="1"/>
+                <xsd:element ref="dataset" minOccurs="1" maxOccurs="1"/>
+                <xsd:element ref="grant" minOccurs="1" maxOccurs="1"/>
+                <xsd:element ref="relation" minOccurs="1" maxOccurs="1"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

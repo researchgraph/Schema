@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema version="1.1" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns="http://researchgraph.org/schema/v1.1/xml/nodes"
+        targetNamespace="http://researchgraph.org/schema/v1.1/xml/nodes" elementFormDefault="qualified"
+        attributeFormDefault="unqualified">
+   
+    <xsd:include schemaLocation="propertyTypes.xsd"/>
+    
+    <xsd:element name="relation">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="from_key" type="xsd:anyURI" minOccurs="1" maxOccurs="1">
+                    <xsd:annotation>
+                        <xsd:documentation xml:lang="en">
+                            The key value for the source objecy. This key (value of this element) should exist in the registry.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:choice minOccurs="1" maxOccurs="1">    
+                    <xsd:element name="to_key" type="xsd:anyURI" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="en">
+                                Related node connected by key.
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="to_doi" type="doi_type" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="en">
+                                Related dataset or publication connected by DOI
+                            </xsd:documentation>
+                        </xsd:annotation>                        
+                    </xsd:element>
+                    <xsd:element name="to_orcid" type="xsd:string" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="en">
+                                Related researcher connected by ORCID
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="to_purl" type="xsd:anyURI" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="en">
+                                Related grant connected by PURL
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="to_scopus_author_id" type="xsd:string" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="en">
+                                Related Author Scopus ID.
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:choice>
+                <xsd:element name="label" type="xsd:string" minOccurs="0" maxOccurs="1" default="relatedTo" />  
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>
+    
+    
+

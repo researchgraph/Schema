@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema version="1.1" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-    xmlns="http://researchgraph.com/schema/v1.1/xml/nodes"
-    targetNamespace="http://researchgraph.com/schema/v1.1/xml/nodes"
+    xmlns="http://researchgraph.org/schema/v1.1/xml/nodes"
+    targetNamespace="http://researchgraph.org/schema/v1.1/xml/nodes"
     elementFormDefault="qualified"
     attributeFormDefault="unqualified">
     
@@ -10,15 +10,33 @@
     <xsd:element name="publication">
         <xsd:annotation>
             <xsd:documentation xml:lang="en">
-                Journla or Conference Publication
+                Journla or Conference Publication.
             </xsd:documentation>
         </xsd:annotation>
         <xsd:complexType>
-            <xsd:choice minOccurs="0" maxOccurs="unbounded">                
+            <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                <xsd:element name="key" type="xsd:anyURI" minOccurs="1" maxOccurs="1">
+                    <xsd:annotation>
+                        <xsd:documentation>
+                            A resolvable URL that globaly identifies this object. The prefered value is dx.doi.org/{doi}
+
+                            Examples:
+                            dx.doi.org/10.1111/1523-1739                            
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>         
+                <xsd:element name="local_id" type="xsd:string" minOccurs="1" maxOccurs="1"/>
                 <xsd:element name="doi" type="doi_type" minOccurs="1" maxOccurs="1">
                     <xsd:annotation>
                         <xsd:documentation>
                             DOI for the publication
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="url" type="xsd:anyURI" minOccurs="0" maxOccurs="1">
+                    <xsd:annotation>
+                        <xsd:documentation>
+                            The URL of the landing page for this publication.
                         </xsd:documentation>
                     </xsd:annotation>
                 </xsd:element>

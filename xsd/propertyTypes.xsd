@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
-<xsd:schema version="1.6" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-    xmlns="http://researchgraph.com/schema/v1.1/xml/nodes"
-    targetNamespace="http://researchgraph.com/schema/v1.1/xml/nodes"
+<xsd:schema version="1.1" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://researchgraph.org/schema/v1.1/xml/nodes"
+    targetNamespace="http://researchgraph.org/schema/v1.1/xml/nodes"
     elementFormDefault="qualified" attributeFormDefault="unqualified">
 
     <!-- Point to a local cached version of the W3 XML schema to avoid 20s+ wait times in validation -->
