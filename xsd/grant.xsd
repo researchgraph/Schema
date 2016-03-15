@@ -32,13 +32,6 @@
                     </xsd:annotation>
                 </xsd:element>
                 <xsd:element name="local_id" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-                <xsd:element name="url" type="xsd:anyURI" minOccurs="0" maxOccurs="1">
-                    <xsd:annotation>
-                        <xsd:documentation>
-                            The URL of the landing page for this grant.
-                        </xsd:documentation>
-                    </xsd:annotation>
-                </xsd:element>
                 <xsd:element name="purl" type="xsd:anyURI" minOccurs="0" maxOccurs="1">
                     <xsd:annotation>
                         <xsd:documentation>
