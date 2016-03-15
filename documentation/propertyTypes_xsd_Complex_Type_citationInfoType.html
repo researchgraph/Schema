@@ -1,0 +1,1785 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component fullCitation</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_citationInfoType_fullCitation', 
+				'properties_citationInfoType_citationMetadata', 
+				'properties_citationInfoType_citationInfoType_citationMetadata_identifier', 
+				'properties_citationInfoType_citationInfoType_citationMetadata_contributor', 
+				'properties_citationInfoType_citationInfoType_citationMetadata_title', 
+				'properties_citationInfoType_citationInfoType_citationMetadata_version', 
+				'properties_citationInfoType_citationInfoType_citationMetadata_edition', 
+				'properties_citationInfoType_citationInfoType_citationMetadata_publisher', 
+				'properties_citationInfoType_citationInfoType_citationMetadata_placePublished', 
+				'properties_citationInfoType_citationInfoType_citationMetadata_date', 
+				'properties_citationInfoType_citationInfoType_citationMetadata_url', 
+				'properties_citationInfoType_citationInfoType_citationMetadata_context', 
+				'properties_citationInfoType_citationInfoType_fullCitation_style');
+var usedByBoxes= new Array('usedBy_citationInfoType_citationInfoType_fullCitation_style');
+var sourceBoxes= new Array('source_citationInfoType_fullCitation', 
+				'source_citationInfoType_citationMetadata', 
+				'source_citationInfoType_citationInfoType_citationMetadata_identifier', 
+				'source_citationInfoType_citationInfoType_citationMetadata_contributor', 
+				'source_citationInfoType_citationInfoType_citationMetadata_title', 
+				'source_citationInfoType_citationInfoType_citationMetadata_version', 
+				'source_citationInfoType_citationInfoType_citationMetadata_edition', 
+				'source_citationInfoType_citationInfoType_citationMetadata_publisher', 
+				'source_citationInfoType_citationInfoType_citationMetadata_placePublished', 
+				'source_citationInfoType_citationInfoType_citationMetadata_date', 
+				'source_citationInfoType_citationInfoType_citationMetadata_url', 
+				'source_citationInfoType_citationInfoType_citationMetadata_context', 
+				'source_citationInfoType', 
+				'source_citationInfoType_citationInfoType_fullCitation_style');
+var instanceBoxes= new Array('instance_citationInfoType_citationMetadata', 
+				'instance_citationInfoType_citationInfoType_citationMetadata_contributor');
+var diagramBoxes= new Array('diagram_citationInfoType_fullCitation', 
+				'diagram_citationInfoType_citationMetadata', 
+				'diagram_citationInfoType_citationInfoType_citationMetadata_identifier', 
+				'diagram_citationInfoType_citationInfoType_citationMetadata_contributor', 
+				'diagram_citationInfoType_citationInfoType_citationMetadata_title', 
+				'diagram_citationInfoType_citationInfoType_citationMetadata_version', 
+				'diagram_citationInfoType_citationInfoType_citationMetadata_edition', 
+				'diagram_citationInfoType_citationInfoType_citationMetadata_publisher', 
+				'diagram_citationInfoType_citationInfoType_citationMetadata_placePublished', 
+				'diagram_citationInfoType_citationInfoType_citationMetadata_date', 
+				'diagram_citationInfoType_citationInfoType_citationMetadata_url', 
+				'diagram_citationInfoType_citationInfoType_citationMetadata_context', 
+				'diagram_citationInfoType');
+var annotationBoxes= new Array('annotations_citationInfoType_citationInfoType_citationMetadata_edition', 
+				'annotations_citationInfoType_citationInfoType_fullCitation_style');
+var attributesBoxes= new Array('attributes_citationInfoType_fullCitation', 
+				'attributes_citationInfoType_citationInfoType_citationMetadata_identifier', 
+				'attributes_citationInfoType_citationInfoType_citationMetadata_contributor', 
+				'attributes_citationInfoType_citationInfoType_citationMetadata_date');
+var modelBoxes= new Array('model_citationInfoType_citationMetadata', 
+				'model_citationInfoType_citationInfoType_citationMetadata_contributor', 
+				'model_citationInfoType');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, attributesBoxes);" class="control" /></span><span class="globalControlName">Attributes </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, modelBoxes);" class="control" /></span><span class="globalControlName">Model </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="citationInfoType_fullCitation"></a><div class="componentTitle">Element <span class="qname"><b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component citationInfoType')">citationInfoType</a></b> / fullCitation</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>http://researchgraph.org/schema/v1.1/xml/nodes</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_citationInfoType_fullCitation" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_citationInfoType_fullCitation');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_citationInfoType_fullCitation" style="display:block"><img alt="Diagram" border="0" src="img/propertyTypes_xsd_Element_fullCitation.jpeg" usemap="#propertyTypes_xsd_Element_fullCitation" /><map name="propertyTypes_xsd_Element_fullCitation" id="propertyTypes_xsd_Element_fullCitation">
+                                 <area alt="propertyTypes_xsd_Complex_Type_citationInfoType.tmp#citationInfoType_citationInfoType_fullCitation_style" href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationInfoType_fullCitation_style" coords="132,119,205,143" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td>extension of <b>xsd:string</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_citationInfoType_fullCitation" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_citationInfoType_fullCitation');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_citationInfoType_fullCitation" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_citationInfoType_fullCitation" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_citationInfoType_fullCitation');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_citationInfoType_fullCitation" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationInfoType_fullCitation_style" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component style')">style</a></b></td>
+                                    <td><b>xsd:string</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">A value taken from a controlled vocabulary</span><span class="tI">
+</span><span class="tT">indicating the citation style used.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_citationInfoType_fullCitation" type="image" src="img/btM.gif" value="-" onclick="switchState('source_citationInfoType_fullCitation');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_citationInfoType_fullCitation" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"fullCitation"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xsd:complexType</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:simpleContent</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:extension</span><span class="tAN"> base=</span><span class="tAV">"xsd:string"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xsd:attribute</span><span class="tAN"> name=</span><span class="tAV">"style"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tAN"> type=</span><span class="tAV">"xsd:string"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">A value taken from a controlled vocabulary indicating the citation style used.</span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xsd:attribute&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xsd:extension&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xsd:simpleContent&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xsd:complexType&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xsd:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="citationInfoType_citationMetadata"></a><div class="componentTitle">Element <span class="qname"><b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component citationInfoType')">citationInfoType</a></b> / citationMetadata</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>http://researchgraph.org/schema/v1.1/xml/nodes</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_citationInfoType_citationMetadata" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_citationInfoType_citationMetadata');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_citationInfoType_citationMetadata" style="display:block"><img alt="Diagram" border="0" src="img/propertyTypes_xsd_Element_citationMetadata.jpeg" usemap="#propertyTypes_xsd_Element_citationMetadata" /><map name="propertyTypes_xsd_Element_citationMetadata" id="propertyTypes_xsd_Element_citationMetadata">
+                                 <area alt="propertyTypes_xsd_Complex_Type_citationInfoType.tmp#citationInfoType_citationInfoType_citationMetadata_identifier" href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationInfoType_citationMetadata_identifier" coords="260,2,339,26" />
+                                 <area alt="propertyTypes_xsd_Complex_Type_citationInfoType.tmp#citationInfoType_citationInfoType_citationMetadata_contributor" href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationInfoType_citationMetadata_contributor" coords="260,36,353,60" />
+                                 <area alt="propertyTypes_xsd_Complex_Type_citationInfoType.tmp#citationInfoType_citationInfoType_citationMetadata_title" href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationInfoType_citationMetadata_title" coords="260,70,311,94" />
+                                 <area alt="propertyTypes_xsd_Complex_Type_citationInfoType.tmp#citationInfoType_citationInfoType_citationMetadata_version" href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationInfoType_citationMetadata_version" coords="260,104,331,128" />
+                                 <area alt="propertyTypes_xsd_Complex_Type_citationInfoType.tmp#citationInfoType_citationInfoType_citationMetadata_edition" href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationInfoType_citationMetadata_edition" coords="260,138,328,162" />
+                                 <area alt="propertyTypes_xsd_Complex_Type_citationInfoType.tmp#citationInfoType_citationInfoType_citationMetadata_publisher" href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationInfoType_citationMetadata_publisher" coords="260,215,342,239" />
+                                 <area alt="propertyTypes_xsd_Complex_Type_citationInfoType.tmp#citationInfoType_citationInfoType_citationMetadata_placePublished" href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationInfoType_citationMetadata_placePublished" coords="260,249,371,273" />
+                                 <area alt="propertyTypes_xsd_Complex_Type_citationInfoType.tmp#citationInfoType_citationInfoType_citationMetadata_date" href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationInfoType_citationMetadata_date" coords="260,283,314,307" />
+                                 <area alt="propertyTypes_xsd_Complex_Type_citationInfoType.tmp#citationInfoType_citationInfoType_citationMetadata_url" href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationInfoType_citationMetadata_url" coords="260,317,311,341" />
+                                 <area alt="propertyTypes_xsd_Complex_Type_citationInfoType.tmp#citationInfoType_citationInfoType_citationMetadata_context" href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationInfoType_citationMetadata_context" coords="260,351,332,375" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_citationInfoType_citationMetadata" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_citationInfoType_citationMetadata');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_citationInfoType_citationMetadata" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_citationInfoType_citationMetadata" type="image" src="img/btM.gif" value="-" onclick="switchState('model_citationInfoType_citationMetadata');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="model_citationInfoType_citationMetadata" style="display:block"><b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationInfoType_citationMetadata_identifier" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component identifier')">identifier</a></b> | <b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationInfoType_citationMetadata_contributor" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component contributor+')">contributor+</a></b> | <b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationInfoType_citationMetadata_title" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component title')">title</a></b> | <b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationInfoType_citationMetadata_version" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component version{0,1}')">version{0,1}</a></b> | <b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationInfoType_citationMetadata_edition" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component edition{0,1}')">edition{0,1}</a></b> | <b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationInfoType_citationMetadata_publisher" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component publisher')">publisher</a></b> | <b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationInfoType_citationMetadata_placePublished" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component placePublished{0,1}')">placePublished{0,1}</a></b> | <b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationInfoType_citationMetadata_date" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component date+')">date+</a></b> | <b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationInfoType_citationMetadata_url" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component url{0,1}')">url{0,1}</a></b> | <b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationInfoType_citationMetadata_context" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component context{0,1}')">context{0,1}</a></b></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationInfoType_citationMetadata_context" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component context')">context</a></b>, <b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationInfoType_citationMetadata_contributor" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component contributor')">contributor</a></b>, <b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationInfoType_citationMetadata_date" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component date')">date</a></b>, <b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationInfoType_citationMetadata_edition" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component edition')">edition</a></b>, <b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationInfoType_citationMetadata_identifier" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component identifier')">identifier</a></b>, <b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationInfoType_citationMetadata_placePublished" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component placePublished')">placePublished</a></b>, <b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationInfoType_citationMetadata_publisher" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component publisher')">publisher</a></b>, <b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationInfoType_citationMetadata_title" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component title')">title</a></b>, <b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationInfoType_citationMetadata_url" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component url')">url</a></b>, <b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationInfoType_citationMetadata_version" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component version')">version</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_citationInfoType_citationMetadata" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_citationInfoType_citationMetadata');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_citationInfoType_citationMetadata" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;citationMetadata</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://researchgraph.org/schema/v1.1/xml/nodes"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;identifier</span><span class="tT"> </span><span class="tAN">type=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/identifier&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;contributor</span><span class="tT"> </span><span class="tAN">seq=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,unbounded}</span><span class="tEl">&lt;/contributor&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;title</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/title&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;version</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/version&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;edition</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/edition&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;publisher</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/publisher&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;placePublished</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/placePublished&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;date</span><span class="tT"> </span><span class="tAN">type=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,unbounded}</span><span class="tEl">&lt;/date&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;url</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/url&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;context</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/context&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/citationMetadata&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_citationInfoType_citationMetadata" type="image" src="img/btM.gif" value="-" onclick="switchState('source_citationInfoType_citationMetadata');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_citationInfoType_citationMetadata" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"citationMetadata"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xsd:complexType</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:choice</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"identifier"</span><span class="tAN"> type=</span><span class="tAV">"identifierType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">/&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"contributor"</span><span class="tAN"> type=</span><span class="tAV">"citationNameType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">/&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"title"</span><span class="tAN"> type=</span><span class="tAV">"xsd:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">/&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"version"</span><span class="tAN"> type=</span><span class="tAV">"xsd:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">/&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"edition"</span><span class="tAN"> type=</span><span class="tAV">"xsd:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">THIS ELEMENT IS DEPRECATED AS OF V1.4 (USE 'version' ELEMENT INSTEAD.</span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xsd:element&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"publisher"</span><span class="tAN"> type=</span><span class="tAV">"xsd:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">/&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"placePublished"</span><span class="tAN"> type=</span><span class="tAV">"xsd:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">/&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"date"</span><span class="tAN"> type=</span><span class="tAV">"citationDateType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">/&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"url"</span><span class="tAN"> type=</span><span class="tAV">"xsd:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">/&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"context"</span><span class="tAN"> type=</span><span class="tAV">"xsd:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xsd:choice&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xsd:complexType&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xsd:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="citationInfoType_citationInfoType_citationMetadata_identifier"></a><div class="componentTitle">Element <span class="qname"><b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component citationInfoType')">citationInfoType</a></b> / <b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationMetadata" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component citationMetadata')">citationMetadata</a></b> / identifier</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>http://researchgraph.org/schema/v1.1/xml/nodes</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_citationInfoType_citationInfoType_citationMetadata_identifier" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_citationInfoType_citationInfoType_citationMetadata_identifier');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_citationInfoType_citationInfoType_citationMetadata_identifier" style="display:block"><img alt="Diagram" border="0" src="img/propertyTypes_xsd_Element_identifier_2.jpeg" usemap="#propertyTypes_xsd_Element_identifier_2" /><map name="propertyTypes_xsd_Element_identifier_2" id="propertyTypes_xsd_Element_identifier_2">
+                                 <area alt="propertyTypes_xsd_Complex_Type_identifierType.tmp#identifierType_type" href="propertyTypes_xsd_Complex_Type_identifierType.html#identifierType_type" coords="135,157,206,181" />
+                                 <area alt="propertyTypes_xsd_Complex_Type_identifierType.tmp#identifierType" href="propertyTypes_xsd_Complex_Type_identifierType.html#identifierType" coords="110,3,235,25" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="propertyTypes_xsd_Complex_Type_identifierType.html#identifierType" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component identifierType')">identifierType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_citationInfoType_citationInfoType_citationMetadata_identifier" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_citationInfoType_citationInfoType_citationMetadata_identifier');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_citationInfoType_citationInfoType_citationMetadata_identifier" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_citationInfoType_citationInfoType_citationMetadata_identifier" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_citationInfoType_citationInfoType_citationMetadata_identifier');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_citationInfoType_citationInfoType_citationMetadata_identifier" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="propertyTypes_xsd_Complex_Type_identifierType.html#identifierType_type" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component type')">type</a></b></td>
+                                    <td><b>xsd:string</b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">A value taken from a controlled vocabulary indicating the</span><span class="tI">
+</span><span class="tT">type of identifier.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_citationInfoType_citationInfoType_citationMetadata_identifier" type="image" src="img/btM.gif" value="-" onclick="switchState('source_citationInfoType_citationInfoType_citationMetadata_identifier');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_citationInfoType_citationInfoType_citationMetadata_identifier" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"identifier"</span><span class="tAN"> type=</span><span class="tAV">"identifierType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">/&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="citationInfoType_citationInfoType_citationMetadata_contributor"></a><div class="componentTitle">Element <span class="qname"><b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component citationInfoType')">citationInfoType</a></b> / <b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationMetadata" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component citationMetadata')">citationMetadata</a></b> / contributor</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>http://researchgraph.org/schema/v1.1/xml/nodes</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_citationInfoType_citationInfoType_citationMetadata_contributor" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_citationInfoType_citationInfoType_citationMetadata_contributor');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_citationInfoType_citationInfoType_citationMetadata_contributor" style="display:block"><img alt="Diagram" border="0" src="img/propertyTypes_xsd_Element_contributor.jpeg" usemap="#propertyTypes_xsd_Element_contributor" /><map name="propertyTypes_xsd_Element_contributor" id="propertyTypes_xsd_Element_contributor">
+                                 <area alt="propertyTypes_xsd_Complex_Type_citationNameType.tmp#citationNameType_seq" href="propertyTypes_xsd_Complex_Type_citationNameType.html#citationNameType_seq" coords="149,78,217,102" />
+                                 <area alt="propertyTypes_xsd_Complex_Type_citationNameType.tmp#citationNameType_namePart" href="propertyTypes_xsd_Complex_Type_citationNameType.html#citationNameType_namePart" coords="227,179,308,203" />
+                                 <area alt="propertyTypes_xsd_Complex_Type_citationNameType.tmp#citationNameType" href="propertyTypes_xsd_Complex_Type_citationNameType.html#citationNameType" coords="124,3,271,25" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="propertyTypes_xsd_Complex_Type_citationNameType.html#citationNameType" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component citationNameType')">citationNameType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_citationInfoType_citationInfoType_citationMetadata_contributor" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_citationInfoType_citationInfoType_citationMetadata_contributor');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_citationInfoType_citationInfoType_citationMetadata_contributor" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>unbounded</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_citationInfoType_citationInfoType_citationMetadata_contributor" type="image" src="img/btM.gif" value="-" onclick="switchState('model_citationInfoType_citationInfoType_citationMetadata_contributor');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="model_citationInfoType_citationInfoType_citationMetadata_contributor" style="display:block"><b><a href="propertyTypes_xsd_Complex_Type_citationNameType.html#citationNameType_namePart" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component namePart+')">namePart+</a></b></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="propertyTypes_xsd_Complex_Type_citationNameType.html#citationNameType_namePart" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component namePart')">namePart</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_citationInfoType_citationInfoType_citationMetadata_contributor" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_citationInfoType_citationInfoType_citationMetadata_contributor');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_citationInfoType_citationInfoType_citationMetadata_contributor" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;contributor</span><span class="tT"> </span><span class="tAN">seq=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://researchgraph.org/schema/v1.1/xml/nodes"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;namePart</span><span class="tT"> </span><span class="tAN">type=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,unbounded}</span><span class="tEl">&lt;/namePart&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/contributor&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_citationInfoType_citationInfoType_citationMetadata_contributor" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_citationInfoType_citationInfoType_citationMetadata_contributor');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_citationInfoType_citationInfoType_citationMetadata_contributor" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="propertyTypes_xsd_Complex_Type_citationNameType.html#citationNameType_seq" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component seq')">seq</a></b></td>
+                                    <td><b>xsd:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">An attribute used to indicate any ordering within *like*</span><span class="tI">
+</span><span class="tT">contributor types (e.g. in a list of co-authors). Where not specified ordering</span><span class="tI">
+</span><span class="tT">is left up to the consuming application. It should not be assumed the sequence</span><span class="tI">
+</span><span class="tT">of contributors will be output in the order they appear within the</span><span class="tI">
+</span><span class="tT">XML.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_citationInfoType_citationInfoType_citationMetadata_contributor" type="image" src="img/btM.gif" value="-" onclick="switchState('source_citationInfoType_citationInfoType_citationMetadata_contributor');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_citationInfoType_citationInfoType_citationMetadata_contributor" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"contributor"</span><span class="tAN"> type=</span><span class="tAV">"citationNameType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">/&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="citationInfoType_citationInfoType_citationMetadata_title"></a><div class="componentTitle">Element <span class="qname"><b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component citationInfoType')">citationInfoType</a></b> / <b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationMetadata" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component citationMetadata')">citationMetadata</a></b> / title</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>http://researchgraph.org/schema/v1.1/xml/nodes</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_citationInfoType_citationInfoType_citationMetadata_title" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_citationInfoType_citationInfoType_citationMetadata_title');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_citationInfoType_citationInfoType_citationMetadata_title" style="display:block"><img alt="Diagram" border="0" src="img/propertyTypes_xsd_Element_title.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xsd:string</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_citationInfoType_citationInfoType_citationMetadata_title" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_citationInfoType_citationInfoType_citationMetadata_title');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_citationInfoType_citationInfoType_citationMetadata_title" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_citationInfoType_citationInfoType_citationMetadata_title" type="image" src="img/btM.gif" value="-" onclick="switchState('source_citationInfoType_citationInfoType_citationMetadata_title');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_citationInfoType_citationInfoType_citationMetadata_title" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"title"</span><span class="tAN"> type=</span><span class="tAV">"xsd:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">/&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="citationInfoType_citationInfoType_citationMetadata_version"></a><div class="componentTitle">Element <span class="qname"><b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component citationInfoType')">citationInfoType</a></b> / <b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationMetadata" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component citationMetadata')">citationMetadata</a></b> / version</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>http://researchgraph.org/schema/v1.1/xml/nodes</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_citationInfoType_citationInfoType_citationMetadata_version" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_citationInfoType_citationInfoType_citationMetadata_version');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_citationInfoType_citationInfoType_citationMetadata_version" style="display:block"><img alt="Diagram" border="0" src="img/propertyTypes_xsd_Element_version.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xsd:string</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_citationInfoType_citationInfoType_citationMetadata_version" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_citationInfoType_citationInfoType_citationMetadata_version');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_citationInfoType_citationInfoType_citationMetadata_version" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_citationInfoType_citationInfoType_citationMetadata_version" type="image" src="img/btM.gif" value="-" onclick="switchState('source_citationInfoType_citationInfoType_citationMetadata_version');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_citationInfoType_citationInfoType_citationMetadata_version" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"version"</span><span class="tAN"> type=</span><span class="tAV">"xsd:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">/&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="citationInfoType_citationInfoType_citationMetadata_edition"></a><div class="componentTitle">Element <span class="qname"><b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component citationInfoType')">citationInfoType</a></b> / <b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationMetadata" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component citationMetadata')">citationMetadata</a></b> / edition</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>http://researchgraph.org/schema/v1.1/xml/nodes</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_citationInfoType_citationInfoType_citationMetadata_edition" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_citationInfoType_citationInfoType_citationMetadata_edition');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_citationInfoType_citationInfoType_citationMetadata_edition" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">THIS ELEMENT IS DEPRECATED AS OF V1.4 (USE</span><span class="tI">
+</span><span class="tT">'version' ELEMENT INSTEAD.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_citationInfoType_citationInfoType_citationMetadata_edition" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_citationInfoType_citationInfoType_citationMetadata_edition');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_citationInfoType_citationInfoType_citationMetadata_edition" style="display:block"><img alt="Diagram" border="0" src="img/propertyTypes_xsd_Element_edition.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xsd:string</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_citationInfoType_citationInfoType_citationMetadata_edition" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_citationInfoType_citationInfoType_citationMetadata_edition');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_citationInfoType_citationInfoType_citationMetadata_edition" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_citationInfoType_citationInfoType_citationMetadata_edition" type="image" src="img/btM.gif" value="-" onclick="switchState('source_citationInfoType_citationInfoType_citationMetadata_edition');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_citationInfoType_citationInfoType_citationMetadata_edition" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"edition"</span><span class="tAN"> type=</span><span class="tAV">"xsd:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">THIS ELEMENT IS DEPRECATED AS OF V1.4 (USE 'version' ELEMENT INSTEAD.</span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xsd:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="citationInfoType_citationInfoType_citationMetadata_publisher"></a><div class="componentTitle">Element <span class="qname"><b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component citationInfoType')">citationInfoType</a></b> / <b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationMetadata" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component citationMetadata')">citationMetadata</a></b> / publisher</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>http://researchgraph.org/schema/v1.1/xml/nodes</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_citationInfoType_citationInfoType_citationMetadata_publisher" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_citationInfoType_citationInfoType_citationMetadata_publisher');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_citationInfoType_citationInfoType_citationMetadata_publisher" style="display:block"><img alt="Diagram" border="0" src="img/propertyTypes_xsd_Element_publisher.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xsd:string</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_citationInfoType_citationInfoType_citationMetadata_publisher" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_citationInfoType_citationInfoType_citationMetadata_publisher');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_citationInfoType_citationInfoType_citationMetadata_publisher" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_citationInfoType_citationInfoType_citationMetadata_publisher" type="image" src="img/btM.gif" value="-" onclick="switchState('source_citationInfoType_citationInfoType_citationMetadata_publisher');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_citationInfoType_citationInfoType_citationMetadata_publisher" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"publisher"</span><span class="tAN"> type=</span><span class="tAV">"xsd:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">/&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="citationInfoType_citationInfoType_citationMetadata_placePublished"></a><div class="componentTitle">Element <span class="qname"><b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component citationInfoType')">citationInfoType</a></b> / <b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationMetadata" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component citationMetadata')">citationMetadata</a></b> / placePublished</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>http://researchgraph.org/schema/v1.1/xml/nodes</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_citationInfoType_citationInfoType_citationMetadata_placePublished" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_citationInfoType_citationInfoType_citationMetadata_placePublished');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_citationInfoType_citationInfoType_citationMetadata_placePublished" style="display:block"><img alt="Diagram" border="0" src="img/propertyTypes_xsd_Element_placePublished.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xsd:string</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_citationInfoType_citationInfoType_citationMetadata_placePublished" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_citationInfoType_citationInfoType_citationMetadata_placePublished');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_citationInfoType_citationInfoType_citationMetadata_placePublished" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_citationInfoType_citationInfoType_citationMetadata_placePublished" type="image" src="img/btM.gif" value="-" onclick="switchState('source_citationInfoType_citationInfoType_citationMetadata_placePublished');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_citationInfoType_citationInfoType_citationMetadata_placePublished" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"placePublished"</span><span class="tAN"> type=</span><span class="tAV">"xsd:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">/&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="citationInfoType_citationInfoType_citationMetadata_date"></a><div class="componentTitle">Element <span class="qname"><b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component citationInfoType')">citationInfoType</a></b> / <b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationMetadata" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component citationMetadata')">citationMetadata</a></b> / date</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>http://researchgraph.org/schema/v1.1/xml/nodes</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_citationInfoType_citationInfoType_citationMetadata_date" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_citationInfoType_citationInfoType_citationMetadata_date');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_citationInfoType_citationInfoType_citationMetadata_date" style="display:block"><img alt="Diagram" border="0" src="img/propertyTypes_xsd_Element_date_1.jpeg" usemap="#propertyTypes_xsd_Element_date_1" /><map name="propertyTypes_xsd_Element_date_1" id="propertyTypes_xsd_Element_date_1">
+                                 <area alt="propertyTypes_xsd_Complex_Type_citationDateType.tmp#citationDateType_type" href="propertyTypes_xsd_Complex_Type_citationDateType.html#citationDateType_type" coords="110,157,181,181" />
+                                 <area alt="propertyTypes_xsd_Complex_Type_citationDateType.tmp#citationDateType" href="propertyTypes_xsd_Complex_Type_citationDateType.html#citationDateType" coords="85,3,226,25" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="propertyTypes_xsd_Complex_Type_citationDateType.html#citationDateType" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component citationDateType')">citationDateType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_citationInfoType_citationInfoType_citationMetadata_date" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_citationInfoType_citationInfoType_citationMetadata_date');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_citationInfoType_citationInfoType_citationMetadata_date" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>unbounded</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_citationInfoType_citationInfoType_citationMetadata_date" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_citationInfoType_citationInfoType_citationMetadata_date');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_citationInfoType_citationInfoType_citationMetadata_date" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="propertyTypes_xsd_Complex_Type_citationDateType.html#citationDateType_type" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component type')">type</a></b></td>
+                                    <td><b>xsd:string</b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">A value taken from a controlled vocabulary indicating the</span><span class="tI">
+</span><span class="tT">type of date.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_citationInfoType_citationInfoType_citationMetadata_date" type="image" src="img/btM.gif" value="-" onclick="switchState('source_citationInfoType_citationInfoType_citationMetadata_date');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_citationInfoType_citationInfoType_citationMetadata_date" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"date"</span><span class="tAN"> type=</span><span class="tAV">"citationDateType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">/&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="citationInfoType_citationInfoType_citationMetadata_url"></a><div class="componentTitle">Element <span class="qname"><b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component citationInfoType')">citationInfoType</a></b> / <b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationMetadata" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component citationMetadata')">citationMetadata</a></b> / url</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>http://researchgraph.org/schema/v1.1/xml/nodes</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_citationInfoType_citationInfoType_citationMetadata_url" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_citationInfoType_citationInfoType_citationMetadata_url');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_citationInfoType_citationInfoType_citationMetadata_url" style="display:block"><img alt="Diagram" border="0" src="img/propertyTypes_xsd_Element_url.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xsd:string</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_citationInfoType_citationInfoType_citationMetadata_url" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_citationInfoType_citationInfoType_citationMetadata_url');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_citationInfoType_citationInfoType_citationMetadata_url" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_citationInfoType_citationInfoType_citationMetadata_url" type="image" src="img/btM.gif" value="-" onclick="switchState('source_citationInfoType_citationInfoType_citationMetadata_url');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_citationInfoType_citationInfoType_citationMetadata_url" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"url"</span><span class="tAN"> type=</span><span class="tAV">"xsd:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">/&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="citationInfoType_citationInfoType_citationMetadata_context"></a><div class="componentTitle">Element <span class="qname"><b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component citationInfoType')">citationInfoType</a></b> / <b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationMetadata" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component citationMetadata')">citationMetadata</a></b> / context</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>http://researchgraph.org/schema/v1.1/xml/nodes</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_citationInfoType_citationInfoType_citationMetadata_context" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_citationInfoType_citationInfoType_citationMetadata_context');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_citationInfoType_citationInfoType_citationMetadata_context" style="display:block"><img alt="Diagram" border="0" src="img/propertyTypes_xsd_Element_context.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xsd:string</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_citationInfoType_citationInfoType_citationMetadata_context" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_citationInfoType_citationInfoType_citationMetadata_context');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_citationInfoType_citationInfoType_citationMetadata_context" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_citationInfoType_citationInfoType_citationMetadata_context" type="image" src="img/btM.gif" value="-" onclick="switchState('source_citationInfoType_citationInfoType_citationMetadata_context');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_citationInfoType_citationInfoType_citationMetadata_context" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"context"</span><span class="tAN"> type=</span><span class="tAV">"xsd:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">/&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="citationInfoType"></a><div class="componentTitle">Complex Type <span class="qname">citationInfoType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>http://researchgraph.org/schema/v1.1/xml/nodes</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_citationInfoType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_citationInfoType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_citationInfoType" style="display:block"><img alt="Diagram" border="0" src="img/propertyTypes_xsd_Complex_Type_citationInfoType.jpeg" usemap="#propertyTypes_xsd_Complex_Type_citationInfoType" /><map name="propertyTypes_xsd_Complex_Type_citationInfoType" id="propertyTypes_xsd_Complex_Type_citationInfoType">
+                                 <area alt="propertyTypes_xsd_Complex_Type_citationInfoType.tmp#citationInfoType_fullCitation" href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_fullCitation" coords="241,0,331,24" />
+                                 <area alt="propertyTypes_xsd_Complex_Type_citationInfoType.tmp#citationInfoType_citationMetadata" href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationMetadata" coords="241,34,360,58" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_citationInfoType" type="image" src="img/btM.gif" value="-" onclick="switchState('model_citationInfoType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="model_citationInfoType" style="display:block"><b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_fullCitation" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component fullCitation')">fullCitation</a></b> | <b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationMetadata" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component citationMetadata')">citationMetadata</a></b></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_citationMetadata" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component citationMetadata')">citationMetadata</a></b>, <b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_fullCitation" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component fullCitation')">fullCitation</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_citationInfoType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_citationInfoType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_citationInfoType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xsd:complexType</span><span class="tAN"> name=</span><span class="tAV">"citationInfoType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xsd:choice</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"fullCitation"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:complexType</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xsd:simpleContent</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xsd:extension</span><span class="tAN"> base=</span><span class="tAV">"xsd:string"</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xsd:attribute</span><span class="tAN"> name=</span><span class="tAV">"style"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tAN"> type=</span><span class="tAV">"xsd:string"</span><span class="tEl">&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+                </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">A value taken from a controlled vocabulary indicating the citation style used.</span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;/xsd:attribute&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xsd:extension&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xsd:simpleContent&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xsd:complexType&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xsd:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"citationMetadata"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:complexType</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xsd:choice</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"identifier"</span><span class="tAN"> type=</span><span class="tAV">"identifierType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">/&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"contributor"</span><span class="tAN"> type=</span><span class="tAV">"citationNameType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">/&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"title"</span><span class="tAN"> type=</span><span class="tAV">"xsd:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">/&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"version"</span><span class="tAN"> type=</span><span class="tAV">"xsd:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">/&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"edition"</span><span class="tAN"> type=</span><span class="tAV">"xsd:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">THIS ELEMENT IS DEPRECATED AS OF V1.4 (USE 'version' ELEMENT INSTEAD.</span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xsd:element&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"publisher"</span><span class="tAN"> type=</span><span class="tAV">"xsd:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">/&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"placePublished"</span><span class="tAN"> type=</span><span class="tAV">"xsd:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">/&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"date"</span><span class="tAN"> type=</span><span class="tAV">"citationDateType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">/&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"url"</span><span class="tAN"> type=</span><span class="tAV">"xsd:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">/&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"context"</span><span class="tAN"> type=</span><span class="tAV">"xsd:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xsd:choice&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xsd:complexType&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xsd:element&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xsd:choice&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xsd:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="citationInfoType_citationInfoType_fullCitation_style"></a><div class="componentTitle">Attribute <span class="qname"><b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component citationInfoType')">citationInfoType</a></b> / <b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_fullCitation" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component fullCitation')">fullCitation</a></b> / @style</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_citationInfoType_citationInfoType_fullCitation_style" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_citationInfoType_citationInfoType_fullCitation_style');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_citationInfoType_citationInfoType_fullCitation_style" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">A value taken from a controlled vocabulary</span><span class="tI">
+</span><span class="tT">indicating the citation style used.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xsd:string</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_citationInfoType_citationInfoType_fullCitation_style" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_citationInfoType_citationInfoType_fullCitation_style');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_citationInfoType_citationInfoType_fullCitation_style" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">use</td>
+                                    <td><b>optional</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_citationInfoType_citationInfoType_fullCitation_style" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_citationInfoType_citationInfoType_fullCitation_style');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_citationInfoType_citationInfoType_fullCitation_style" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Element </td>
+                                    <td><b><a href="propertyTypes_xsd_Complex_Type_citationInfoType.html#citationInfoType_fullCitation" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component citationInfoType/fullCitation')">citationInfoType/fullCitation</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_citationInfoType_citationInfoType_fullCitation_style" type="image" src="img/btM.gif" value="-" onclick="switchState('source_citationInfoType_citationInfoType_fullCitation_style');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_citationInfoType_citationInfoType_fullCitation_style" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xsd:attribute</span><span class="tAN"> name=</span><span class="tAV">"style"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tAN"> type=</span><span class="tAV">"xsd:string"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">A value taken from a controlled vocabulary indicating the citation style used.</span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xsd:attribute&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

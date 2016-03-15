@@ -1,0 +1,1424 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component grant</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_grant', 
+				'properties_grant_key', 
+				'properties_grant_local_id', 
+				'properties_grant_purl', 
+				'properties_grant_url', 
+				'properties_grant_title', 
+				'properties_grant_participant_list', 
+				'properties_grant_start_year', 
+				'properties_grant_end_year', 
+				'properties_grant_anzsrc_purl');
+var sourceBoxes= new Array('source_grant', 
+				'source_grant_key', 
+				'source_grant_local_id', 
+				'source_grant_purl', 
+				'source_grant_url', 
+				'source_grant_title', 
+				'source_grant_participant_list', 
+				'source_grant_start_year', 
+				'source_grant_end_year', 
+				'source_grant_anzsrc_purl');
+var instanceBoxes= new Array('instance_grant');
+var diagramBoxes= new Array('diagram_grant', 
+				'diagram_grant_key', 
+				'diagram_grant_local_id', 
+				'diagram_grant_purl', 
+				'diagram_grant_url', 
+				'diagram_grant_title', 
+				'diagram_grant_participant_list', 
+				'diagram_grant_start_year', 
+				'diagram_grant_end_year', 
+				'diagram_grant_anzsrc_purl');
+var annotationBoxes= new Array('annotations_grant', 
+				'annotations_grant_key', 
+				'annotations_grant_purl', 
+				'annotations_grant_url', 
+				'annotations_grant_title', 
+				'annotations_grant_participant_list', 
+				'annotations_grant_start_year', 
+				'annotations_grant_end_year', 
+				'annotations_grant_anzsrc_purl');
+var modelBoxes= new Array('model_grant');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, modelBoxes);" class="control" /></span><span class="globalControlName">Model </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="grant"></a><div class="componentTitle">Element <span class="qname">grant</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>http://researchgraph.org/schema/v1.1/xml/nodes</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_grant" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_grant');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_grant" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">Research grant or project.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_grant" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_grant');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_grant" style="display:block"><img alt="Diagram" border="0" src="img/grant_xsd_Element_grant.jpeg" usemap="#grant_xsd_Element_grant" /><map name="grant_xsd_Element_grant" id="grant_xsd_Element_grant">
+                                 <area alt="grant_xsd_Element_grant.tmp#grant_key" href="grant_xsd_Element_grant.html#grant_key" coords="221,2,346,44" />
+                                 <area alt="grant_xsd_Element_grant.tmp#grant_local_id" href="grant_xsd_Element_grant.html#grant_local_id" coords="221,97,341,139" />
+                                 <area alt="grant_xsd_Element_grant.tmp#grant_purl" href="grant_xsd_Element_grant.html#grant_purl" coords="221,149,346,191" />
+                                 <area alt="grant_xsd_Element_grant.tmp#grant_url" href="grant_xsd_Element_grant.html#grant_url" coords="221,244,346,286" />
+                                 <area alt="grant_xsd_Element_grant.tmp#grant_title" href="grant_xsd_Element_grant.html#grant_title" coords="221,326,341,368" />
+                                 <area alt="grant_xsd_Element_grant.tmp#grant_participant_list" href="grant_xsd_Element_grant.html#grant_participant_list" coords="221,421,341,463" />
+                                 <area alt="grant_xsd_Element_grant.tmp#grant_start_year" href="grant_xsd_Element_grant.html#grant_start_year" coords="221,529,340,571" />
+                                 <area alt="grant_xsd_Element_grant.tmp#grant_end_year" href="grant_xsd_Element_grant.html#grant_end_year" coords="221,611,340,653" />
+                                 <area alt="grant_xsd_Element_grant.tmp#grant_anzsrc_purl" href="grant_xsd_Element_grant.html#grant_anzsrc_purl" coords="221,693,346,735" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_grant" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_grant');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_grant" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_grant" type="image" src="img/btM.gif" value="-" onclick="switchState('model_grant');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="model_grant" style="display:block"><b><a href="grant_xsd_Element_grant.html#grant_key" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component key')">key</a></b> | <b><a href="grant_xsd_Element_grant.html#grant_local_id" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component local_id')">local_id</a></b> | <b><a href="grant_xsd_Element_grant.html#grant_purl" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component purl{0,1}')">purl{0,1}</a></b> | <b><a href="grant_xsd_Element_grant.html#grant_url" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component url{0,1}')">url{0,1}</a></b> | <b><a href="grant_xsd_Element_grant.html#grant_title" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component title{0,1}')">title{0,1}</a></b> | <b><a href="grant_xsd_Element_grant.html#grant_participant_list" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component participant_list{0,1}')">participant_list{0,1}</a></b> | <b><a href="grant_xsd_Element_grant.html#grant_start_year" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component start_year{0,1}')">start_year{0,1}</a></b> | <b><a href="grant_xsd_Element_grant.html#grant_end_year" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component end_year{0,1}')">end_year{0,1}</a></b> | <b><a href="grant_xsd_Element_grant.html#grant_anzsrc_purl" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component anzsrc_purl*')">anzsrc_purl*</a></b></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="grant_xsd_Element_grant.html#grant_anzsrc_purl" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component anzsrc_purl')">anzsrc_purl</a></b>, <b><a href="grant_xsd_Element_grant.html#grant_end_year" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component end_year')">end_year</a></b>, <b><a href="grant_xsd_Element_grant.html#grant_key" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component key')">key</a></b>, <b><a href="grant_xsd_Element_grant.html#grant_local_id" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component local_id')">local_id</a></b>, <b><a href="grant_xsd_Element_grant.html#grant_participant_list" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component participant_list')">participant_list</a></b>, <b><a href="grant_xsd_Element_grant.html#grant_purl" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component purl')">purl</a></b>, <b><a href="grant_xsd_Element_grant.html#grant_start_year" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component start_year')">start_year</a></b>, <b><a href="grant_xsd_Element_grant.html#grant_title" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component title')">title</a></b>, <b><a href="grant_xsd_Element_grant.html#grant_url" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component url')">url</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_grant" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_grant');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_grant" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;grant</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://researchgraph.org/schema/v1.1/xml/nodes"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;key</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/key&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;local_id</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/local_id&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;purl</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/purl&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;url</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/url&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;title</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/title&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;participant_list</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/participant_list&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;start_year</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/start_year&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;end_year</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/end_year&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;anzsrc_purl</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,unbounded}</span><span class="tEl">&lt;/anzsrc_purl&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/grant&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_grant" type="image" src="img/btM.gif" value="-" onclick="switchState('source_grant');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_grant" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"grant"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Research grant or project.</span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xsd:complexType</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:choice</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"key"</span><span class="tAN"> type=</span><span class="tAV">"xsd:anyURI"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">A resolvable URL that globaly identifies this object. The prefered value is a PURL. In the case that a PURL is not available a persistant URL provided by researchgraph.org with the following syntax. A that uniquely identifies the dataset. Syntax researchgraph.org/{datarepository-namespace}/{local_id} datarepository-namespace is a registered namespace under http://researchgraph.org Examples: researchgraph.org/sample-funder.org/a05f7892-ce67-7506-e044-00144fdd4fa6</span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xsd:element&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"local_id"</span><span class="tAN"> type=</span><span class="tAV">"xsd:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">/&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"purl"</span><span class="tAN"> type=</span><span class="tAV">"xsd:anyURI"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">A PURL that uniquely identfies the grant: http://purl.org/au-research/grants/arc/FT0991045</span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xsd:element&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"url"</span><span class="tAN"> type=</span><span class="tAV">"xsd:anyURI"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">A URL that uniquely identfies the grant.</span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xsd:element&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"title"</span><span class="tAN"> type=</span><span class="tAV">"xsd:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xsd:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Grant title. This field provides human readable information about the grant; however, it has been set to optional because of limited available public information in some cases.</span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xsd:element&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"participant_list"</span><span class="tAN"> type=</span><span class="tAV">"xsd:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xsd:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Comma separated list of grant participants. It is derived from the grant proposal, and often complement the grant title to make the grant recognisable for human users.</span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xsd:element&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"start_year"</span><span class="tAN"> type=</span><span class="tAV">"xsd:gYear"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The start year (YYYY) of the grant.</span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xsd:element&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"end_year"</span><span class="tAN"> type=</span><span class="tAV">"xsd:gYear"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The end year (YYYY) of the grant.</span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xsd:element&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"anzsrc_purl"</span><span class="tAN"> type=</span><span class="tAV">"xsd:anyURI"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xsd:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">PURL for ANCSRC-FOR subjects. Complete list available at http://www.abs.gov.au/ausstats/abs@.nsf/0/6BB427AB9696C225CA2574180004463E Syntax: http://purl.org/au-research/vocabulary/anzsrc-for/{YYYY}/{subject-code} Example: http://purl.org/au-research/vocabulary/anzsrc-for/2008/0601</span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xsd:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xsd:choice&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xsd:complexType&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xsd:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="grant_key"></a><div class="componentTitle">Element <span class="qname"><b><a href="grant_xsd_Element_grant.html#grant" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component grant')">grant</a></b> / key</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>http://researchgraph.org/schema/v1.1/xml/nodes</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_grant_key" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_grant_key');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_grant_key" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">A resolvable URL that globaly identifies this object. The prefered value is a PURL.</span><span class="tI">
+</span><span class="tT">                            </span><span class="tI">
+</span><span class="tT">In the case that a PURL is not available a persistant URL provided by researchgraph.org with the following syntax. </span><span class="tI">
+</span><span class="tT">A  that uniquely identifies the dataset. </span><span class="tI">
+</span><span class="tT">                            </span><span class="tI">
+</span><span class="tT">Syntax</span><span class="tI">
+</span><span class="tT">researchgraph.org/{datarepository-namespace}/{local_id}</span><span class="tI">
+</span><span class="tT">datarepository-namespace is a registered namespace under http://researchgraph.org          </span><span class="tI">
+</span><span class="tT">                            </span><span class="tI">
+</span><span class="tT">Examples:</span><span class="tI">
+</span><span class="tT">researchgraph.org/sample-funder.org/a05f7892-ce67-7506-e044-00144fdd4fa6</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_grant_key" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_grant_key');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_grant_key" style="display:block"><img alt="Diagram" border="0" src="img/grant_xsd_Element_key.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xsd:anyURI</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_grant_key" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_grant_key');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_grant_key" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_grant_key" type="image" src="img/btM.gif" value="-" onclick="switchState('source_grant_key');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_grant_key" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"key"</span><span class="tAN"> type=</span><span class="tAV">"xsd:anyURI"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">A resolvable URL that globaly identifies this object. The prefered value is a PURL. In the case that a PURL is not available a persistant URL provided by researchgraph.org with the following syntax. A that uniquely identifies the dataset. Syntax researchgraph.org/{datarepository-namespace}/{local_id} datarepository-namespace is a registered namespace under http://researchgraph.org Examples: researchgraph.org/sample-funder.org/a05f7892-ce67-7506-e044-00144fdd4fa6</span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xsd:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="grant_local_id"></a><div class="componentTitle">Element <span class="qname"><b><a href="grant_xsd_Element_grant.html#grant" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component grant')">grant</a></b> / local_id</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>http://researchgraph.org/schema/v1.1/xml/nodes</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_grant_local_id" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_grant_local_id');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_grant_local_id" style="display:block"><img alt="Diagram" border="0" src="img/grant_xsd_Element_local_id.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xsd:string</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_grant_local_id" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_grant_local_id');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_grant_local_id" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_grant_local_id" type="image" src="img/btM.gif" value="-" onclick="switchState('source_grant_local_id');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_grant_local_id" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"local_id"</span><span class="tAN"> type=</span><span class="tAV">"xsd:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">/&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="grant_purl"></a><div class="componentTitle">Element <span class="qname"><b><a href="grant_xsd_Element_grant.html#grant" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component grant')">grant</a></b> / purl</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>http://researchgraph.org/schema/v1.1/xml/nodes</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_grant_purl" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_grant_purl');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_grant_purl" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">A PURL that uniquely identfies the grant:</span><span class="tI">
+</span><span class="tT">http://purl.org/au-research/grants/arc/FT0991045</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_grant_purl" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_grant_purl');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_grant_purl" style="display:block"><img alt="Diagram" border="0" src="img/grant_xsd_Element_purl.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xsd:anyURI</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_grant_purl" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_grant_purl');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_grant_purl" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_grant_purl" type="image" src="img/btM.gif" value="-" onclick="switchState('source_grant_purl');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_grant_purl" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"purl"</span><span class="tAN"> type=</span><span class="tAV">"xsd:anyURI"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">A PURL that uniquely identfies the grant: http://purl.org/au-research/grants/arc/FT0991045</span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xsd:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="grant_url"></a><div class="componentTitle">Element <span class="qname"><b><a href="grant_xsd_Element_grant.html#grant" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component grant')">grant</a></b> / url</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>http://researchgraph.org/schema/v1.1/xml/nodes</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_grant_url" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_grant_url');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_grant_url" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">A URL that uniquely identfies the grant.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_grant_url" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_grant_url');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_grant_url" style="display:block"><img alt="Diagram" border="0" src="img/grant_xsd_Element_url.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xsd:anyURI</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_grant_url" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_grant_url');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_grant_url" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_grant_url" type="image" src="img/btM.gif" value="-" onclick="switchState('source_grant_url');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_grant_url" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"url"</span><span class="tAN"> type=</span><span class="tAV">"xsd:anyURI"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">A URL that uniquely identfies the grant.</span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xsd:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="grant_title"></a><div class="componentTitle">Element <span class="qname"><b><a href="grant_xsd_Element_grant.html#grant" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component grant')">grant</a></b> / title</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>http://researchgraph.org/schema/v1.1/xml/nodes</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_grant_title" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_grant_title');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_grant_title" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">Grant title.</span><span class="tI">
+</span><span class="tT">This field provides human readable information about the grant; however, it has been set to optional because of limited available public information in some cases.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_grant_title" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_grant_title');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_grant_title" style="display:block"><img alt="Diagram" border="0" src="img/grant_xsd_Element_title.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xsd:string</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_grant_title" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_grant_title');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_grant_title" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_grant_title" type="image" src="img/btM.gif" value="-" onclick="switchState('source_grant_title');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_grant_title" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"title"</span><span class="tAN"> type=</span><span class="tAV">"xsd:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Grant title. This field provides human readable information about the grant; however, it has been set to optional because of limited available public information in some cases.</span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xsd:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="grant_participant_list"></a><div class="componentTitle">Element <span class="qname"><b><a href="grant_xsd_Element_grant.html#grant" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component grant')">grant</a></b> / participant_list</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>http://researchgraph.org/schema/v1.1/xml/nodes</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_grant_participant_list" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_grant_participant_list');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_grant_participant_list" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">Comma separated list of grant participants. It is derived from the grant proposal, and often complement the grant title to make the grant recognisable for human users.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_grant_participant_list" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_grant_participant_list');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_grant_participant_list" style="display:block"><img alt="Diagram" border="0" src="img/grant_xsd_Element_participant_list.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xsd:string</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_grant_participant_list" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_grant_participant_list');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_grant_participant_list" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_grant_participant_list" type="image" src="img/btM.gif" value="-" onclick="switchState('source_grant_participant_list');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_grant_participant_list" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"participant_list"</span><span class="tAN"> type=</span><span class="tAV">"xsd:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Comma separated list of grant participants. It is derived from the grant proposal, and often complement the grant title to make the grant recognisable for human users.</span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xsd:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="grant_start_year"></a><div class="componentTitle">Element <span class="qname"><b><a href="grant_xsd_Element_grant.html#grant" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component grant')">grant</a></b> / start_year</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>http://researchgraph.org/schema/v1.1/xml/nodes</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_grant_start_year" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_grant_start_year');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_grant_start_year" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The start year (YYYY) of the grant.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_grant_start_year" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_grant_start_year');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_grant_start_year" style="display:block"><img alt="Diagram" border="0" src="img/grant_xsd_Element_start_year.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xsd:gYear</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_grant_start_year" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_grant_start_year');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_grant_start_year" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_grant_start_year" type="image" src="img/btM.gif" value="-" onclick="switchState('source_grant_start_year');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_grant_start_year" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"start_year"</span><span class="tAN"> type=</span><span class="tAV">"xsd:gYear"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The start year (YYYY) of the grant.</span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xsd:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="grant_end_year"></a><div class="componentTitle">Element <span class="qname"><b><a href="grant_xsd_Element_grant.html#grant" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component grant')">grant</a></b> / end_year</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>http://researchgraph.org/schema/v1.1/xml/nodes</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_grant_end_year" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_grant_end_year');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_grant_end_year" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The end year (YYYY) of the grant.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_grant_end_year" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_grant_end_year');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_grant_end_year" style="display:block"><img alt="Diagram" border="0" src="img/grant_xsd_Element_end_year.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xsd:gYear</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_grant_end_year" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_grant_end_year');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_grant_end_year" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_grant_end_year" type="image" src="img/btM.gif" value="-" onclick="switchState('source_grant_end_year');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_grant_end_year" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"end_year"</span><span class="tAN"> type=</span><span class="tAV">"xsd:gYear"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The end year (YYYY) of the grant.</span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xsd:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="grant_anzsrc_purl"></a><div class="componentTitle">Element <span class="qname"><b><a href="grant_xsd_Element_grant.html#grant" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component grant')">grant</a></b> / anzsrc_purl</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>http://researchgraph.org/schema/v1.1/xml/nodes</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_grant_anzsrc_purl" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_grant_anzsrc_purl');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_grant_anzsrc_purl" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">PURL for ANCSRC-FOR subjects.</span><span class="tI">
+</span><span class="tT">Complete list available at http://www.abs.gov.au/ausstats/abs@.nsf/0/6BB427AB9696C225CA2574180004463E</span><span class="tI">
+</span><span class="tT">Syntax:</span><span class="tI">
+</span><span class="tT">http://purl.org/au-research/vocabulary/anzsrc-for/{YYYY}/{subject-code}</span><span class="tI">
+</span><span class="tT">                            </span><span class="tI">
+</span><span class="tT">Example:</span><span class="tI">
+</span><span class="tT">http://purl.org/au-research/vocabulary/anzsrc-for/2008/0601</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_grant_anzsrc_purl" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_grant_anzsrc_purl');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_grant_anzsrc_purl" style="display:block"><img alt="Diagram" border="0" src="img/grant_xsd_Element_anzsrc_purl.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xsd:anyURI</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_grant_anzsrc_purl" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_grant_anzsrc_purl');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_grant_anzsrc_purl" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>unbounded</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_grant_anzsrc_purl" type="image" src="img/btM.gif" value="-" onclick="switchState('source_grant_anzsrc_purl');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_grant_anzsrc_purl" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"anzsrc_purl"</span><span class="tAN"> type=</span><span class="tAV">"xsd:anyURI"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:documentation</span><span class="tAN"> xml:lang=</span><span class="tAV">"en"</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">PURL for ANCSRC-FOR subjects. Complete list available at http://www.abs.gov.au/ausstats/abs@.nsf/0/6BB427AB9696C225CA2574180004463E Syntax: http://purl.org/au-research/vocabulary/anzsrc-for/{YYYY}/{subject-code} Example: http://purl.org/au-research/vocabulary/anzsrc-for/2008/0601</span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xsd:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

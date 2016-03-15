@@ -1,0 +1,1206 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component address</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_locationType_address', 
+				'properties_locationType_locationType_address_electronic', 
+				'properties_locationType_locationType_address_physical', 
+				'properties_locationType_spatial', 
+				'properties_locationType_type');
+var usedByBoxes= new Array('usedBy_locationType_type');
+var sourceBoxes= new Array('source_locationType_address', 
+				'source_locationType_locationType_address_electronic', 
+				'source_locationType_locationType_address_physical', 
+				'source_locationType_spatial', 
+				'source_locationType', 
+				'source_locationType_type');
+var instanceBoxes= new Array('instance_locationType_address', 
+				'instance_locationType_locationType_address_electronic', 
+				'instance_locationType_locationType_address_physical');
+var diagramBoxes= new Array('diagram_locationType_address', 
+				'diagram_locationType_locationType_address_electronic', 
+				'diagram_locationType_locationType_address_physical', 
+				'diagram_locationType_spatial', 
+				'diagram_locationType');
+var annotationBoxes= new Array('annotations_locationType', 
+				'annotations_locationType_type');
+var attributesBoxes= new Array('attributes_locationType_locationType_address_electronic', 
+				'attributes_locationType_locationType_address_physical', 
+				'attributes_locationType_spatial', 
+				'attributes_locationType');
+var modelBoxes= new Array('model_locationType_address', 
+				'model_locationType_locationType_address_electronic', 
+				'model_locationType_locationType_address_physical', 
+				'model_locationType');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, attributesBoxes);" class="control" /></span><span class="globalControlName">Attributes </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, modelBoxes);" class="control" /></span><span class="globalControlName">Model </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="locationType_address"></a><div class="componentTitle">Element <span class="qname"><b><a href="propertyTypes_xsd_Complex_Type_locationType.html#locationType" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component locationType')">locationType</a></b> / address</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>http://researchgraph.org/schema/v1.1/xml/nodes</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_locationType_address" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_locationType_address');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_locationType_address" style="display:block"><img alt="Diagram" border="0" src="img/propertyTypes_xsd_Element_address.jpeg" usemap="#propertyTypes_xsd_Element_address" /><map name="propertyTypes_xsd_Element_address" id="propertyTypes_xsd_Element_address">
+                                 <area alt="propertyTypes_xsd_Complex_Type_locationType.tmp#locationType_locationType_address_electronic" href="propertyTypes_xsd_Complex_Type_locationType.html#locationType_locationType_address_electronic" coords="215,2,299,26" />
+                                 <area alt="propertyTypes_xsd_Complex_Type_locationType.tmp#locationType_locationType_address_physical" href="propertyTypes_xsd_Complex_Type_locationType.html#locationType_locationType_address_physical" coords="215,36,290,60" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_locationType_address" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_locationType_address');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_locationType_address" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>unbounded</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_locationType_address" type="image" src="img/btM.gif" value="-" onclick="switchState('model_locationType_address');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="model_locationType_address" style="display:block"><b><a href="propertyTypes_xsd_Complex_Type_locationType.html#locationType_locationType_address_electronic" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component electronic*')">electronic*</a></b> | <b><a href="propertyTypes_xsd_Complex_Type_locationType.html#locationType_locationType_address_physical" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component physical*')">physical*</a></b></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="propertyTypes_xsd_Complex_Type_locationType.html#locationType_locationType_address_electronic" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component electronic')">electronic</a></b>, <b><a href="propertyTypes_xsd_Complex_Type_locationType.html#locationType_locationType_address_physical" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component physical')">physical</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_locationType_address" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_locationType_address');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_locationType_address" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;address</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://researchgraph.org/schema/v1.1/xml/nodes"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;electronic</span><span class="tT"> </span><span class="tAN">target=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">type=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,unbounded}</span><span class="tEl">&lt;/electronic&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;physical</span><span class="tT"> </span><span class="tAN">xml:lang=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">type=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,unbounded}</span><span class="tEl">&lt;/physical&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/address&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_locationType_address" type="image" src="img/btM.gif" value="-" onclick="switchState('source_locationType_address');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_locationType_address" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"address"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xsd:complexType</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:choice</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"electronic"</span><span class="tAN"> type=</span><span class="tAV">"electronicAddressType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">/&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"physical"</span><span class="tAN"> type=</span><span class="tAV">"physicalAddressType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xsd:choice&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xsd:complexType&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xsd:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="locationType_locationType_address_electronic"></a><div class="componentTitle">Element <span class="qname"><b><a href="propertyTypes_xsd_Complex_Type_locationType.html#locationType" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component locationType')">locationType</a></b> / <b><a href="propertyTypes_xsd_Complex_Type_locationType.html#locationType_address" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component address')">address</a></b> / electronic</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>http://researchgraph.org/schema/v1.1/xml/nodes</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_locationType_locationType_address_electronic" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_locationType_locationType_address_electronic');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_locationType_locationType_address_electronic" style="display:block"><img alt="Diagram" border="0" src="img/propertyTypes_xsd_Element_electronic.jpeg" usemap="#propertyTypes_xsd_Element_electronic" /><map name="propertyTypes_xsd_Element_electronic" id="propertyTypes_xsd_Element_electronic">
+                                 <area alt="propertyTypes_xsd_Complex_Type_electronicAddressType.tmp#electronicAddressType_type" href="propertyTypes_xsd_Complex_Type_electronicAddressType.html#electronicAddressType_type" coords="140,78,211,102" />
+                                 <area alt="propertyTypes_xsd_Complex_Type_electronicAddressType.tmp#electronicAddressType_target" href="propertyTypes_xsd_Complex_Type_electronicAddressType.html#electronicAddressType_target" coords="140,155,220,179" />
+                                 <area alt="propertyTypes_xsd_Complex_Type_electronicAddressType.tmp#electronicAddressType_value" href="propertyTypes_xsd_Complex_Type_electronicAddressType.html#electronicAddressType_value" coords="218,252,277,276" />
+                                 <area alt="propertyTypes_xsd_Complex_Type_electronicAddressType.tmp#electronicAddressType_title" href="propertyTypes_xsd_Complex_Type_electronicAddressType.html#electronicAddressType_title" coords="218,286,269,310" />
+                                 <area alt="propertyTypes_xsd_Complex_Type_electronicAddressType.tmp#electronicAddressType_notes" href="propertyTypes_xsd_Complex_Type_electronicAddressType.html#electronicAddressType_notes" coords="218,320,279,344" />
+                                 <area alt="propertyTypes_xsd_Complex_Type_electronicAddressType.tmp#electronicAddressType_mediaType" href="propertyTypes_xsd_Complex_Type_electronicAddressType.html#electronicAddressType_mediaType" coords="218,354,307,378" />
+                                 <area alt="propertyTypes_xsd_Complex_Type_electronicAddressType.tmp#electronicAddressType_byteSize" href="propertyTypes_xsd_Complex_Type_electronicAddressType.html#electronicAddressType_byteSize" coords="218,388,293,412" />
+                                 <area alt="propertyTypes_xsd_Complex_Type_electronicAddressType.tmp#electronicAddressType_arg" href="propertyTypes_xsd_Complex_Type_electronicAddressType.html#electronicAddressType_arg" coords="218,422,269,446" />
+                                 <area alt="propertyTypes_xsd_Complex_Type_electronicAddressType.tmp#electronicAddressType" href="propertyTypes_xsd_Complex_Type_electronicAddressType.html#electronicAddressType" coords="115,3,290,25" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="propertyTypes_xsd_Complex_Type_electronicAddressType.html#electronicAddressType" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component electronicAddressType')">electronicAddressType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_locationType_locationType_address_electronic" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_locationType_locationType_address_electronic');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_locationType_locationType_address_electronic" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>unbounded</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_locationType_locationType_address_electronic" type="image" src="img/btM.gif" value="-" onclick="switchState('model_locationType_locationType_address_electronic');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="model_locationType_locationType_address_electronic" style="display:block"><b><a href="propertyTypes_xsd_Complex_Type_electronicAddressType.html#electronicAddressType_value" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component value')">value</a></b> , <b><a href="propertyTypes_xsd_Complex_Type_electronicAddressType.html#electronicAddressType_title" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component title{0,1}')">title{0,1}</a></b> , <b><a href="propertyTypes_xsd_Complex_Type_electronicAddressType.html#electronicAddressType_notes" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component notes*')">notes*</a></b> , <b><a href="propertyTypes_xsd_Complex_Type_electronicAddressType.html#electronicAddressType_mediaType" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component mediaType*')">mediaType*</a></b> , <b><a href="propertyTypes_xsd_Complex_Type_electronicAddressType.html#electronicAddressType_byteSize" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component byteSize{0,1}')">byteSize{0,1}</a></b> , <b><a href="propertyTypes_xsd_Complex_Type_electronicAddressType.html#electronicAddressType_arg" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component arg*')">arg*</a></b></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="propertyTypes_xsd_Complex_Type_electronicAddressType.html#electronicAddressType_arg" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component arg')">arg</a></b>, <b><a href="propertyTypes_xsd_Complex_Type_electronicAddressType.html#electronicAddressType_byteSize" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component byteSize')">byteSize</a></b>, <b><a href="propertyTypes_xsd_Complex_Type_electronicAddressType.html#electronicAddressType_mediaType" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component mediaType')">mediaType</a></b>, <b><a href="propertyTypes_xsd_Complex_Type_electronicAddressType.html#electronicAddressType_notes" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component notes')">notes</a></b>, <b><a href="propertyTypes_xsd_Complex_Type_electronicAddressType.html#electronicAddressType_title" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component title')">title</a></b>, <b><a href="propertyTypes_xsd_Complex_Type_electronicAddressType.html#electronicAddressType_value" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component value')">value</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_locationType_locationType_address_electronic" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_locationType_locationType_address_electronic');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_locationType_locationType_address_electronic" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;electronic</span><span class="tT"> </span><span class="tAN">target=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">type=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://researchgraph.org/schema/v1.1/xml/nodes"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;value</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/value&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;title</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/title&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;notes</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,unbounded}</span><span class="tEl">&lt;/notes&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;mediaType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,unbounded}</span><span class="tEl">&lt;/mediaType&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;byteSize</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/byteSize&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;arg</span><span class="tT"> </span><span class="tAN">required=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">type=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">use=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,unbounded}</span><span class="tEl">&lt;/arg&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/electronic&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_locationType_locationType_address_electronic" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_locationType_locationType_address_electronic');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_locationType_locationType_address_electronic" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="propertyTypes_xsd_Complex_Type_electronicAddressType.html#electronicAddressType_target" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component target')">target</a></b></td>
+                                    <td><b>xsd:string</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">Clicking the URL within electronic/value may perform one of two functions.  Populate electronic/@target with one of the following values to indicate which function is served:</span><span class="tI">
+</span><span class="tT">Proposed values:</span><span class="tI">
+</span><span class="tT">landingPage - URL takes you to the metadata for the collection</span><span class="tI">
+</span><span class="tT">directDownload - URL triggers a direct download</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="propertyTypes_xsd_Complex_Type_electronicAddressType.html#electronicAddressType_type" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component type')">type</a></b></td>
+                                    <td><b>xsd:string</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">A value taken from a controlled vocabulary indicating the type of</span><span class="tI">
+</span><span class="tT">electronic address.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_locationType_locationType_address_electronic" type="image" src="img/btM.gif" value="-" onclick="switchState('source_locationType_locationType_address_electronic');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_locationType_locationType_address_electronic" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"electronic"</span><span class="tAN"> type=</span><span class="tAV">"electronicAddressType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">/&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="locationType_locationType_address_physical"></a><div class="componentTitle">Element <span class="qname"><b><a href="propertyTypes_xsd_Complex_Type_locationType.html#locationType" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component locationType')">locationType</a></b> / <b><a href="propertyTypes_xsd_Complex_Type_locationType.html#locationType_address" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component address')">address</a></b> / physical</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>http://researchgraph.org/schema/v1.1/xml/nodes</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_locationType_locationType_address_physical" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_locationType_locationType_address_physical');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_locationType_locationType_address_physical" style="display:block"><img alt="Diagram" border="0" src="img/propertyTypes_xsd_Element_physical.jpeg" usemap="#propertyTypes_xsd_Element_physical" /><map name="propertyTypes_xsd_Element_physical" id="propertyTypes_xsd_Element_physical">
+                                 <area alt="propertyTypes_xsd_Complex_Type_physicalAddressType.tmp#physicalAddressType_type" href="propertyTypes_xsd_Complex_Type_physicalAddressType.html#physicalAddressType_type" coords="131,78,202,102" />
+                                 <area alt="xml_xsd_Attribute_xml_lang.tmp#lang" href="xml_xsd_Attribute_xml_lang.html#lang" coords="131,155,225,179" />
+                                 <area alt="propertyTypes_xsd_Complex_Type_physicalAddressType.tmp#physicalAddressType_addressPart" href="propertyTypes_xsd_Complex_Type_physicalAddressType.html#physicalAddressType_addressPart" coords="209,256,304,280" />
+                                 <area alt="propertyTypes_xsd_Complex_Type_physicalAddressType.tmp#physicalAddressType" href="propertyTypes_xsd_Complex_Type_physicalAddressType.html#physicalAddressType" coords="106,3,272,25" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="propertyTypes_xsd_Complex_Type_physicalAddressType.html#physicalAddressType" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component physicalAddressType')">physicalAddressType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_locationType_locationType_address_physical" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_locationType_locationType_address_physical');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_locationType_locationType_address_physical" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>unbounded</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_locationType_locationType_address_physical" type="image" src="img/btM.gif" value="-" onclick="switchState('model_locationType_locationType_address_physical');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="model_locationType_locationType_address_physical" style="display:block"><b><a href="propertyTypes_xsd_Complex_Type_physicalAddressType.html#physicalAddressType_addressPart" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component addressPart+')">addressPart+</a></b></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="propertyTypes_xsd_Complex_Type_physicalAddressType.html#physicalAddressType_addressPart" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component addressPart')">addressPart</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_locationType_locationType_address_physical" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_locationType_locationType_address_physical');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_locationType_locationType_address_physical" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;physical</span><span class="tT"> </span><span class="tAN">xml:lang=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">type=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://researchgraph.org/schema/v1.1/xml/nodes"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;addressPart</span><span class="tT"> </span><span class="tAN">type=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,unbounded}</span><span class="tEl">&lt;/addressPart&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/physical&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_locationType_locationType_address_physical" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_locationType_locationType_address_physical');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_locationType_locationType_address_physical" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="propertyTypes_xsd_Complex_Type_physicalAddressType.html#physicalAddressType_type" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component type')">type</a></b></td>
+                                    <td><b>xsd:string</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">A value taken from a controlled vocabulary indicating the type of</span><span class="tI">
+</span><span class="tT">physical address.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="xml_xsd_Attribute_xml_lang.html#lang" target="mainFrame" title="http://www.w3.org/XML/1998/namespace" onclick="updatePageTitle('Schema documentation for component xml:lang')">xml:lang</a></b></td>
+                                    <td><b>xs:language</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">In due course, we should install the relevant ISO 2- and 3-letter</span><span class="tI">
+</span><span class="tT">codes as the enumerated possible values . . .</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_locationType_locationType_address_physical" type="image" src="img/btM.gif" value="-" onclick="switchState('source_locationType_locationType_address_physical');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_locationType_locationType_address_physical" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"physical"</span><span class="tAN"> type=</span><span class="tAV">"physicalAddressType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">/&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="locationType_spatial"></a><div class="componentTitle">Element <span class="qname"><b><a href="propertyTypes_xsd_Complex_Type_locationType.html#locationType" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component locationType')">locationType</a></b> / spatial</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>http://researchgraph.org/schema/v1.1/xml/nodes</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_locationType_spatial" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_locationType_spatial');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_locationType_spatial" style="display:block"><img alt="Diagram" border="0" src="img/propertyTypes_xsd_Element_spatial.jpeg" usemap="#propertyTypes_xsd_Element_spatial" /><map name="propertyTypes_xsd_Element_spatial" id="propertyTypes_xsd_Element_spatial">
+                                 <area alt="propertyTypes_xsd_Complex_Type_spatialType.tmp#spatialType_type" href="propertyTypes_xsd_Complex_Type_spatialType.html#spatialType_type" coords="122,157,193,181" />
+                                 <area alt="xml_xsd_Attribute_xml_lang.tmp#lang" href="xml_xsd_Attribute_xml_lang.html#lang" coords="122,234,216,258" />
+                                 <area alt="propertyTypes_xsd_Complex_Type_spatialType.tmp#spatialType" href="propertyTypes_xsd_Complex_Type_spatialType.html#spatialType" coords="97,3,209,25" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="propertyTypes_xsd_Complex_Type_spatialType.html#spatialType" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component spatialType')">spatialType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_locationType_spatial" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_locationType_spatial');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_locationType_spatial" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">maxOccurs</td>
+                                    <td><b>unbounded</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_locationType_spatial" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_locationType_spatial');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_locationType_spatial" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="propertyTypes_xsd_Complex_Type_spatialType.html#spatialType_type" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component type')">type</a></b></td>
+                                    <td><b>xsd:string</b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">A value taken from a controlled vocabulary indicating the</span><span class="tI">
+</span><span class="tT">type of spatial location.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="xml_xsd_Attribute_xml_lang.html#lang" target="mainFrame" title="http://www.w3.org/XML/1998/namespace" onclick="updatePageTitle('Schema documentation for component xml:lang')">xml:lang</a></b></td>
+                                    <td><b>xs:language</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">In due course, we should install the relevant ISO 2- and 3-letter</span><span class="tI">
+</span><span class="tT">codes as the enumerated possible values . . .</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_locationType_spatial" type="image" src="img/btM.gif" value="-" onclick="switchState('source_locationType_spatial');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_locationType_spatial" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"spatial"</span><span class="tAN"> type=</span><span class="tAV">"spatialType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">/&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="locationType"></a><div class="componentTitle">Complex Type <span class="qname">locationType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>http://researchgraph.org/schema/v1.1/xml/nodes</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_locationType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_locationType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_locationType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The location element can hold physical and/or electronic addresses as</span><span class="tI">
+</span><span class="tT">well as geographical references. Use the &lt;address&gt; element for physical or</span><span class="tI">
+</span><span class="tT">electronic address and the &lt;spatial&gt; element for geographical references. An</span><span class="tI">
+</span><span class="tT">electronic address could be a website containing details about the activity or email</span><span class="tI">
+</span><span class="tT">address whereas physical addresses can be provided for snail mail, billing,</span><span class="tI">
+</span><span class="tT">enquiries. Physical addresses are split into parts should a more granular division</span><span class="tI">
+</span><span class="tT">of address be required.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_locationType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_locationType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_locationType" style="display:block"><img alt="Diagram" border="0" src="img/propertyTypes_xsd_Complex_Type_locationType.jpeg" usemap="#propertyTypes_xsd_Complex_Type_locationType" /><map name="propertyTypes_xsd_Complex_Type_locationType" id="propertyTypes_xsd_Complex_Type_locationType">
+                                 <area alt="propertyTypes_xsd_Attribute_Group_dateRangeAttributes.tmp#dateRangeAttributes" href="propertyTypes_xsd_Attribute_Group_dateRangeAttributes.html#dateRangeAttributes" coords="189,41,354,67" />
+                                 <area alt="propertyTypes_xsd_Complex_Type_locationType.tmp#locationType_type" href="propertyTypes_xsd_Complex_Type_locationType.html#locationType_type" coords="186,82,257,106" />
+                                 <area alt="propertyTypes_xsd_Complex_Type_locationType.tmp#locationType_address" href="propertyTypes_xsd_Complex_Type_locationType.html#locationType_address" coords="264,153,338,177" />
+                                 <area alt="propertyTypes_xsd_Complex_Type_locationType.tmp#locationType_spatial" href="propertyTypes_xsd_Complex_Type_locationType.html#locationType_spatial" coords="264,187,330,211" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_locationType" type="image" src="img/btM.gif" value="-" onclick="switchState('model_locationType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="model_locationType" style="display:block"><b><a href="propertyTypes_xsd_Complex_Type_locationType.html#locationType_address" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component address*')">address*</a></b> , <b><a href="propertyTypes_xsd_Complex_Type_locationType.html#locationType_spatial" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component spatial*')">spatial*</a></b></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="propertyTypes_xsd_Complex_Type_locationType.html#locationType_address" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component address')">address</a></b>, <b><a href="propertyTypes_xsd_Complex_Type_locationType.html#locationType_spatial" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component spatial')">spatial</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_locationType" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_locationType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_locationType" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="propertyTypes_xsd_Attribute_Group_dateRangeAttributes.html#dateRangeAttributes_dateFrom" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component dateFrom')">dateFrom</a></b></td>
+                                    <td><b>xsd:string</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The date from which the metadata being described was current.</span><span class="tI">
+</span><span class="tT">This is only applicable where versions of the same metadata is being provided</span><span class="tI">
+</span><span class="tT">(e.g. name changes). Should be UTC and of one of the forms described in section</span><span class="tI">
+</span><span class="tT">3.2.7 of the W3C's Schema Data Types document</span><span class="tI">
+</span><span class="tT">(http://www.w3.org/TR/xmlschema-2/).</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="propertyTypes_xsd_Attribute_Group_dateRangeAttributes.html#dateRangeAttributes_dateTo" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component dateTo')">dateTo</a></b></td>
+                                    <td><b>xsd:string</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The date the metadata being described was no longer current. This</span><span class="tI">
+</span><span class="tT">is only applicable where versions of the same metadata is being provided (e.g.</span><span class="tI">
+</span><span class="tT">name changes). Should be UTC and of one of the forms described in section 3.2.7</span><span class="tI">
+</span><span class="tT">of the W3C's Schema Data Types document</span><span class="tI">
+</span><span class="tT">(http://www.w3.org/TR/xmlschema-2/).</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="propertyTypes_xsd_Complex_Type_locationType.html#locationType_type" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component type')">type</a></b></td>
+                                    <td><b>xsd:string</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">This attribute is not currently used</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_locationType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_locationType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_locationType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xsd:complexType</span><span class="tAN"> name=</span><span class="tAV">"locationType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The location element can hold physical and/or electronic addresses as well as geographical references. Use the &lt;address&gt; element for physical or electronic address and the &lt;spatial&gt; element for geographical references. An electronic address could be a website containing details about the activity or email address whereas physical addresses can be provided for snail mail, billing, enquiries. Physical addresses are split into parts should a more granular division of address be required.</span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xsd:sequence</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"address"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:complexType</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xsd:choice</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"electronic"</span><span class="tAN"> type=</span><span class="tAV">"electronicAddressType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">/&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"physical"</span><span class="tAN"> type=</span><span class="tAV">"physicalAddressType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">/&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xsd:choice&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xsd:complexType&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xsd:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"spatial"</span><span class="tAN"> type=</span><span class="tAV">"spatialType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">/&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xsd:sequence&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xsd:attributeGroup</span><span class="tAN"> ref=</span><span class="tAV">"dateRangeAttributes"</span><span class="tEl">/&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xsd:attribute</span><span class="tAN"> name=</span><span class="tAV">"type"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tAN"> type=</span><span class="tAV">"xsd:string"</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">This attribute is not currently used</span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xsd:attribute&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xsd:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="locationType_type"></a><div class="componentTitle">Attribute <span class="qname"><b><a href="propertyTypes_xsd_Complex_Type_locationType.html#locationType" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component locationType')">locationType</a></b> / @type</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_locationType_type" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_locationType_type');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_locationType_type" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">This attribute is not currently used</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xsd:string</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_locationType_type" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_locationType_type');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_locationType_type" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">use</td>
+                                    <td><b>optional</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_locationType_type" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_locationType_type');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_locationType_type" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Complex Type </td>
+                                    <td><b><a href="propertyTypes_xsd_Complex_Type_locationType.html#locationType" target="mainFrame" title="http://researchgraph.org/schema/v1.1/xml/nodes" onclick="updatePageTitle('Schema documentation for component locationType')">locationType</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_locationType_type" type="image" src="img/btM.gif" value="-" onclick="switchState('source_locationType_type');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_locationType_type" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xsd:attribute</span><span class="tAN"> name=</span><span class="tAV">"type"</span><span class="tAN"> use=</span><span class="tAV">"optional"</span><span class="tAN"> type=</span><span class="tAV">"xsd:string"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">This attribute is not currently used</span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xsd:attribute&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>
