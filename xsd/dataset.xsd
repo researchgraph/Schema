@@ -10,7 +10,7 @@
     <xsd:element name="dataset">
         <xsd:annotation>
             <xsd:documentation xml:lang="en">
-                Description of a research dataset.
+                Description of a research dataset
             </xsd:documentation>
         </xsd:annotation>
         <xsd:complexType>
@@ -18,47 +18,21 @@
                 <xsd:element name="key" type="xsd:anyURI" minOccurs="1" maxOccurs="1">
                     <xsd:annotation>
                         <xsd:documentation>
-                            The prefered value is a resolvable URL that globaly identifies this object.
-                            
-                            In the case that such URL is not available a persistant URL provided by researchgraph.org with the following syntax. 
-                            A  that uniquely identifies the dataset. 
-                            
-                            Syntax
-                            researchgraph.org/{datarepository-namespace}/{local_id}
-                            datarepository-namespace is a registered namespace under http://researchgraph.org          
-                                     
-                            Examples:
-                            researchgraph.org/sample-university.edu/a05f7892-ce67-7506-e044-00144fdd4fa6                            
+                            Recommended Syntax: {metadata-provider-domain}/{local_id}
+                            Example: sydney.edu.au/00144fdd4fa6                            
                         </xsd:documentation>
                     </xsd:annotation>
                 </xsd:element>
+                <xsd:element name="source" type="xsd:anyURI" minOccurs="1" maxOccurs="1"/>
                 <xsd:element name="local_id" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-                <xsd:element name="url" type="xsd:anyURI" minOccurs="0" maxOccurs="1">
+                <xsd:element name="last_updated" type="xsd:dateTime" minOccurs="1" maxOccurs="1"/>
+                <xsd:element name="url" type="xsd:anyURI" minOccurs="0" maxOccurs="1"/>
+
+                <xsd:element name="title" type="xsd:string" minOccurs="1" maxOccurs="1"/>                
+                <xsd:element name="doi" type="xsd:anyURI" minOccurs="0" maxOccurs="1">
                     <xsd:annotation>
                         <xsd:documentation>
-                            The URL of the landing page for this dataset.
-                        </xsd:documentation>
-                    </xsd:annotation>
-                </xsd:element>
-                
-                <xsd:element name="doi" type="doi_type" minOccurs="0" maxOccurs="1">
-                    <xsd:annotation>
-                        <xsd:documentation>
-                            DOI for the dataset
-                        </xsd:documentation>
-                    </xsd:annotation>
-                </xsd:element>
-                <xsd:element name="title" type="xsd:string" minOccurs="1" maxOccurs="1">
-                    <xsd:annotation>
-                        <xsd:documentation xml:lang="en">
-                            Dataset title. This field provides human readable information about the dataset.
-                        </xsd:documentation>
-                    </xsd:annotation>
-                </xsd:element>
-                <xsd:element name="authors_list" type="xsd:string" minOccurs="1" maxOccurs="1">
-                    <xsd:annotation>
-                        <xsd:documentation xml:lang="en">
-                            Comma separated list of authors. It complements the title to make the dataset easily identifiable  by a human user. 
+                            Syntax: http://doi.org/doi_prefix/doi_suffix
                         </xsd:documentation>
                     </xsd:annotation>
                 </xsd:element>
@@ -69,19 +43,14 @@
                         </xsd:documentation>
                     </xsd:annotation>
                 </xsd:element>
-                <xsd:element name="anzsrc_purl" type="xsd:anyURI" minOccurs="0" maxOccurs="unbounded">
+                <xsd:element name="license" type="xsd:anyURI" minOccurs="0" maxOccurs="1">
                     <xsd:annotation>
-                        <xsd:documentation xml:lang="en">
-                            PURL for ANCSRC-FOR subjects.
-                            Complete list available at http://www.abs.gov.au/ausstats/abs@.nsf/0/6BB427AB9696C225CA2574180004463E
-                            Syntax:
-                            http://purl.org/au-research/vocabulary/anzsrc-for/{YYYY}/{subject-code}
-                            
-                            Example:
-                            http://purl.org/au-research/vocabulary/anzsrc-for/2008/0601
+                        <xsd:documentation>
+                            Example: http://creativecommons.org/licenses/by/3.0/
                         </xsd:documentation>
                     </xsd:annotation>
-                </xsd:element>                
+                </xsd:element>
+                <xsd:element name="megabyte" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
             </xsd:choice>
         </xsd:complexType>
     </xsd:element>
