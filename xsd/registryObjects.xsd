@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema version="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-    xmlns="http://researchgraph.org/schema/v1.1/xml/nodes"
-    targetNamespace="http://researchgraph.org/schema/v1.1/xml/nodes" elementFormDefault="qualified"
+    xmlns="http://researchgraph.org/schema/v2.0/xml/nodes"
+    targetNamespace="http://researchgraph.org/schema/v2.0/xml/nodes"
+    elementFormDefault="qualified"
     attributeFormDefault="unqualified">
 
     <xsd:annotation>
@@ -29,35 +30,35 @@
                         <xsd:sequence>
                             <xsd:element ref="researcher" minOccurs="1"/>
                         </xsd:sequence>
-                    </xsd:complexType>                           
+                    </xsd:complexType>
                 </xsd:element>
                 <xsd:element name="publications" minOccurs="0" maxOccurs="1">
                     <xsd:complexType>
                         <xsd:sequence>
                             <xsd:element ref="publication" minOccurs="1"/>
                         </xsd:sequence>
-                    </xsd:complexType>                           
+                    </xsd:complexType>
                 </xsd:element>
                 <xsd:element name="datasets" minOccurs="0" maxOccurs="1">
                     <xsd:complexType>
                         <xsd:sequence>
                             <xsd:element ref="dataset" minOccurs="1"/>
                         </xsd:sequence>
-                    </xsd:complexType>                           
+                    </xsd:complexType>
                 </xsd:element>
                 <xsd:element name="grants" minOccurs="0" maxOccurs="1">
                     <xsd:complexType>
                         <xsd:sequence>
                             <xsd:element ref="grant" minOccurs="1"/>
                         </xsd:sequence>
-                    </xsd:complexType>                           
+                    </xsd:complexType>
                 </xsd:element>
                 <xsd:element name="relations" minOccurs="0" maxOccurs="1">
                     <xsd:complexType>
                         <xsd:sequence>
                             <xsd:element ref="relation" minOccurs="1"/>
                         </xsd:sequence>
-                    </xsd:complexType>                           
+                    </xsd:complexType>
                 </xsd:element>
             </xsd:sequence>
         </xsd:complexType>

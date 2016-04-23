@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema version="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-    xmlns="http://researchgraph.org/schema/v1.1/xml/nodes"
-    targetNamespace="http://researchgraph.org/schema/v1.1/xml/nodes" elementFormDefault="qualified"
+    xmlns="http://researchgraph.org/schema/v2.0/xml/nodes"
+    targetNamespace="http://researchgraph.org/schema/v2.0/xml/nodes"
+    elementFormDefault="qualified"
     attributeFormDefault="unqualified">
-
+    
     <xsd:include schemaLocation="propertyTypes.xsd"/>
-
+    
     <xsd:element name="publication">
         <xsd:annotation>
             <xsd:documentation xml:lang="en">
@@ -18,6 +19,7 @@
                     <xsd:annotation>
                         <xsd:documentation>
                             Recommended Syntax: {metadata-provider-domain}/{local_id}
+                            
                             Example: sydney.edu.au/00144fdd4fa6                            
                         </xsd:documentation>
                     </xsd:annotation>
@@ -55,8 +57,9 @@
                             The publication year (YYYY).
                         </xsd:documentation>
                     </xsd:annotation>
-                </xsd:element>
-                <xsd:element name="scopus_eid" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+                </xsd:element>                
+                <xsd:element name="scopus_eid" type="xsd:string" minOccurs="0"
+                    maxOccurs="unbounded">
                     <xsd:annotation>
                         <xsd:documentation xml:lang="en">
                             Scopue EID for the article.
@@ -67,3 +70,4 @@
         </xsd:complexType>
     </xsd:element>
 </xsd:schema>
+

@@ -16,43 +16,13 @@
                         </xsd:documentation>
                     </xsd:annotation>
                 </xsd:element>
-                <xsd:choice minOccurs="1" maxOccurs="1">    
-                    <xsd:element name="to_key" type="xsd:anyURI" minOccurs="0" maxOccurs="1">
-                        <xsd:annotation>
-                            <xsd:documentation xml:lang="en">
-                                Related node connected by key.
-                            </xsd:documentation>
-                        </xsd:annotation>
-                    </xsd:element>
-                    <xsd:element name="to_doi" type="doi_type" minOccurs="0" maxOccurs="1">
-                        <xsd:annotation>
-                            <xsd:documentation xml:lang="en">
-                                Related dataset or publication connected by DOI
-                            </xsd:documentation>
-                        </xsd:annotation>                        
-                    </xsd:element>
-                    <xsd:element name="to_orcid" type="xsd:string" minOccurs="0" maxOccurs="1">
-                        <xsd:annotation>
-                            <xsd:documentation xml:lang="en">
-                                Related researcher connected by ORCID
-                            </xsd:documentation>
-                        </xsd:annotation>
-                    </xsd:element>
-                    <xsd:element name="to_purl" type="xsd:anyURI" minOccurs="0" maxOccurs="1">
-                        <xsd:annotation>
-                            <xsd:documentation xml:lang="en">
-                                Related grant connected by PURL
-                            </xsd:documentation>
-                        </xsd:annotation>
-                    </xsd:element>
-                    <xsd:element name="to_scopus_author_id" type="xsd:string" minOccurs="0" maxOccurs="1">
-                        <xsd:annotation>
-                            <xsd:documentation xml:lang="en">
-                                Related Author Scopus ID.
-                            </xsd:documentation>
-                        </xsd:annotation>
-                    </xsd:element>
-                </xsd:choice>
+                <xsd:element name="to_uri" type="xsd:anyURI" minOccurs="0" maxOccurs="1">
+                    <xsd:annotation>
+                        <xsd:documentation xml:lang="en">
+                            Enables the connection to ORCID, DOI (publication or dataset), PURL (grant, or ANZSRC field of research), or key of other nodes. 
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>                
                 <xsd:element name="label" type="xsd:string" minOccurs="0" maxOccurs="1" default="relatedTo" />  
             </xsd:sequence>
         </xsd:complexType>
