@@ -5,8 +5,6 @@
     elementFormDefault="qualified"
     attributeFormDefault="unqualified">
     
-    <xsd:include schemaLocation="propertyTypes.xsd"/>
-    
     <xsd:element name="publication">
         <xsd:annotation>
             <xsd:documentation xml:lang="en">

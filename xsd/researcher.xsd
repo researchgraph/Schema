@@ -4,8 +4,6 @@
     targetNamespace="http://researchgraph.org/schema/v2.0/xml/nodes"
     elementFormDefault="qualified" attributeFormDefault="unqualified">
 
-    <xsd:include schemaLocation="propertyTypes.xsd"/>
-
     <xsd:element name="researcher">
         <xsd:annotation>
             <xsd:documentation xml:lang="en">
