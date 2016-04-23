@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
-<xsd:schema version="1.1" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+<xsd:schema version="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
     xmlns="http://researchgraph.org/schema/v1.1/xml/nodes"
     targetNamespace="http://researchgraph.org/schema/v1.1/xml/nodes"
     elementFormDefault="qualified" attributeFormDefault="unqualified">
 
     <!-- Point to a local cached version of the W3 XML schema to avoid 20s+ wait times in validation -->
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/03/xml.xsd"/>
 
     <xsd:annotation>
         <xsd:documentation>Type library for Research Graph Node Properties</xsd:documentation>

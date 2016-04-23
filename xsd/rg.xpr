@@ -21,6 +21,5 @@
         <file name="registryObjects.xsd"/>
         <file name="relation.xsd"/>
         <file name="researcher.xsd"/>
-        <file name="xml.xsd"/>
     </projectTree>
 </project>
