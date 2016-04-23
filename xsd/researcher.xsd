@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema version="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-    xmlns="http://researchgraph.org/schema/v1.1/xml/nodes"
-    targetNamespace="http://researchgraph.org/schema/v1.1/xml/nodes"
+    xmlns="http://researchgraph.org/schema/v2.0/xml/nodes"
+    targetNamespace="http://researchgraph.org/schema/v2.0/xml/nodes"
     elementFormDefault="qualified" attributeFormDefault="unqualified">
 
     <xsd:include schemaLocation="propertyTypes.xsd"/>
@@ -17,38 +17,29 @@
                 <xsd:element name="key" type="xsd:anyURI" minOccurs="1" maxOccurs="1">
                     <xsd:annotation>
                         <xsd:documentation>
-                            The prefered value is a resolvable URL that globaly identifies this object.
+                            Recommended Syntax: {metadata-provider-domain}/{local_id}
                             
-                            In the case that such URL is not available a persistant URL provided by researchgraph.org with the following syntax. 
-                            A  that uniquely identifies the dataset. 
-                            
-                            Syntax
-                            researchgraph.org/{datarepository-namespace}/{local_id}
-                            datarepository-namespace is a registered namespace under http://researchgraph.org          
-                            
-                            Examples:
-                            researchgraph.org/sample-university.edu/a05f7892-ce67-7506-e044-00144fdd4fa6                            
+                            Example: sydney.edu.au/00144fdd4fa6                            
                         </xsd:documentation>
                     </xsd:annotation>
                 </xsd:element>
-                <xsd:element name="local_id" type="xsd:string" minOccurs="1" maxOccurs="1"/>    
-                <xsd:element name="url" type="xsd:anyURI" minOccurs="0" maxOccurs="1">
-                    <xsd:annotation>
-                        <xsd:documentation>
-                            A URL that uniquely identfies the researcher such as researcher home/profile or social media page.
-                        </xsd:documentation>
-                    </xsd:annotation>
-                </xsd:element>
-                <xsd:element name="orcid" type="xsd:string" minOccurs="0"
+                <xsd:element name="source" type="xsd:anyURI" minOccurs="1" maxOccurs="1"/>
+                <xsd:element name="local_id" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                <xsd:element name="last_updated" type="xsd:dateTime" minOccurs="1" maxOccurs="1"/>
+                <xsd:element name="url" type="xsd:anyURI" minOccurs="0" maxOccurs="1"/>
+
+                <xsd:element name="full_name" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                <xsd:element name="first_name" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                <xsd:element name="last_name" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+
+                
+                <xsd:element name="orcid" type="xsd:anyURI" minOccurs="0"
                     maxOccurs="unbounded">
                     <xsd:annotation>
                         <xsd:documentation xml:lang="en">
-                            Researcher ORCID.
+                            Syntax: http://orcid.org/xxxx-xxxx-xxxx-xxxx  
                             
-                            Example: 0000-0002-1825-0097
-                            
-                            More info:
-                            http://support.orcid.org/knowledgebase/articles/116780-structure-of-the-orcid-identifier
+                            More info: http://support.orcid.org/knowledgebase/articles/116780-structure-of-the-orcid-identifier
                         </xsd:documentation>
                     </xsd:annotation>
                 </xsd:element>                
@@ -61,9 +52,6 @@
                     </xsd:annotation>
                 </xsd:element>
                 
-                <xsd:element name="first_name" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-                <xsd:element name="last_name" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-                <xsd:element name="full_name" type="xsd:string" minOccurs="1" maxOccurs="1"/>
                 
             </xsd:choice>
 
