@@ -16,8 +16,8 @@
     <projectTree name="rg.xpr">
         <file name="dataset.xsd"/>
         <file name="grant.xsd"/>
-        <file name="propertyTypes.xsd"/>
         <file name="publication.xsd"/>
+        <file name="registryObjects.xsd"/>
         <file name="relation.xsd"/>
         <file name="researcher.xsd"/>
     </projectTree>
