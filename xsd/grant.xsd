@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema version="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
     xmlns="http://researchgraph.org/schema/v2.0/xml/nodes"
-    targetNamespace="http://researchgraph.org/schema/v2.0/xml/nodes" elementFormDefault="qualified"
-    attributeFormDefault="unqualified">
-
+    targetNamespace="http://researchgraph.org/schema/v2.0/xml/nodes"
+    elementFormDefault="qualified" attributeFormDefault="unqualified">
+    
     <xsd:include schemaLocation="propertyTypes.xsd"/>
-
+    
     <xsd:element name="grant">
         <xsd:annotation>
             <xsd:documentation xml:lang="en">
@@ -27,13 +27,19 @@
                 <xsd:element name="local_id" type="xsd:string" minOccurs="1" maxOccurs="1">
                     <xsd:annotation>
                         <xsd:documentation>
-                            The prefered value for local_id is the grant ID.
+                            The prefered value for local_id is the grant number.
                         </xsd:documentation>
                     </xsd:annotation>
                 </xsd:element>
                 <xsd:element name="last_updated" type="xsd:dateTime" minOccurs="1" maxOccurs="1"/>
-                <xsd:element name="url" type="xsd:anyURI" minOccurs="0" maxOccurs="1"/>
-
+                <xsd:element name="url" type="xsd:anyURI" minOccurs="0" maxOccurs="1">
+                    <xsd:annotation>
+                        <xsd:documentation>
+                            Landing page for the grant information
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                
                 <xsd:element name="title" type="xsd:string" minOccurs="0" maxOccurs="1">
                     <xsd:annotation>
                         <xsd:documentation xml:lang="en">
@@ -41,7 +47,7 @@
                         </xsd:documentation>
                     </xsd:annotation>
                 </xsd:element>
-
+                
                 <xsd:element name="purl" type="xsd:anyURI" minOccurs="0" maxOccurs="1">
                     <xsd:annotation>
                         <xsd:documentation>
