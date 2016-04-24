@@ -11,7 +11,7 @@
             </xsd:documentation>
         </xsd:annotation>
         <xsd:complexType>
-            <xsd:choice minOccurs="0" maxOccurs="unbounded">
+            <xsd:all>
                 <xsd:element name="key" type="xsd:anyURI" minOccurs="1" maxOccurs="1">
                     <xsd:annotation>
                         <xsd:documentation>
@@ -31,8 +31,7 @@
                 <xsd:element name="last_name" type="xsd:string" minOccurs="0" maxOccurs="1"/>
 
                 
-                <xsd:element name="orcid" type="xsd:anyURI" minOccurs="0"
-                    maxOccurs="unbounded">
+                <xsd:element name="orcid" type="xsd:anyURI" minOccurs="0" maxOccurs="1">
                     <xsd:annotation>
                         <xsd:documentation xml:lang="en">
                             Syntax: http://orcid.org/xxxx-xxxx-xxxx-xxxx  
@@ -41,8 +40,7 @@
                         </xsd:documentation>
                     </xsd:annotation>
                 </xsd:element>                
-                <xsd:element name="scopus_author_id" type="xsd:string" minOccurs="0"
-                    maxOccurs="unbounded">
+                <xsd:element name="scopus_author_id" type="xsd:string" minOccurs="0" maxOccurs="1">
                     <xsd:annotation>
                         <xsd:documentation xml:lang="en">
                             Scopus Author ID.
@@ -51,7 +49,7 @@
                 </xsd:element>
                 
                 
-            </xsd:choice>
+            </xsd:all>
 
         </xsd:complexType>
     </xsd:element>

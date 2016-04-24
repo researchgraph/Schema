@@ -11,7 +11,7 @@
             </xsd:documentation>
         </xsd:annotation>
         <xsd:complexType>
-            <xsd:choice minOccurs="0" maxOccurs="unbounded">
+            <xsd:all>
                 <xsd:element name="key" type="xsd:anyURI" minOccurs="1" maxOccurs="1">
                     <xsd:annotation>
                         <xsd:documentation>
@@ -77,7 +77,7 @@
                         </xsd:documentation>
                     </xsd:annotation>
                 </xsd:element>
-            </xsd:choice>
+            </xsd:all>
         </xsd:complexType>
     </xsd:element>
 </xsd:schema>

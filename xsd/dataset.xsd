@@ -12,7 +12,7 @@
             </xsd:documentation>
         </xsd:annotation>
         <xsd:complexType>
-            <xsd:choice minOccurs="0" maxOccurs="unbounded">                    
+            <xsd:all >                    
                 <xsd:element name="key" type="xsd:anyURI" minOccurs="1" maxOccurs="1">
                     <xsd:annotation>
                         <xsd:documentation>
@@ -50,7 +50,7 @@
                     </xsd:annotation>
                 </xsd:element>
                 <xsd:element name="megabyte" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
-            </xsd:choice>
+            </xsd:all>
         </xsd:complexType>
     </xsd:element>
 </xsd:schema>
