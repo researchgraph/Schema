@@ -28,35 +28,35 @@
                 <xsd:element name="researchers" minOccurs="0" maxOccurs="1">
                     <xsd:complexType>
                         <xsd:sequence>
-                            <xsd:element ref="researcher" minOccurs="1"/>
+                            <xsd:element ref="researcher" minOccurs="1" maxOccurs="unbounded"/>
                         </xsd:sequence>
                     </xsd:complexType>
                 </xsd:element>
                 <xsd:element name="publications" minOccurs="0" maxOccurs="1">
                     <xsd:complexType>
                         <xsd:sequence>
-                            <xsd:element ref="publication" minOccurs="1"/>
+                            <xsd:element ref="publication" minOccurs="1" maxOccurs="unbounded"/>
                         </xsd:sequence>
                     </xsd:complexType>
                 </xsd:element>
                 <xsd:element name="datasets" minOccurs="0" maxOccurs="1">
                     <xsd:complexType>
                         <xsd:sequence>
-                            <xsd:element ref="dataset" minOccurs="1"/>
+                            <xsd:element ref="dataset" minOccurs="1" maxOccurs="unbounded"/>
                         </xsd:sequence>
                     </xsd:complexType>
                 </xsd:element>
                 <xsd:element name="grants" minOccurs="0" maxOccurs="1">
                     <xsd:complexType>
                         <xsd:sequence>
-                            <xsd:element ref="grant" minOccurs="1"/>
+                            <xsd:element ref="grant" minOccurs="1" maxOccurs="unbounded"/>
                         </xsd:sequence>
                     </xsd:complexType>
                 </xsd:element>
                 <xsd:element name="relations" minOccurs="0" maxOccurs="1">
                     <xsd:complexType>
                         <xsd:sequence>
-                            <xsd:element ref="relation" minOccurs="1"/>
+                            <xsd:element ref="relation" minOccurs="1" maxOccurs="unbounded"/>
                         </xsd:sequence>
                     </xsd:complexType>
                 </xsd:element>
