@@ -6,7 +6,7 @@
     
     <xsd:element name="relation">
         <xsd:complexType>
-            <xsd:sequence>
+            <xsd:all>
                 <xsd:element name="from_key" type="xsd:anyURI" minOccurs="1" maxOccurs="1">
                     <xsd:annotation>
                         <xsd:documentation xml:lang="en">
@@ -14,7 +14,7 @@
                         </xsd:documentation>
                     </xsd:annotation>
                 </xsd:element>
-                <xsd:element name="to_uri" type="xsd:anyURI" minOccurs="0" maxOccurs="1">
+                <xsd:element name="to_uri" type="xsd:anyURI" minOccurs="1" maxOccurs="1">
                     <xsd:annotation>
                         <xsd:documentation xml:lang="en">
                             Enables the connection to ORCID, DOI (publication or dataset), PURL (grant, or ANZSRC field of research), or key of other nodes. 
@@ -22,7 +22,7 @@
                     </xsd:annotation>
                 </xsd:element>                
                 <xsd:element name="label" type="xsd:string" minOccurs="0" maxOccurs="1" default="relatedTo" />  
-            </xsd:sequence>
+            </xsd:all>
         </xsd:complexType>
     </xsd:element>
 </xsd:schema>
