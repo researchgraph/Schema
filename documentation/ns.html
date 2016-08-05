@@ -8,686 +8,231 @@
          <!--
         var propertiesBoxes= new Array('properties_registryObjects.xsd', 
 				'properties_researcher.xsd', 
-				'properties_propertyTypes.xsd', 
-				'properties_xml.xsd', 
 				'properties_publication.xsd', 
 				'properties_dataset.xsd', 
 				'properties_grant.xsd', 
 				'properties_relation.xsd', 
 				'properties_registryObjects', 
+				'properties_registryObjects_researchers', 
 				'properties_researcher', 
 				'properties_researcher_key', 
+				'properties_researcher_source', 
 				'properties_researcher_local_id', 
+				'properties_researcher_last_updated', 
 				'properties_researcher_url', 
-				'properties_researcher_orcid', 
-				'properties_researcher_scopus_author_id', 
+				'properties_researcher_full_name', 
 				'properties_researcher_first_name', 
 				'properties_researcher_last_name', 
-				'properties_researcher_full_name', 
+				'properties_researcher_orcid', 
+				'properties_researcher_scopus_author_id', 
+				'properties_registryObjects_publications', 
 				'properties_publication', 
 				'properties_publication_key', 
+				'properties_publication_source', 
 				'properties_publication_local_id', 
-				'properties_publication_doi', 
+				'properties_publication_last_updated', 
 				'properties_publication_url', 
 				'properties_publication_title', 
 				'properties_publication_authors_list', 
+				'properties_publication_doi', 
 				'properties_publication_publication_year', 
-				'properties_publication_scopus_author_eid', 
-				'properties_publication_anzsrc_purl', 
-				'properties_publication_related_key', 
-				'properties_publication_related_publication_doi', 
-				'properties_publication_related_dataset_doi', 
-				'properties_publication_related_orcid', 
-				'properties_publication_related_scopus_author_id', 
-				'properties_publication_related_researcher_url', 
-				'properties_publication_related_grant_purl', 
+				'properties_publication_scopus_eid', 
+				'properties_registryObjects_datasets', 
 				'properties_dataset', 
 				'properties_dataset_key', 
+				'properties_dataset_source', 
 				'properties_dataset_local_id', 
+				'properties_dataset_last_updated', 
 				'properties_dataset_url', 
-				'properties_dataset_doi', 
 				'properties_dataset_title', 
-				'properties_dataset_authors_list', 
+				'properties_dataset_doi', 
 				'properties_dataset_publication_year', 
-				'properties_dataset_anzsrc_purl', 
+				'properties_dataset_license', 
+				'properties_dataset_megabyte', 
+				'properties_registryObjects_grants', 
 				'properties_grant', 
 				'properties_grant_key', 
+				'properties_grant_source', 
 				'properties_grant_local_id', 
-				'properties_grant_purl', 
+				'properties_grant_last_updated', 
 				'properties_grant_url', 
 				'properties_grant_title', 
+				'properties_grant_purl', 
 				'properties_grant_participant_list', 
+				'properties_grant_funder', 
 				'properties_grant_start_year', 
 				'properties_grant_end_year', 
-				'properties_grant_anzsrc_purl', 
+				'properties_registryObjects_relations', 
 				'properties_relation', 
 				'properties_relation_from_key', 
-				'properties_relation_to_key', 
-				'properties_relation_to_doi', 
-				'properties_relation_to_orcid', 
-				'properties_relation_to_purl', 
-				'properties_relation_to_scopus_author_id', 
-				'properties_relation_label', 
-				'properties_datesType_date', 
-				'properties_nameType_namePart', 
-				'properties_physicalAddressType_addressPart', 
-				'properties_electronicAddressType_value', 
-				'properties_electronicAddressType_title', 
-				'properties_electronicAddressType_notes', 
-				'properties_electronicAddressType_mediaType', 
-				'properties_electronicAddressType_byteSize', 
-				'properties_electronicAddressType_arg', 
-				'properties_locationType_address', 
-				'properties_locationType_locationType_address_electronic', 
-				'properties_locationType_locationType_address_physical', 
-				'properties_locationType_spatial', 
-				'properties_coverageType_spatial', 
-				'properties_coverageType_temporal', 
-				'properties_temporalType_date', 
-				'properties_temporalType_text', 
-				'properties_relatedNodeType_key', 
-				'properties_relatedNodeType_relation', 
-				'properties_relationType_description', 
-				'properties_relationType_url', 
-				'properties_rightsType_rightsStatement', 
-				'properties_rightsType_licence', 
-				'properties_rightsType_accessRights', 
-				'properties_existenceDateType_startDate', 
-				'properties_existenceDateType_endDate', 
-				'properties_related_identifier_type_identifier', 
-				'properties_related_identifier_type_relation', 
-				'properties_related_identifier_type_format', 
-				'properties_relatedInfoFormatType_identifier', 
-				'properties_citationInfoType_fullCitation', 
-				'properties_citationInfoType_citationMetadata', 
-				'properties_citationInfoType_citationInfoType_citationMetadata_identifier', 
-				'properties_citationInfoType_citationInfoType_citationMetadata_contributor', 
-				'properties_citationNameType_namePart', 
-				'properties_citationInfoType_citationInfoType_citationMetadata_title', 
-				'properties_citationInfoType_citationInfoType_citationMetadata_version', 
-				'properties_citationInfoType_citationInfoType_citationMetadata_edition', 
-				'properties_citationInfoType_citationInfoType_citationMetadata_publisher', 
-				'properties_citationInfoType_citationInfoType_citationMetadata_placePublished', 
-				'properties_citationInfoType_citationInfoType_citationMetadata_date', 
-				'properties_citationInfoType_citationInfoType_citationMetadata_url', 
-				'properties_citationInfoType_citationInfoType_citationMetadata_context', 
-				'properties_identifierType_type', 
-				'properties_datesType_datesType_date_type', 
-				'properties_datesType_datesType_date_dateFormat', 
-				'properties_datesType_type', 
-				'properties_nameType_nameType_namePart_type', 
-				'properties_dateRangeAttributes_dateFrom', 
-				'properties_dateRangeAttributes_dateTo', 
-				'properties_nameType_type', 
-				'properties_lang', 
-				'properties_spatialType_type', 
-				'properties_physicalAddressType_physicalAddressType_addressPart_type', 
-				'properties_physicalAddressType_type', 
-				'properties_electronicAddressType_electronicAddressType_arg_required', 
-				'properties_electronicAddressType_electronicAddressType_arg_type', 
-				'properties_electronicAddressType_electronicAddressType_arg_use', 
-				'properties_electronicAddressType_type', 
-				'properties_electronicAddressType_target', 
-				'properties_locationType_type', 
-				'properties_temporalType_temporalType_date_type', 
-				'properties_temporalType_temporalType_date_dateFormat', 
-				'properties_relationType_type', 
-				'properties_subjectType_type', 
-				'properties_subjectType_termIdentifier', 
-				'properties_descriptionType_type', 
-				'properties_rightsInfoType_rightsUri', 
-				'properties_rightsTypedInfoType_rightsUri', 
-				'properties_rightsTypedInfoType_type', 
-				'properties_existenceDateType_existenceDateType_startDate_dateFormat', 
-				'properties_existenceDateType_existenceDateType_endDate_dateFormat', 
-				'properties_relatedInfoFormatType_relatedInfoFormatType_identifier_type', 
-				'properties_related_identifier_type_type', 
-				'properties_citationInfoType_citationInfoType_fullCitation_style', 
-				'properties_citationNameType_citationNameType_namePart_type', 
-				'properties_citationNameType_seq', 
-				'properties_citationDateType_type', 
-				'properties_objectAttributes_type', 
-				'properties_objectAttributes_dateModified', 
-				'properties_collectionAttributes_dateAccessioned', 
-				'properties_space', 
-				'properties_base');
-var facetsBoxes= new Array('facets_publication_doi', 
-				'facets_publication_related_publication_doi', 
-				'facets_publication_related_dataset_doi', 
-				'facets_dataset_doi', 
-				'facets_relation_to_doi', 
-				'facets_doi_type', 
-				'facets_electronicAddressType_electronicAddressType_arg_required', 
-				'facets_space');
+				'properties_relation_to_uri', 
+				'properties_relation_label');
 var usedByBoxes= new Array('usedBy_researcher', 
 				'usedBy_publication', 
 				'usedBy_dataset', 
 				'usedBy_grant', 
-				'usedBy_relation', 
-				'usedBy_doi_type', 
-				'usedBy_identifierType', 
-				'usedBy_spatialType', 
-				'usedBy_physicalAddressType', 
-				'usedBy_electronicAddressType', 
-				'usedBy_temporalType', 
-				'usedBy_relationType', 
-				'usedBy_rightsInfoType', 
-				'usedBy_rightsTypedInfoType', 
-				'usedBy_relatedInfoFormatType', 
-				'usedBy_citationNameType', 
-				'usedBy_citationDateType', 
-				'usedBy_identifierType_type', 
-				'usedBy_datesType_datesType_date_type', 
-				'usedBy_datesType_datesType_date_dateFormat', 
-				'usedBy_datesType_type', 
-				'usedBy_nameType_nameType_namePart_type', 
-				'usedBy_dateRangeAttributes_dateFrom', 
-				'usedBy_dateRangeAttributes_dateTo', 
-				'usedBy_nameType_type', 
-				'usedBy_lang', 
-				'usedBy_spatialType_type', 
-				'usedBy_physicalAddressType_physicalAddressType_addressPart_type', 
-				'usedBy_physicalAddressType_type', 
-				'usedBy_electronicAddressType_electronicAddressType_arg_required', 
-				'usedBy_electronicAddressType_electronicAddressType_arg_type', 
-				'usedBy_electronicAddressType_electronicAddressType_arg_use', 
-				'usedBy_electronicAddressType_type', 
-				'usedBy_electronicAddressType_target', 
-				'usedBy_locationType_type', 
-				'usedBy_temporalType_temporalType_date_type', 
-				'usedBy_temporalType_temporalType_date_dateFormat', 
-				'usedBy_relationType_type', 
-				'usedBy_subjectType_type', 
-				'usedBy_subjectType_termIdentifier', 
-				'usedBy_descriptionType_type', 
-				'usedBy_rightsInfoType_rightsUri', 
-				'usedBy_rightsTypedInfoType_rightsUri', 
-				'usedBy_rightsTypedInfoType_type', 
-				'usedBy_existenceDateType_existenceDateType_startDate_dateFormat', 
-				'usedBy_existenceDateType_existenceDateType_endDate_dateFormat', 
-				'usedBy_relatedInfoFormatType_relatedInfoFormatType_identifier_type', 
-				'usedBy_related_identifier_type_type', 
-				'usedBy_citationInfoType_citationInfoType_fullCitation_style', 
-				'usedBy_citationNameType_citationNameType_namePart_type', 
-				'usedBy_citationNameType_seq', 
-				'usedBy_citationDateType_type', 
-				'usedBy_objectAttributes_type', 
-				'usedBy_objectAttributes_dateModified', 
-				'usedBy_collectionAttributes_dateAccessioned', 
-				'usedBy_space', 
-				'usedBy_base', 
-				'usedBy_dateRangeAttributes');
+				'usedBy_relation');
 var sourceBoxes= new Array('source_registryObjects', 
+				'source_registryObjects_researchers', 
 				'source_researcher', 
 				'source_researcher_key', 
+				'source_researcher_source', 
 				'source_researcher_local_id', 
+				'source_researcher_last_updated', 
 				'source_researcher_url', 
-				'source_researcher_orcid', 
-				'source_researcher_scopus_author_id', 
+				'source_researcher_full_name', 
 				'source_researcher_first_name', 
 				'source_researcher_last_name', 
-				'source_researcher_full_name', 
+				'source_researcher_orcid', 
+				'source_researcher_scopus_author_id', 
+				'source_registryObjects_publications', 
 				'source_publication', 
 				'source_publication_key', 
+				'source_publication_source', 
 				'source_publication_local_id', 
-				'source_publication_doi', 
+				'source_publication_last_updated', 
 				'source_publication_url', 
 				'source_publication_title', 
 				'source_publication_authors_list', 
+				'source_publication_doi', 
 				'source_publication_publication_year', 
-				'source_publication_scopus_author_eid', 
-				'source_publication_anzsrc_purl', 
-				'source_publication_related_key', 
-				'source_publication_related_publication_doi', 
-				'source_publication_related_dataset_doi', 
-				'source_publication_related_orcid', 
-				'source_publication_related_scopus_author_id', 
-				'source_publication_related_researcher_url', 
-				'source_publication_related_grant_purl', 
+				'source_publication_scopus_eid', 
+				'source_registryObjects_datasets', 
 				'source_dataset', 
 				'source_dataset_key', 
+				'source_dataset_source', 
 				'source_dataset_local_id', 
+				'source_dataset_last_updated', 
 				'source_dataset_url', 
-				'source_dataset_doi', 
 				'source_dataset_title', 
-				'source_dataset_authors_list', 
+				'source_dataset_doi', 
 				'source_dataset_publication_year', 
-				'source_dataset_anzsrc_purl', 
+				'source_dataset_license', 
+				'source_dataset_megabyte', 
+				'source_registryObjects_grants', 
 				'source_grant', 
 				'source_grant_key', 
+				'source_grant_source', 
 				'source_grant_local_id', 
-				'source_grant_purl', 
+				'source_grant_last_updated', 
 				'source_grant_url', 
 				'source_grant_title', 
+				'source_grant_purl', 
 				'source_grant_participant_list', 
+				'source_grant_funder', 
 				'source_grant_start_year', 
 				'source_grant_end_year', 
-				'source_grant_anzsrc_purl', 
+				'source_registryObjects_relations', 
 				'source_relation', 
 				'source_relation_from_key', 
-				'source_relation_to_key', 
-				'source_relation_to_doi', 
-				'source_relation_to_orcid', 
-				'source_relation_to_purl', 
-				'source_relation_to_scopus_author_id', 
-				'source_relation_label', 
-				'source_datesType_date', 
-				'source_nameType_namePart', 
-				'source_physicalAddressType_addressPart', 
-				'source_electronicAddressType_value', 
-				'source_electronicAddressType_title', 
-				'source_electronicAddressType_notes', 
-				'source_electronicAddressType_mediaType', 
-				'source_electronicAddressType_byteSize', 
-				'source_electronicAddressType_arg', 
-				'source_locationType_address', 
-				'source_locationType_locationType_address_electronic', 
-				'source_locationType_locationType_address_physical', 
-				'source_locationType_spatial', 
-				'source_coverageType_spatial', 
-				'source_coverageType_temporal', 
-				'source_temporalType_date', 
-				'source_temporalType_text', 
-				'source_relatedNodeType_key', 
-				'source_relatedNodeType_relation', 
-				'source_relationType_description', 
-				'source_relationType_url', 
-				'source_rightsType_rightsStatement', 
-				'source_rightsType_licence', 
-				'source_rightsType_accessRights', 
-				'source_existenceDateType_startDate', 
-				'source_existenceDateType_endDate', 
-				'source_related_identifier_type_identifier', 
-				'source_related_identifier_type_relation', 
-				'source_related_identifier_type_format', 
-				'source_relatedInfoFormatType_identifier', 
-				'source_citationInfoType_fullCitation', 
-				'source_citationInfoType_citationMetadata', 
-				'source_citationInfoType_citationInfoType_citationMetadata_identifier', 
-				'source_citationInfoType_citationInfoType_citationMetadata_contributor', 
-				'source_citationNameType_namePart', 
-				'source_citationInfoType_citationInfoType_citationMetadata_title', 
-				'source_citationInfoType_citationInfoType_citationMetadata_version', 
-				'source_citationInfoType_citationInfoType_citationMetadata_edition', 
-				'source_citationInfoType_citationInfoType_citationMetadata_publisher', 
-				'source_citationInfoType_citationInfoType_citationMetadata_placePublished', 
-				'source_citationInfoType_citationInfoType_citationMetadata_date', 
-				'source_citationInfoType_citationInfoType_citationMetadata_url', 
-				'source_citationInfoType_citationInfoType_citationMetadata_context', 
-				'source_doi_type', 
-				'source_identifierType', 
-				'source_datesType', 
-				'source_nameType', 
-				'source_spatialType', 
-				'source_physicalAddressType', 
-				'source_electronicAddressType', 
-				'source_locationType', 
-				'source_coverageType', 
-				'source_temporalType', 
-				'source_relatedNodeType', 
-				'source_relationType', 
-				'source_subjectType', 
-				'source_descriptionType', 
-				'source_rightsType', 
-				'source_rightsInfoType', 
-				'source_rightsTypedInfoType', 
-				'source_existenceDateType', 
-				'source_related_identifier_type', 
-				'source_relatedInfoFormatType', 
-				'source_citationInfoType', 
-				'source_citationNameType', 
-				'source_citationDateType', 
-				'source_identifierType_type', 
-				'source_datesType_datesType_date_type', 
-				'source_datesType_datesType_date_dateFormat', 
-				'source_datesType_type', 
-				'source_nameType_nameType_namePart_type', 
-				'source_dateRangeAttributes_dateFrom', 
-				'source_dateRangeAttributes_dateTo', 
-				'source_nameType_type', 
-				'source_lang', 
-				'source_spatialType_type', 
-				'source_physicalAddressType_physicalAddressType_addressPart_type', 
-				'source_physicalAddressType_type', 
-				'source_electronicAddressType_electronicAddressType_arg_required', 
-				'source_electronicAddressType_electronicAddressType_arg_type', 
-				'source_electronicAddressType_electronicAddressType_arg_use', 
-				'source_electronicAddressType_type', 
-				'source_electronicAddressType_target', 
-				'source_locationType_type', 
-				'source_temporalType_temporalType_date_type', 
-				'source_temporalType_temporalType_date_dateFormat', 
-				'source_relationType_type', 
-				'source_subjectType_type', 
-				'source_subjectType_termIdentifier', 
-				'source_descriptionType_type', 
-				'source_rightsInfoType_rightsUri', 
-				'source_rightsTypedInfoType_rightsUri', 
-				'source_rightsTypedInfoType_type', 
-				'source_existenceDateType_existenceDateType_startDate_dateFormat', 
-				'source_existenceDateType_existenceDateType_endDate_dateFormat', 
-				'source_relatedInfoFormatType_relatedInfoFormatType_identifier_type', 
-				'source_related_identifier_type_type', 
-				'source_citationInfoType_citationInfoType_fullCitation_style', 
-				'source_citationNameType_citationNameType_namePart_type', 
-				'source_citationNameType_seq', 
-				'source_citationDateType_type', 
-				'source_objectAttributes_type', 
-				'source_objectAttributes_dateModified', 
-				'source_collectionAttributes_dateAccessioned', 
-				'source_space', 
-				'source_base', 
-				'source_dateRangeAttributes', 
-				'source_objectAttributes', 
-				'source_collectionAttributes', 
-				'source_specialAttrs');
+				'source_relation_to_uri', 
+				'source_relation_label');
 var instanceBoxes= new Array('instance_registryObjects', 
+				'instance_registryObjects_researchers', 
 				'instance_researcher', 
+				'instance_registryObjects_publications', 
 				'instance_publication', 
+				'instance_registryObjects_datasets', 
 				'instance_dataset', 
+				'instance_registryObjects_grants', 
 				'instance_grant', 
-				'instance_relation', 
-				'instance_locationType_address', 
-				'instance_locationType_locationType_address_electronic', 
-				'instance_locationType_locationType_address_physical', 
-				'instance_coverageType_temporal', 
-				'instance_relatedNodeType_relation', 
-				'instance_related_identifier_type_relation', 
-				'instance_related_identifier_type_format', 
-				'instance_citationInfoType_citationMetadata', 
-				'instance_citationInfoType_citationInfoType_citationMetadata_contributor');
+				'instance_registryObjects_relations', 
+				'instance_relation');
 var diagramBoxes= new Array('diagram_registryObjects', 
+				'diagram_registryObjects_researchers', 
 				'diagram_researcher', 
 				'diagram_researcher_key', 
+				'diagram_researcher_source', 
 				'diagram_researcher_local_id', 
+				'diagram_researcher_last_updated', 
 				'diagram_researcher_url', 
-				'diagram_researcher_orcid', 
-				'diagram_researcher_scopus_author_id', 
+				'diagram_researcher_full_name', 
 				'diagram_researcher_first_name', 
 				'diagram_researcher_last_name', 
-				'diagram_researcher_full_name', 
+				'diagram_researcher_orcid', 
+				'diagram_researcher_scopus_author_id', 
+				'diagram_registryObjects_publications', 
 				'diagram_publication', 
 				'diagram_publication_key', 
+				'diagram_publication_source', 
 				'diagram_publication_local_id', 
-				'diagram_publication_doi', 
+				'diagram_publication_last_updated', 
 				'diagram_publication_url', 
 				'diagram_publication_title', 
 				'diagram_publication_authors_list', 
+				'diagram_publication_doi', 
 				'diagram_publication_publication_year', 
-				'diagram_publication_scopus_author_eid', 
-				'diagram_publication_anzsrc_purl', 
-				'diagram_publication_related_key', 
-				'diagram_publication_related_publication_doi', 
-				'diagram_publication_related_dataset_doi', 
-				'diagram_publication_related_orcid', 
-				'diagram_publication_related_scopus_author_id', 
-				'diagram_publication_related_researcher_url', 
-				'diagram_publication_related_grant_purl', 
+				'diagram_publication_scopus_eid', 
+				'diagram_registryObjects_datasets', 
 				'diagram_dataset', 
 				'diagram_dataset_key', 
+				'diagram_dataset_source', 
 				'diagram_dataset_local_id', 
+				'diagram_dataset_last_updated', 
 				'diagram_dataset_url', 
-				'diagram_dataset_doi', 
 				'diagram_dataset_title', 
-				'diagram_dataset_authors_list', 
+				'diagram_dataset_doi', 
 				'diagram_dataset_publication_year', 
-				'diagram_dataset_anzsrc_purl', 
+				'diagram_dataset_license', 
+				'diagram_dataset_megabyte', 
+				'diagram_registryObjects_grants', 
 				'diagram_grant', 
 				'diagram_grant_key', 
+				'diagram_grant_source', 
 				'diagram_grant_local_id', 
-				'diagram_grant_purl', 
+				'diagram_grant_last_updated', 
 				'diagram_grant_url', 
 				'diagram_grant_title', 
+				'diagram_grant_purl', 
 				'diagram_grant_participant_list', 
+				'diagram_grant_funder', 
 				'diagram_grant_start_year', 
 				'diagram_grant_end_year', 
-				'diagram_grant_anzsrc_purl', 
+				'diagram_registryObjects_relations', 
 				'diagram_relation', 
 				'diagram_relation_from_key', 
-				'diagram_relation_to_key', 
-				'diagram_relation_to_doi', 
-				'diagram_relation_to_orcid', 
-				'diagram_relation_to_purl', 
-				'diagram_relation_to_scopus_author_id', 
-				'diagram_relation_label', 
-				'diagram_datesType_date', 
-				'diagram_nameType_namePart', 
-				'diagram_physicalAddressType_addressPart', 
-				'diagram_electronicAddressType_value', 
-				'diagram_electronicAddressType_title', 
-				'diagram_electronicAddressType_notes', 
-				'diagram_electronicAddressType_mediaType', 
-				'diagram_electronicAddressType_byteSize', 
-				'diagram_electronicAddressType_arg', 
-				'diagram_locationType_address', 
-				'diagram_locationType_locationType_address_electronic', 
-				'diagram_locationType_locationType_address_physical', 
-				'diagram_locationType_spatial', 
-				'diagram_coverageType_spatial', 
-				'diagram_coverageType_temporal', 
-				'diagram_temporalType_date', 
-				'diagram_temporalType_text', 
-				'diagram_relatedNodeType_key', 
-				'diagram_relatedNodeType_relation', 
-				'diagram_relationType_description', 
-				'diagram_relationType_url', 
-				'diagram_rightsType_rightsStatement', 
-				'diagram_rightsType_licence', 
-				'diagram_rightsType_accessRights', 
-				'diagram_existenceDateType_startDate', 
-				'diagram_existenceDateType_endDate', 
-				'diagram_related_identifier_type_identifier', 
-				'diagram_related_identifier_type_relation', 
-				'diagram_related_identifier_type_format', 
-				'diagram_relatedInfoFormatType_identifier', 
-				'diagram_citationInfoType_fullCitation', 
-				'diagram_citationInfoType_citationMetadata', 
-				'diagram_citationInfoType_citationInfoType_citationMetadata_identifier', 
-				'diagram_citationInfoType_citationInfoType_citationMetadata_contributor', 
-				'diagram_citationNameType_namePart', 
-				'diagram_citationInfoType_citationInfoType_citationMetadata_title', 
-				'diagram_citationInfoType_citationInfoType_citationMetadata_version', 
-				'diagram_citationInfoType_citationInfoType_citationMetadata_edition', 
-				'diagram_citationInfoType_citationInfoType_citationMetadata_publisher', 
-				'diagram_citationInfoType_citationInfoType_citationMetadata_placePublished', 
-				'diagram_citationInfoType_citationInfoType_citationMetadata_date', 
-				'diagram_citationInfoType_citationInfoType_citationMetadata_url', 
-				'diagram_citationInfoType_citationInfoType_citationMetadata_context', 
-				'diagram_doi_type', 
-				'diagram_identifierType', 
-				'diagram_datesType', 
-				'diagram_nameType', 
-				'diagram_spatialType', 
-				'diagram_physicalAddressType', 
-				'diagram_electronicAddressType', 
-				'diagram_locationType', 
-				'diagram_coverageType', 
-				'diagram_temporalType', 
-				'diagram_relatedNodeType', 
-				'diagram_relationType', 
-				'diagram_subjectType', 
-				'diagram_descriptionType', 
-				'diagram_rightsType', 
-				'diagram_rightsInfoType', 
-				'diagram_rightsTypedInfoType', 
-				'diagram_existenceDateType', 
-				'diagram_related_identifier_type', 
-				'diagram_relatedInfoFormatType', 
-				'diagram_citationInfoType', 
-				'diagram_citationNameType', 
-				'diagram_citationDateType', 
-				'diagram_dateRangeAttributes', 
-				'diagram_objectAttributes', 
-				'diagram_collectionAttributes', 
-				'diagram_specialAttrs');
+				'diagram_relation_to_uri', 
+				'diagram_relation_label');
 var annotationBoxes= new Array('annotations_registryObjects.xsd', 
-				'annotations_propertyTypes.xsd', 
-				'annotations_xml.xsd', 
 				'annotations_registryObjects', 
 				'annotations_researcher', 
 				'annotations_researcher_key', 
-				'annotations_researcher_url', 
 				'annotations_researcher_orcid', 
 				'annotations_researcher_scopus_author_id', 
 				'annotations_publication', 
 				'annotations_publication_key', 
-				'annotations_publication_doi', 
-				'annotations_publication_url', 
 				'annotations_publication_title', 
 				'annotations_publication_authors_list', 
+				'annotations_publication_doi', 
 				'annotations_publication_publication_year', 
-				'annotations_publication_scopus_author_eid', 
-				'annotations_publication_anzsrc_purl', 
-				'annotations_publication_related_key', 
-				'annotations_publication_related_publication_doi', 
-				'annotations_publication_related_dataset_doi', 
-				'annotations_publication_related_orcid', 
-				'annotations_publication_related_scopus_author_id', 
-				'annotations_publication_related_researcher_url', 
-				'annotations_publication_related_grant_purl', 
+				'annotations_publication_scopus_eid', 
 				'annotations_dataset', 
 				'annotations_dataset_key', 
-				'annotations_dataset_url', 
 				'annotations_dataset_doi', 
-				'annotations_dataset_title', 
-				'annotations_dataset_authors_list', 
 				'annotations_dataset_publication_year', 
-				'annotations_dataset_anzsrc_purl', 
+				'annotations_dataset_license', 
 				'annotations_grant', 
 				'annotations_grant_key', 
-				'annotations_grant_purl', 
+				'annotations_grant_local_id', 
 				'annotations_grant_url', 
 				'annotations_grant_title', 
+				'annotations_grant_purl', 
 				'annotations_grant_participant_list', 
 				'annotations_grant_start_year', 
 				'annotations_grant_end_year', 
-				'annotations_grant_anzsrc_purl', 
 				'annotations_relation_from_key', 
-				'annotations_relation_to_key', 
-				'annotations_relation_to_doi', 
-				'annotations_relation_to_orcid', 
-				'annotations_relation_to_purl', 
-				'annotations_relation_to_scopus_author_id', 
-				'annotations_datesType_date', 
-				'annotations_nameType_namePart', 
-				'annotations_relatedNodeType_key', 
-				'annotations_relationType_description', 
-				'annotations_relationType_url', 
-				'annotations_citationNameType_namePart', 
-				'annotations_citationInfoType_citationInfoType_citationMetadata_edition', 
-				'annotations_electronicAddressType', 
-				'annotations_locationType', 
-				'annotations_relationType', 
-				'annotations_identifierType_type', 
-				'annotations_datesType_datesType_date_type', 
-				'annotations_datesType_datesType_date_dateFormat', 
-				'annotations_datesType_type', 
-				'annotations_nameType_nameType_namePart_type', 
-				'annotations_dateRangeAttributes_dateFrom', 
-				'annotations_dateRangeAttributes_dateTo', 
-				'annotations_nameType_type', 
-				'annotations_lang', 
-				'annotations_spatialType_type', 
-				'annotations_physicalAddressType_physicalAddressType_addressPart_type', 
-				'annotations_physicalAddressType_type', 
-				'annotations_electronicAddressType_electronicAddressType_arg_required', 
-				'annotations_electronicAddressType_electronicAddressType_arg_type', 
-				'annotations_electronicAddressType_electronicAddressType_arg_use', 
-				'annotations_electronicAddressType_type', 
-				'annotations_electronicAddressType_target', 
-				'annotations_locationType_type', 
-				'annotations_temporalType_temporalType_date_dateFormat', 
-				'annotations_relationType_type', 
-				'annotations_subjectType_type', 
-				'annotations_subjectType_termIdentifier', 
-				'annotations_descriptionType_type', 
-				'annotations_rightsInfoType_rightsUri', 
-				'annotations_rightsTypedInfoType_rightsUri', 
-				'annotations_rightsTypedInfoType_type', 
-				'annotations_existenceDateType_existenceDateType_startDate_dateFormat', 
-				'annotations_existenceDateType_existenceDateType_endDate_dateFormat', 
-				'annotations_related_identifier_type_type', 
-				'annotations_citationInfoType_citationInfoType_fullCitation_style', 
-				'annotations_citationNameType_citationNameType_namePart_type', 
-				'annotations_citationNameType_seq', 
-				'annotations_citationDateType_type', 
-				'annotations_objectAttributes_type', 
-				'annotations_objectAttributes_dateModified', 
-				'annotations_collectionAttributes_dateAccessioned', 
-				'annotations_base');
-var attributesBoxes= new Array('attributes_datesType_date', 
-				'attributes_nameType_namePart', 
-				'attributes_physicalAddressType_addressPart', 
-				'attributes_electronicAddressType_arg', 
-				'attributes_locationType_locationType_address_electronic', 
-				'attributes_locationType_locationType_address_physical', 
-				'attributes_locationType_spatial', 
-				'attributes_coverageType_spatial', 
-				'attributes_temporalType_date', 
-				'attributes_relatedNodeType_relation', 
-				'attributes_relationType_description', 
-				'attributes_rightsType_rightsStatement', 
-				'attributes_rightsType_licence', 
-				'attributes_rightsType_accessRights', 
-				'attributes_existenceDateType_startDate', 
-				'attributes_existenceDateType_endDate', 
-				'attributes_related_identifier_type_identifier', 
-				'attributes_related_identifier_type_relation', 
-				'attributes_relatedInfoFormatType_identifier', 
-				'attributes_citationInfoType_fullCitation', 
-				'attributes_citationInfoType_citationInfoType_citationMetadata_identifier', 
-				'attributes_citationInfoType_citationInfoType_citationMetadata_contributor', 
-				'attributes_citationNameType_namePart', 
-				'attributes_citationInfoType_citationInfoType_citationMetadata_date', 
-				'attributes_identifierType', 
-				'attributes_datesType', 
-				'attributes_nameType', 
-				'attributes_spatialType', 
-				'attributes_physicalAddressType', 
-				'attributes_electronicAddressType', 
-				'attributes_locationType', 
-				'attributes_relationType', 
-				'attributes_subjectType', 
-				'attributes_descriptionType', 
-				'attributes_rightsInfoType', 
-				'attributes_rightsTypedInfoType', 
-				'attributes_related_identifier_type', 
-				'attributes_citationNameType', 
-				'attributes_citationDateType', 
-				'attributes_dateRangeAttributes', 
-				'attributes_objectAttributes', 
-				'attributes_collectionAttributes', 
-				'attributes_specialAttrs');
+				'annotations_relation_to_uri');
 var modelBoxes= new Array('model_registryObjects', 
+				'model_registryObjects_researchers', 
 				'model_researcher', 
+				'model_registryObjects_publications', 
 				'model_publication', 
+				'model_registryObjects_datasets', 
 				'model_dataset', 
+				'model_registryObjects_grants', 
 				'model_grant', 
-				'model_relation', 
-				'model_locationType_address', 
-				'model_locationType_locationType_address_electronic', 
-				'model_locationType_locationType_address_physical', 
-				'model_coverageType_temporal', 
-				'model_relatedNodeType_relation', 
-				'model_related_identifier_type_relation', 
-				'model_related_identifier_type_format', 
-				'model_citationInfoType_citationMetadata', 
-				'model_citationInfoType_citationInfoType_citationMetadata_contributor', 
-				'model_datesType', 
-				'model_nameType', 
-				'model_physicalAddressType', 
-				'model_electronicAddressType', 
-				'model_locationType', 
-				'model_coverageType', 
-				'model_temporalType', 
-				'model_relatedNodeType', 
-				'model_relationType', 
-				'model_rightsType', 
-				'model_existenceDateType', 
-				'model_related_identifier_type', 
-				'model_relatedInfoFormatType', 
-				'model_citationInfoType', 
-				'model_citationNameType');
+				'model_registryObjects_relations', 
+				'model_relation');
 
       
         var button_prefix = 'button_';
@@ -932,7 +477,7 @@ var modelBoxes= new Array('model_registryObjects',
          <div class="level1" id="toc_group_by_namespace" style="display:block">
             <div>
                <div class="level2">
-                  <p><input id="button_boxIdNamespace1" type="image" value="-" src="img/btM.gif" onclick="switchState('boxIdNamespace1');" class="control" /><span class="indexGroupTitle">http://researchgraph.org/schema/v1.1/xml/nodes</span></p>
+                  <p><input id="button_boxIdNamespace1" type="image" value="-" src="img/btM.gif" onclick="switchState('boxIdNamespace1');" class="control" /><span class="indexGroupTitle">http://researchgraph.org/schema/v2.0/xml/nodes</span></p>
                   <div id="boxIdNamespace1" style="display:block">
                      <div class="horizontalLayout">
                         <table class="rt">
@@ -956,233 +501,12 @@ var modelBoxes= new Array('model_registryObjects',
                                           <td class="componentGroup"></td>
                                           <td class="componentGroup">
                                              <div id="boxIdNamespace1Element" class="componentGroup" style="display:block">
-                                                <div><b><a href="index.html#dataset" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">dataset</a></b></div>
-                                                <div><b><a href="index.html#grant" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">grant</a></b></div>
-                                                <div><b><a href="index.html#publication" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">publication</a></b></div>
-                                                <div><b><a href="index.html#registryObjects" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">registryObjects</a></b></div>
-                                                <div><b><a href="index.html#relation" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">relation</a></b></div>
-                                                <div><b><a href="index.html#researcher" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">researcher</a></b></div>
-                                             </div>
-                                          </td>
-                                       </tr>
-                                    </tbody>
-                                 </table>
-                              </td>
-                              <td class="rt_lineRight"></td>
-                           </tr>
-                           <tr>
-                              <td class="rt_cornerBottomLeft"></td>
-                              <td class="rt_lineBottom"></td>
-                              <td class="rt_cornerBottomRight"></td>
-                           </tr>
-                        </table>
-                     </div>
-                     <div class="horizontalLayout">
-                        <table class="rt">
-                           <tr>
-                              <td class="rt_cornerTopLeft"></td>
-                              <td class="rt_lineTop"></td>
-                              <td class="rt_cornerTopRight"></td>
-                           </tr>
-                           <tr>
-                              <td class="rt_lineLeft"></td>
-                              <td class="rt_content">
-                                 <table class="componentGroup">
-                                    <tbody>
-                                       <tr>
-                                          <td class="componentGroup"><input id="button_boxIdNamespace1Simple_Type" type="image" value="-" src="img/btM.gif" onclick="switchState('boxIdNamespace1Simple_Type');" class="control" /></td>
-                                          <td class="componentGroup">
-                                             <div class="componentGroupTitle">Simple Types</div>
-                                          </td>
-                                       </tr>
-                                       <tr>
-                                          <td class="componentGroup"></td>
-                                          <td class="componentGroup">
-                                             <div id="boxIdNamespace1Simple_Type" class="componentGroup" style="display:block">
-                                                <div><b><a href="index.html#doi_type" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">doi_type</a></b></div>
-                                             </div>
-                                          </td>
-                                       </tr>
-                                    </tbody>
-                                 </table>
-                              </td>
-                              <td class="rt_lineRight"></td>
-                           </tr>
-                           <tr>
-                              <td class="rt_cornerBottomLeft"></td>
-                              <td class="rt_lineBottom"></td>
-                              <td class="rt_cornerBottomRight"></td>
-                           </tr>
-                        </table>
-                     </div>
-                     <div class="horizontalLayout">
-                        <table class="rt">
-                           <tr>
-                              <td class="rt_cornerTopLeft"></td>
-                              <td class="rt_lineTop"></td>
-                              <td class="rt_cornerTopRight"></td>
-                           </tr>
-                           <tr>
-                              <td class="rt_lineLeft"></td>
-                              <td class="rt_content">
-                                 <table class="componentGroup">
-                                    <tbody>
-                                       <tr>
-                                          <td class="componentGroup"><input id="button_boxIdNamespace1Complex_Type" type="image" value="-" src="img/btM.gif" onclick="switchState('boxIdNamespace1Complex_Type');" class="control" /></td>
-                                          <td class="componentGroup">
-                                             <div class="componentGroupTitle">Complex Types</div>
-                                          </td>
-                                       </tr>
-                                       <tr>
-                                          <td class="componentGroup"></td>
-                                          <td class="componentGroup">
-                                             <div id="boxIdNamespace1Complex_Type" class="componentGroup" style="display:block">
-                                                <div><b><a href="index.html#citationDateType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">citationDateType</a></b></div>
-                                                <div><b><a href="index.html#citationInfoType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">citationInfoType</a></b></div>
-                                                <div><b><a href="index.html#citationNameType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">citationNameType</a></b></div>
-                                                <div><b><a href="index.html#coverageType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">coverageType</a></b></div>
-                                                <div><b><a href="index.html#datesType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">datesType</a></b></div>
-                                                <div><b><a href="index.html#descriptionType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">descriptionType</a></b></div>
-                                                <div><b><a href="index.html#electronicAddressType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">electronicAddressType</a></b></div>
-                                                <div><b><a href="index.html#existenceDateType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">existenceDateType</a></b></div>
-                                                <div><b><a href="index.html#identifierType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">identifierType</a></b></div>
-                                                <div><b><a href="index.html#locationType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">locationType</a></b></div>
-                                                <div><b><a href="index.html#nameType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">nameType</a></b></div>
-                                                <div><b><a href="index.html#physicalAddressType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">physicalAddressType</a></b></div>
-                                                <div><b><a href="index.html#relatedInfoFormatType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">relatedInfoFormatType</a></b></div>
-                                                <div><b><a href="index.html#relatedNodeType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">relatedNodeType</a></b></div>
-                                                <div><b><a href="index.html#related_identifier_type" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">related_identifier_type</a></b></div>
-                                                <div><b><a href="index.html#relationType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">relationType</a></b></div>
-                                                <div><b><a href="index.html#rightsInfoType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">rightsInfoType</a></b></div>
-                                                <div><b><a href="index.html#rightsType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">rightsType</a></b></div>
-                                                <div><b><a href="index.html#rightsTypedInfoType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">rightsTypedInfoType</a></b></div>
-                                                <div><b><a href="index.html#spatialType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">spatialType</a></b></div>
-                                                <div><b><a href="index.html#subjectType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">subjectType</a></b></div>
-                                                <div><b><a href="index.html#temporalType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">temporalType</a></b></div>
-                                             </div>
-                                          </td>
-                                       </tr>
-                                    </tbody>
-                                 </table>
-                              </td>
-                              <td class="rt_lineRight"></td>
-                           </tr>
-                           <tr>
-                              <td class="rt_cornerBottomLeft"></td>
-                              <td class="rt_lineBottom"></td>
-                              <td class="rt_cornerBottomRight"></td>
-                           </tr>
-                        </table>
-                     </div>
-                     <div class="horizontalLayout">
-                        <table class="rt">
-                           <tr>
-                              <td class="rt_cornerTopLeft"></td>
-                              <td class="rt_lineTop"></td>
-                              <td class="rt_cornerTopRight"></td>
-                           </tr>
-                           <tr>
-                              <td class="rt_lineLeft"></td>
-                              <td class="rt_content">
-                                 <table class="componentGroup">
-                                    <tbody>
-                                       <tr>
-                                          <td class="componentGroup"><input id="button_boxIdNamespace1Attribute_Group" type="image" value="-" src="img/btM.gif" onclick="switchState('boxIdNamespace1Attribute_Group');" class="control" /></td>
-                                          <td class="componentGroup">
-                                             <div class="componentGroupTitle">Attribute Groups</div>
-                                          </td>
-                                       </tr>
-                                       <tr>
-                                          <td class="componentGroup"></td>
-                                          <td class="componentGroup">
-                                             <div id="boxIdNamespace1Attribute_Group" class="componentGroup" style="display:block">
-                                                <div><b><a href="index.html#collectionAttributes" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">collectionAttributes</a></b></div>
-                                                <div><b><a href="index.html#dateRangeAttributes" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">dateRangeAttributes</a></b></div>
-                                                <div><b><a href="index.html#objectAttributes" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">objectAttributes</a></b></div>
-                                             </div>
-                                          </td>
-                                       </tr>
-                                    </tbody>
-                                 </table>
-                              </td>
-                              <td class="rt_lineRight"></td>
-                           </tr>
-                           <tr>
-                              <td class="rt_cornerBottomLeft"></td>
-                              <td class="rt_lineBottom"></td>
-                              <td class="rt_cornerBottomRight"></td>
-                           </tr>
-                        </table>
-                     </div>
-                     <div style="clear:left"></div>
-                  </div>
-               </div>
-               <div class="level2">
-                  <p><input id="button_boxIdNamespace2" type="image" value="-" src="img/btM.gif" onclick="switchState('boxIdNamespace2');" class="control" /><span class="indexGroupTitle">http://www.w3.org/XML/1998/namespace</span></p>
-                  <div id="boxIdNamespace2" style="display:block">
-                     <div class="horizontalLayout">
-                        <table class="rt">
-                           <tr>
-                              <td class="rt_cornerTopLeft"></td>
-                              <td class="rt_lineTop"></td>
-                              <td class="rt_cornerTopRight"></td>
-                           </tr>
-                           <tr>
-                              <td class="rt_lineLeft"></td>
-                              <td class="rt_content">
-                                 <table class="componentGroup">
-                                    <tbody>
-                                       <tr>
-                                          <td class="componentGroup"><input id="button_boxIdNamespace2Attribute" type="image" value="-" src="img/btM.gif" onclick="switchState('boxIdNamespace2Attribute');" class="control" /></td>
-                                          <td class="componentGroup">
-                                             <div class="componentGroupTitle">Attributes</div>
-                                          </td>
-                                       </tr>
-                                       <tr>
-                                          <td class="componentGroup"></td>
-                                          <td class="componentGroup">
-                                             <div id="boxIdNamespace2Attribute" class="componentGroup" style="display:block">
-                                                <div><b><a href="index.html#base" target="_self" title="http://www.w3.org/XML/1998/namespace">@xml:base</a></b></div>
-                                                <div><b><a href="index.html#lang" target="_self" title="http://www.w3.org/XML/1998/namespace">@xml:lang</a></b></div>
-                                                <div><b><a href="index.html#space" target="_self" title="http://www.w3.org/XML/1998/namespace">@xml:space</a></b></div>
-                                             </div>
-                                          </td>
-                                       </tr>
-                                    </tbody>
-                                 </table>
-                              </td>
-                              <td class="rt_lineRight"></td>
-                           </tr>
-                           <tr>
-                              <td class="rt_cornerBottomLeft"></td>
-                              <td class="rt_lineBottom"></td>
-                              <td class="rt_cornerBottomRight"></td>
-                           </tr>
-                        </table>
-                     </div>
-                     <div class="horizontalLayout">
-                        <table class="rt">
-                           <tr>
-                              <td class="rt_cornerTopLeft"></td>
-                              <td class="rt_lineTop"></td>
-                              <td class="rt_cornerTopRight"></td>
-                           </tr>
-                           <tr>
-                              <td class="rt_lineLeft"></td>
-                              <td class="rt_content">
-                                 <table class="componentGroup">
-                                    <tbody>
-                                       <tr>
-                                          <td class="componentGroup"><input id="button_boxIdNamespace2Attribute_Group" type="image" value="-" src="img/btM.gif" onclick="switchState('boxIdNamespace2Attribute_Group');" class="control" /></td>
-                                          <td class="componentGroup">
-                                             <div class="componentGroupTitle">Attribute Groups</div>
-                                          </td>
-                                       </tr>
-                                       <tr>
-                                          <td class="componentGroup"></td>
-                                          <td class="componentGroup">
-                                             <div id="boxIdNamespace2Attribute_Group" class="componentGroup" style="display:block">
-                                                <div><b><a href="index.html#specialAttrs" target="_self" title="http://www.w3.org/XML/1998/namespace">xml:specialAttrs</a></b></div>
+                                                <div><b><a href="index.html#dataset" target="_self" title="http://researchgraph.org/schema/v2.0/xml/nodes">dataset</a></b></div>
+                                                <div><b><a href="index.html#grant" target="_self" title="http://researchgraph.org/schema/v2.0/xml/nodes">grant</a></b></div>
+                                                <div><b><a href="index.html#publication" target="_self" title="http://researchgraph.org/schema/v2.0/xml/nodes">publication</a></b></div>
+                                                <div><b><a href="index.html#registryObjects" target="_self" title="http://researchgraph.org/schema/v2.0/xml/nodes">registryObjects</a></b></div>
+                                                <div><b><a href="index.html#relation" target="_self" title="http://researchgraph.org/schema/v2.0/xml/nodes">relation</a></b></div>
+                                                <div><b><a href="index.html#researcher" target="_self" title="http://researchgraph.org/schema/v2.0/xml/nodes">researcher</a></b></div>
                                              </div>
                                           </td>
                                        </tr>
@@ -1227,190 +551,12 @@ var modelBoxes= new Array('model_registryObjects',
                                     <td class="componentGroup"></td>
                                     <td class="componentGroup">
                                        <div id="Element" class="componentGroup" style="display:block">
-                                          <div><b><a href="index.html#dataset" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">dataset</a></b></div>
-                                          <div><b><a href="index.html#grant" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">grant</a></b></div>
-                                          <div><b><a href="index.html#publication" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">publication</a></b></div>
-                                          <div><b><a href="index.html#registryObjects" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">registryObjects</a></b></div>
-                                          <div><b><a href="index.html#relation" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">relation</a></b></div>
-                                          <div><b><a href="index.html#researcher" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">researcher</a></b></div>
-                                       </div>
-                                    </td>
-                                 </tr>
-                              </tbody>
-                           </table>
-                        </td>
-                        <td class="rt_lineRight"></td>
-                     </tr>
-                     <tr>
-                        <td class="rt_cornerBottomLeft"></td>
-                        <td class="rt_lineBottom"></td>
-                        <td class="rt_cornerBottomRight"></td>
-                     </tr>
-                  </table>
-               </div>
-               <div class="horizontalLayout">
-                  <table class="rt">
-                     <tr>
-                        <td class="rt_cornerTopLeft"></td>
-                        <td class="rt_lineTop"></td>
-                        <td class="rt_cornerTopRight"></td>
-                     </tr>
-                     <tr>
-                        <td class="rt_lineLeft"></td>
-                        <td class="rt_content">
-                           <table class="componentGroup">
-                              <tbody>
-                                 <tr>
-                                    <td class="componentGroup"><input id="button_Simple_Type" type="image" value="-" src="img/btM.gif" onclick="switchState('Simple_Type');" class="control" /></td>
-                                    <td class="componentGroup">
-                                       <div class="componentGroupTitle">Simple Types</div>
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td class="componentGroup"></td>
-                                    <td class="componentGroup">
-                                       <div id="Simple_Type" class="componentGroup" style="display:block">
-                                          <div><b><a href="index.html#doi_type" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">doi_type</a></b></div>
-                                       </div>
-                                    </td>
-                                 </tr>
-                              </tbody>
-                           </table>
-                        </td>
-                        <td class="rt_lineRight"></td>
-                     </tr>
-                     <tr>
-                        <td class="rt_cornerBottomLeft"></td>
-                        <td class="rt_lineBottom"></td>
-                        <td class="rt_cornerBottomRight"></td>
-                     </tr>
-                  </table>
-               </div>
-               <div class="horizontalLayout">
-                  <table class="rt">
-                     <tr>
-                        <td class="rt_cornerTopLeft"></td>
-                        <td class="rt_lineTop"></td>
-                        <td class="rt_cornerTopRight"></td>
-                     </tr>
-                     <tr>
-                        <td class="rt_lineLeft"></td>
-                        <td class="rt_content">
-                           <table class="componentGroup">
-                              <tbody>
-                                 <tr>
-                                    <td class="componentGroup"><input id="button_Complex_Type" type="image" value="-" src="img/btM.gif" onclick="switchState('Complex_Type');" class="control" /></td>
-                                    <td class="componentGroup">
-                                       <div class="componentGroupTitle">Complex Types</div>
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td class="componentGroup"></td>
-                                    <td class="componentGroup">
-                                       <div id="Complex_Type" class="componentGroup" style="display:block">
-                                          <div><b><a href="index.html#citationDateType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">citationDateType</a></b></div>
-                                          <div><b><a href="index.html#citationInfoType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">citationInfoType</a></b></div>
-                                          <div><b><a href="index.html#citationNameType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">citationNameType</a></b></div>
-                                          <div><b><a href="index.html#coverageType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">coverageType</a></b></div>
-                                          <div><b><a href="index.html#datesType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">datesType</a></b></div>
-                                          <div><b><a href="index.html#descriptionType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">descriptionType</a></b></div>
-                                          <div><b><a href="index.html#electronicAddressType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">electronicAddressType</a></b></div>
-                                          <div><b><a href="index.html#existenceDateType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">existenceDateType</a></b></div>
-                                          <div><b><a href="index.html#identifierType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">identifierType</a></b></div>
-                                          <div><b><a href="index.html#locationType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">locationType</a></b></div>
-                                          <div><b><a href="index.html#nameType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">nameType</a></b></div>
-                                          <div><b><a href="index.html#physicalAddressType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">physicalAddressType</a></b></div>
-                                          <div><b><a href="index.html#relatedInfoFormatType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">relatedInfoFormatType</a></b></div>
-                                          <div><b><a href="index.html#relatedNodeType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">relatedNodeType</a></b></div>
-                                          <div><b><a href="index.html#related_identifier_type" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">related_identifier_type</a></b></div>
-                                          <div><b><a href="index.html#relationType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">relationType</a></b></div>
-                                          <div><b><a href="index.html#rightsInfoType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">rightsInfoType</a></b></div>
-                                          <div><b><a href="index.html#rightsType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">rightsType</a></b></div>
-                                          <div><b><a href="index.html#rightsTypedInfoType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">rightsTypedInfoType</a></b></div>
-                                          <div><b><a href="index.html#spatialType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">spatialType</a></b></div>
-                                          <div><b><a href="index.html#subjectType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">subjectType</a></b></div>
-                                          <div><b><a href="index.html#temporalType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">temporalType</a></b></div>
-                                       </div>
-                                    </td>
-                                 </tr>
-                              </tbody>
-                           </table>
-                        </td>
-                        <td class="rt_lineRight"></td>
-                     </tr>
-                     <tr>
-                        <td class="rt_cornerBottomLeft"></td>
-                        <td class="rt_lineBottom"></td>
-                        <td class="rt_cornerBottomRight"></td>
-                     </tr>
-                  </table>
-               </div>
-               <div class="horizontalLayout">
-                  <table class="rt">
-                     <tr>
-                        <td class="rt_cornerTopLeft"></td>
-                        <td class="rt_lineTop"></td>
-                        <td class="rt_cornerTopRight"></td>
-                     </tr>
-                     <tr>
-                        <td class="rt_lineLeft"></td>
-                        <td class="rt_content">
-                           <table class="componentGroup">
-                              <tbody>
-                                 <tr>
-                                    <td class="componentGroup"><input id="button_Attribute" type="image" value="-" src="img/btM.gif" onclick="switchState('Attribute');" class="control" /></td>
-                                    <td class="componentGroup">
-                                       <div class="componentGroupTitle">Attributes</div>
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td class="componentGroup"></td>
-                                    <td class="componentGroup">
-                                       <div id="Attribute" class="componentGroup" style="display:block">
-                                          <div><b><a href="index.html#base" target="_self" title="http://www.w3.org/XML/1998/namespace">@xml:base</a></b></div>
-                                          <div><b><a href="index.html#lang" target="_self" title="http://www.w3.org/XML/1998/namespace">@xml:lang</a></b></div>
-                                          <div><b><a href="index.html#space" target="_self" title="http://www.w3.org/XML/1998/namespace">@xml:space</a></b></div>
-                                       </div>
-                                    </td>
-                                 </tr>
-                              </tbody>
-                           </table>
-                        </td>
-                        <td class="rt_lineRight"></td>
-                     </tr>
-                     <tr>
-                        <td class="rt_cornerBottomLeft"></td>
-                        <td class="rt_lineBottom"></td>
-                        <td class="rt_cornerBottomRight"></td>
-                     </tr>
-                  </table>
-               </div>
-               <div class="horizontalLayout">
-                  <table class="rt">
-                     <tr>
-                        <td class="rt_cornerTopLeft"></td>
-                        <td class="rt_lineTop"></td>
-                        <td class="rt_cornerTopRight"></td>
-                     </tr>
-                     <tr>
-                        <td class="rt_lineLeft"></td>
-                        <td class="rt_content">
-                           <table class="componentGroup">
-                              <tbody>
-                                 <tr>
-                                    <td class="componentGroup"><input id="button_Attribute_Group" type="image" value="-" src="img/btM.gif" onclick="switchState('Attribute_Group');" class="control" /></td>
-                                    <td class="componentGroup">
-                                       <div class="componentGroupTitle">Attribute Groups</div>
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td class="componentGroup"></td>
-                                    <td class="componentGroup">
-                                       <div id="Attribute_Group" class="componentGroup" style="display:block">
-                                          <div><b><a href="index.html#collectionAttributes" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">collectionAttributes</a></b></div>
-                                          <div><b><a href="index.html#dateRangeAttributes" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">dateRangeAttributes</a></b></div>
-                                          <div><b><a href="index.html#objectAttributes" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">objectAttributes</a></b></div>
-                                          <div><b><a href="index.html#specialAttrs" target="_self" title="http://www.w3.org/XML/1998/namespace">xml:specialAttrs</a></b></div>
+                                          <div><b><a href="index.html#dataset" target="_self" title="http://researchgraph.org/schema/v2.0/xml/nodes">dataset</a></b></div>
+                                          <div><b><a href="index.html#grant" target="_self" title="http://researchgraph.org/schema/v2.0/xml/nodes">grant</a></b></div>
+                                          <div><b><a href="index.html#publication" target="_self" title="http://researchgraph.org/schema/v2.0/xml/nodes">publication</a></b></div>
+                                          <div><b><a href="index.html#registryObjects" target="_self" title="http://researchgraph.org/schema/v2.0/xml/nodes">registryObjects</a></b></div>
+                                          <div><b><a href="index.html#relation" target="_self" title="http://researchgraph.org/schema/v2.0/xml/nodes">relation</a></b></div>
+                                          <div><b><a href="index.html#researcher" target="_self" title="http://researchgraph.org/schema/v2.0/xml/nodes">researcher</a></b></div>
                                        </div>
                                     </td>
                                  </tr>
@@ -1456,7 +602,7 @@ var modelBoxes= new Array('model_registryObjects',
                                           <td class="componentGroup"></td>
                                           <td class="componentGroup">
                                              <div id="gr_registryObjects.xsdElement" class="componentGroup" style="display:block">
-                                                <div><b><a href="index.html#registryObjects" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">registryObjects</a></b></div>
+                                                <div><b><a href="index.html#registryObjects" target="_self" title="http://researchgraph.org/schema/v2.0/xml/nodes">registryObjects</a></b></div>
                                              </div>
                                           </td>
                                        </tr>
@@ -1500,7 +646,7 @@ var modelBoxes= new Array('model_registryObjects',
                                           <td class="componentGroup"></td>
                                           <td class="componentGroup">
                                              <div id="gr_researcher.xsdElement" class="componentGroup" style="display:block">
-                                                <div><b><a href="index.html#researcher" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">researcher</a></b></div>
+                                                <div><b><a href="index.html#researcher" target="_self" title="http://researchgraph.org/schema/v2.0/xml/nodes">researcher</a></b></div>
                                              </div>
                                           </td>
                                        </tr>
@@ -1544,7 +690,7 @@ var modelBoxes= new Array('model_registryObjects',
                                           <td class="componentGroup"></td>
                                           <td class="componentGroup">
                                              <div id="gr_publication.xsdElement" class="componentGroup" style="display:block">
-                                                <div><b><a href="index.html#publication" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">publication</a></b></div>
+                                                <div><b><a href="index.html#publication" target="_self" title="http://researchgraph.org/schema/v2.0/xml/nodes">publication</a></b></div>
                                              </div>
                                           </td>
                                        </tr>
@@ -1588,7 +734,7 @@ var modelBoxes= new Array('model_registryObjects',
                                           <td class="componentGroup"></td>
                                           <td class="componentGroup">
                                              <div id="gr_dataset.xsdElement" class="componentGroup" style="display:block">
-                                                <div><b><a href="index.html#dataset" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">dataset</a></b></div>
+                                                <div><b><a href="index.html#dataset" target="_self" title="http://researchgraph.org/schema/v2.0/xml/nodes">dataset</a></b></div>
                                              </div>
                                           </td>
                                        </tr>
@@ -1632,7 +778,7 @@ var modelBoxes= new Array('model_registryObjects',
                                           <td class="componentGroup"></td>
                                           <td class="componentGroup">
                                              <div id="gr_grant.xsdElement" class="componentGroup" style="display:block">
-                                                <div><b><a href="index.html#grant" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">grant</a></b></div>
+                                                <div><b><a href="index.html#grant" target="_self" title="http://researchgraph.org/schema/v2.0/xml/nodes">grant</a></b></div>
                                              </div>
                                           </td>
                                        </tr>
@@ -1676,234 +822,7 @@ var modelBoxes= new Array('model_registryObjects',
                                           <td class="componentGroup"></td>
                                           <td class="componentGroup">
                                              <div id="gr_relation.xsdElement" class="componentGroup" style="display:block">
-                                                <div><b><a href="index.html#relation" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">relation</a></b></div>
-                                             </div>
-                                          </td>
-                                       </tr>
-                                    </tbody>
-                                 </table>
-                              </td>
-                              <td class="rt_lineRight"></td>
-                           </tr>
-                           <tr>
-                              <td class="rt_cornerBottomLeft"></td>
-                              <td class="rt_lineBottom"></td>
-                              <td class="rt_cornerBottomRight"></td>
-                           </tr>
-                        </table>
-                     </div>
-                     <div style="clear:left"></div>
-                  </div>
-               </div>
-               <div class="level2">
-                  <p><input id="button_gr_propertyTypes.xsd" type="image" value="-" src="img/btM.gif" onclick="switchState('gr_propertyTypes.xsd');" class="control" /><span class="indexGroupTitle">propertyTypes.xsd</span></p>
-                  <div id="gr_propertyTypes.xsd" style="display:block">
-                     <div class="horizontalLayout">
-                        <table class="rt">
-                           <tr>
-                              <td class="rt_cornerTopLeft"></td>
-                              <td class="rt_lineTop"></td>
-                              <td class="rt_cornerTopRight"></td>
-                           </tr>
-                           <tr>
-                              <td class="rt_lineLeft"></td>
-                              <td class="rt_content">
-                                 <table class="componentGroup">
-                                    <tbody>
-                                       <tr>
-                                          <td class="componentGroup"><input id="button_gr_propertyTypes.xsdSimple_Type" type="image" value="-" src="img/btM.gif" onclick="switchState('gr_propertyTypes.xsdSimple_Type');" class="control" /></td>
-                                          <td class="componentGroup">
-                                             <div class="componentGroupTitle">Simple Types</div>
-                                          </td>
-                                       </tr>
-                                       <tr>
-                                          <td class="componentGroup"></td>
-                                          <td class="componentGroup">
-                                             <div id="gr_propertyTypes.xsdSimple_Type" class="componentGroup" style="display:block">
-                                                <div><b><a href="index.html#doi_type" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">doi_type</a></b></div>
-                                             </div>
-                                          </td>
-                                       </tr>
-                                    </tbody>
-                                 </table>
-                              </td>
-                              <td class="rt_lineRight"></td>
-                           </tr>
-                           <tr>
-                              <td class="rt_cornerBottomLeft"></td>
-                              <td class="rt_lineBottom"></td>
-                              <td class="rt_cornerBottomRight"></td>
-                           </tr>
-                        </table>
-                     </div>
-                     <div class="horizontalLayout">
-                        <table class="rt">
-                           <tr>
-                              <td class="rt_cornerTopLeft"></td>
-                              <td class="rt_lineTop"></td>
-                              <td class="rt_cornerTopRight"></td>
-                           </tr>
-                           <tr>
-                              <td class="rt_lineLeft"></td>
-                              <td class="rt_content">
-                                 <table class="componentGroup">
-                                    <tbody>
-                                       <tr>
-                                          <td class="componentGroup"><input id="button_gr_propertyTypes.xsdComplex_Type" type="image" value="-" src="img/btM.gif" onclick="switchState('gr_propertyTypes.xsdComplex_Type');" class="control" /></td>
-                                          <td class="componentGroup">
-                                             <div class="componentGroupTitle">Complex Types</div>
-                                          </td>
-                                       </tr>
-                                       <tr>
-                                          <td class="componentGroup"></td>
-                                          <td class="componentGroup">
-                                             <div id="gr_propertyTypes.xsdComplex_Type" class="componentGroup" style="display:block">
-                                                <div><b><a href="index.html#citationDateType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">citationDateType</a></b></div>
-                                                <div><b><a href="index.html#citationInfoType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">citationInfoType</a></b></div>
-                                                <div><b><a href="index.html#citationNameType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">citationNameType</a></b></div>
-                                                <div><b><a href="index.html#coverageType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">coverageType</a></b></div>
-                                                <div><b><a href="index.html#datesType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">datesType</a></b></div>
-                                                <div><b><a href="index.html#descriptionType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">descriptionType</a></b></div>
-                                                <div><b><a href="index.html#electronicAddressType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">electronicAddressType</a></b></div>
-                                                <div><b><a href="index.html#existenceDateType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">existenceDateType</a></b></div>
-                                                <div><b><a href="index.html#identifierType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">identifierType</a></b></div>
-                                                <div><b><a href="index.html#locationType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">locationType</a></b></div>
-                                                <div><b><a href="index.html#nameType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">nameType</a></b></div>
-                                                <div><b><a href="index.html#physicalAddressType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">physicalAddressType</a></b></div>
-                                                <div><b><a href="index.html#relatedInfoFormatType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">relatedInfoFormatType</a></b></div>
-                                                <div><b><a href="index.html#relatedNodeType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">relatedNodeType</a></b></div>
-                                                <div><b><a href="index.html#related_identifier_type" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">related_identifier_type</a></b></div>
-                                                <div><b><a href="index.html#relationType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">relationType</a></b></div>
-                                                <div><b><a href="index.html#rightsInfoType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">rightsInfoType</a></b></div>
-                                                <div><b><a href="index.html#rightsType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">rightsType</a></b></div>
-                                                <div><b><a href="index.html#rightsTypedInfoType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">rightsTypedInfoType</a></b></div>
-                                                <div><b><a href="index.html#spatialType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">spatialType</a></b></div>
-                                                <div><b><a href="index.html#subjectType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">subjectType</a></b></div>
-                                                <div><b><a href="index.html#temporalType" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">temporalType</a></b></div>
-                                             </div>
-                                          </td>
-                                       </tr>
-                                    </tbody>
-                                 </table>
-                              </td>
-                              <td class="rt_lineRight"></td>
-                           </tr>
-                           <tr>
-                              <td class="rt_cornerBottomLeft"></td>
-                              <td class="rt_lineBottom"></td>
-                              <td class="rt_cornerBottomRight"></td>
-                           </tr>
-                        </table>
-                     </div>
-                     <div class="horizontalLayout">
-                        <table class="rt">
-                           <tr>
-                              <td class="rt_cornerTopLeft"></td>
-                              <td class="rt_lineTop"></td>
-                              <td class="rt_cornerTopRight"></td>
-                           </tr>
-                           <tr>
-                              <td class="rt_lineLeft"></td>
-                              <td class="rt_content">
-                                 <table class="componentGroup">
-                                    <tbody>
-                                       <tr>
-                                          <td class="componentGroup"><input id="button_gr_propertyTypes.xsdAttribute_Group" type="image" value="-" src="img/btM.gif" onclick="switchState('gr_propertyTypes.xsdAttribute_Group');" class="control" /></td>
-                                          <td class="componentGroup">
-                                             <div class="componentGroupTitle">Attribute Groups</div>
-                                          </td>
-                                       </tr>
-                                       <tr>
-                                          <td class="componentGroup"></td>
-                                          <td class="componentGroup">
-                                             <div id="gr_propertyTypes.xsdAttribute_Group" class="componentGroup" style="display:block">
-                                                <div><b><a href="index.html#collectionAttributes" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">collectionAttributes</a></b></div>
-                                                <div><b><a href="index.html#dateRangeAttributes" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">dateRangeAttributes</a></b></div>
-                                                <div><b><a href="index.html#objectAttributes" target="_self" title="http://researchgraph.org/schema/v1.1/xml/nodes">objectAttributes</a></b></div>
-                                             </div>
-                                          </td>
-                                       </tr>
-                                    </tbody>
-                                 </table>
-                              </td>
-                              <td class="rt_lineRight"></td>
-                           </tr>
-                           <tr>
-                              <td class="rt_cornerBottomLeft"></td>
-                              <td class="rt_lineBottom"></td>
-                              <td class="rt_cornerBottomRight"></td>
-                           </tr>
-                        </table>
-                     </div>
-                     <div style="clear:left"></div>
-                  </div>
-               </div>
-               <div class="level2">
-                  <p><input id="button_gr_xml.xsd" type="image" value="-" src="img/btM.gif" onclick="switchState('gr_xml.xsd');" class="control" /><span class="indexGroupTitle">xml.xsd</span></p>
-                  <div id="gr_xml.xsd" style="display:block">
-                     <div class="horizontalLayout">
-                        <table class="rt">
-                           <tr>
-                              <td class="rt_cornerTopLeft"></td>
-                              <td class="rt_lineTop"></td>
-                              <td class="rt_cornerTopRight"></td>
-                           </tr>
-                           <tr>
-                              <td class="rt_lineLeft"></td>
-                              <td class="rt_content">
-                                 <table class="componentGroup">
-                                    <tbody>
-                                       <tr>
-                                          <td class="componentGroup"><input id="button_gr_xml.xsdAttribute" type="image" value="-" src="img/btM.gif" onclick="switchState('gr_xml.xsdAttribute');" class="control" /></td>
-                                          <td class="componentGroup">
-                                             <div class="componentGroupTitle">Attributes</div>
-                                          </td>
-                                       </tr>
-                                       <tr>
-                                          <td class="componentGroup"></td>
-                                          <td class="componentGroup">
-                                             <div id="gr_xml.xsdAttribute" class="componentGroup" style="display:block">
-                                                <div><b><a href="index.html#base" target="_self" title="http://www.w3.org/XML/1998/namespace">@xml:base</a></b></div>
-                                                <div><b><a href="index.html#lang" target="_self" title="http://www.w3.org/XML/1998/namespace">@xml:lang</a></b></div>
-                                                <div><b><a href="index.html#space" target="_self" title="http://www.w3.org/XML/1998/namespace">@xml:space</a></b></div>
-                                             </div>
-                                          </td>
-                                       </tr>
-                                    </tbody>
-                                 </table>
-                              </td>
-                              <td class="rt_lineRight"></td>
-                           </tr>
-                           <tr>
-                              <td class="rt_cornerBottomLeft"></td>
-                              <td class="rt_lineBottom"></td>
-                              <td class="rt_cornerBottomRight"></td>
-                           </tr>
-                        </table>
-                     </div>
-                     <div class="horizontalLayout">
-                        <table class="rt">
-                           <tr>
-                              <td class="rt_cornerTopLeft"></td>
-                              <td class="rt_lineTop"></td>
-                              <td class="rt_cornerTopRight"></td>
-                           </tr>
-                           <tr>
-                              <td class="rt_lineLeft"></td>
-                              <td class="rt_content">
-                                 <table class="componentGroup">
-                                    <tbody>
-                                       <tr>
-                                          <td class="componentGroup"><input id="button_gr_xml.xsdAttribute_Group" type="image" value="-" src="img/btM.gif" onclick="switchState('gr_xml.xsdAttribute_Group');" class="control" /></td>
-                                          <td class="componentGroup">
-                                             <div class="componentGroupTitle">Attribute Groups</div>
-                                          </td>
-                                       </tr>
-                                       <tr>
-                                          <td class="componentGroup"></td>
-                                          <td class="componentGroup">
-                                             <div id="gr_xml.xsdAttribute_Group" class="componentGroup" style="display:block">
-                                                <div><b><a href="index.html#specialAttrs" target="_self" title="http://www.w3.org/XML/1998/namespace">xml:specialAttrs</a></b></div>
+                                                <div><b><a href="index.html#relation" target="_self" title="http://researchgraph.org/schema/v2.0/xml/nodes">relation</a></b></div>
                                              </div>
                                           </td>
                                        </tr>
