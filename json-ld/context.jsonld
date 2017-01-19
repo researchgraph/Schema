@@ -1,24 +1,40 @@
-ab":"http://schema.org/",
-"key": {"@id":"http://schema.org/schemamainEntityOfPage",
-        "@type": "@id"},
-"source":"http://schema.sourceorg/sourceOrganization",
-"node_source":"http://schema.org/sourceOrganization",
-"local_id": {"@id":"http://schema.org/disambiguatingDescription",
-        "@type": "disambiguatingDescription@id"},
-"arc_id": {"@id":"http://schema.org/disambiguatingDescription",
-        "@type": "@id"},
-"inspire_id": {"@id":"http://schema.org/disambiguatingDescription",
-        "@type": "@id"},
-"last_updated": "http://schema.org/dateModified",
-"start_year": "http://schema.org/datePublished",
-"title": "http://schema.org/headline",
-"authors_list": "http://schema.org/author",
-"original_key": {"@id":"http://schema.org/sameAs",
-"@type": "@id"},
-"purl": {"@id":"http://schema.org/sameAs",
-"@type": "@id"},
-      "doi": {"@id":"http://schema.org/sameAs",
-"sameAs@type": "@id"},
-"ands_group": "http://schema.org/funder"
+{
+    "@context": {
+        "@vocab": "http://schema.org/",
+        "ands_group": "http://schema.org/funder",
+        "arc_id": {
+            "@id": "http://schema.org/disambiguatingDescription",
+            "@type": "@id"
+        },
+        "authors_list": "http://schema.org/author",
+        "doi": {
+            "@id": "http://schema.org/sameAs",
+            "@type": "@id"
+        },
+        "inspire_id": {
+            "@id": "http://schema.org/disambiguatingDescription",
+            "@type": "@id"
+        },
+        "key": {
+            "@id": "http://schema.org/mainEntityOfPage",
+            "@type": "@id"
+        },
+        "last_updated": "http://schema.org/dateModified",
+        "local_id": {
+            "@id": "http://schema.org/disambiguatingDescription",
+            "@type": "@id"
+        },
+        "node_source": "http://schema.org/sourceOrganization",
+        "original_key": {
+            "@id": "http://schema.org/sameAs",
+            "@type": "@id"
+        },
+        "purl": {
+            "@id": "http://schema.org/sameAs",
+            "@type": "@id"
+        },
+        "source": "http://schema.org/sourceOrganization",
+        "start_year": "http://schema.org/datePublished",
+        "title": "http://schema.org/headline"
+    }
 }
-
