@@ -1,31 +1,51 @@
 {
     "@context": {
         "@vocab": "http://schema.org/",
+        "key": {
+            "@id": "http://schema.org/mainEntityOfPage",
+            "@type": "@id"
+        },
+        "source": "http://schema.org/sourceOrganization",
+        "local_id": {
+            "@id": "http://schema.org/disambiguatingDescription",
+            "@type": "@id"
+        },
+        "last_updated": "http://schema.org/dateModified",
+        "url": {
+            "@id": "http://schema.org/sameAs",
+            "@type": "@id"
+        },
+        "title": "http://schema.org/headline",
         "authors_list": "http://schema.org/author",
         "doi": {
             "@id": "http://schema.org/sameAs",
             "@type": "@id"
         },
-        "inspire_eid": {
+        "publication_year": "http://schema.org/datePublished",
+        "full_name": "http://schema.org/name",
+        "first_name": "http://schema.org/givenName",
+        "last_name": "http://schema.org/familyName",
+        "orcid": {
+            "@id": "http://schema.org/sameAs",
+            "@type": "@id"
+        },
+        "scopus_author_id": {
+            "@id": "http://schema.org/sameAs",
+            "@type": "@id"
+        },
+        "scopus_eid": {
             "@id": "http://schema.org/disambiguatingDescription",
             "@type": "@id"
         },
-        "key": {
-            "@id": "http://schema.org/mainEntityOfPage",
-            "@type": "@id"
-        },
-        "last_updated": "http://schema.org/dateModified",
-        "local_id": {
-            "@id": "http://schema.org/disambiguatingDescription",
-            "@type": "@id"
-        },
-        "source": "http://schema.org/sourceOrganization",
+        "license": "http://schema.org/license",
+        "megatype": "http://schema.org/megatype",
+        "funder": "http://schema.org/funder",
+        "start_year": "http://schema.org/startDate",
+        "end_year": "http://schema.org/endDate",
         "purl": {
             "@id": "http://schema.org/sameAs",
             "@type": "@id"
         },
-        "source": "http://schema.org/sourceOrganization",
-        "publication_year": "http://schema.org/datePublished",
-        "title": "http://schema.org/headline"
+        "participant_list": "http://schema.org/author"
     }
 }
