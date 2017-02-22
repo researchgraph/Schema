@@ -6,10 +6,7 @@
             "@type": "@id"
         },
         "source": "http://schema.org/sourceOrganization",
-        "local_id": {
-            "@id": "http://schema.org/disambiguatingDescription",
-            "@type": "@id"
-        },
+        "local_id": "http://schema.org/alternateName",
         "last_updated": "http://schema.org/dateModified",
         "url": {
             "@id": "http://schema.org/sameAs",
