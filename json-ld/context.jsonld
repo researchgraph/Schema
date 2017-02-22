@@ -11,10 +11,7 @@
             },
         "local_id": "http://schema.org/alternateName",
         "last_updated": "http://schema.org/dateModified",
-        "url": {
-            "@id": "http://schema.org/sameAs",
-            "@type": "@id"
-        },
+        "url": "http://schema.org/url",
         "title": "http://schema.org/headline",
         "authors_list": "http://schema.org/author",
         "doi": {
@@ -34,7 +31,7 @@
             "@type": "@id"
         },
         "scopus_eid": {
-            "@id": "http://schema.org/disambiguatingDescription",
+            "@id": "http://schema.org/sameAs",
             "@type": "@id"
         },
         "license": "http://schema.org/license",
