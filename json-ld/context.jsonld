@@ -5,7 +5,10 @@
             "@id": "http://schema.org/mainEntityOfPage",
             "@type": "@id"
         },
-        "source": "http://schema.org/sourceOrganization",
+        "source": {
+            "@id": "http://schema.org/url",
+            "@type": "http://schema.org/Organization"
+            },
         "local_id": "http://schema.org/alternateName",
         "last_updated": "http://schema.org/dateModified",
         "url": {
