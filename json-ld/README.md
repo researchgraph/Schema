@@ -3,7 +3,7 @@ Research Graph Type | Research Graph Property | Schema.org Type |Schem.org Prope
 --------------------|-------------------------|-----------------|----------------
 Key | Thing/CreativeWork | Thing/Property/mainEntityOfPage | https://schema.org/mainEntityOfPage
 source | Thing/CreativeWork | Thing/Property/publisher |http://schema.org/publisher
-local_id | Thing | Thing/Property/disambiguatingDescription | disambiguatingDescription
+local_id | Thing | Thing/Property/disambiguatingDescription | http://schema.org/disambiguatingDescription
 last_updated | Thing/CreativeWork | Thing/Property/dateModified |http://schema.org/dateModified
 url | Thing | Thing/Property/url | http://schema.org/url
 title | Thing/CreativeWork | Thing/Property/headline | http://schema.org/headline
@@ -16,7 +16,7 @@ Research Graph Type | Research Graph Property | Schema.org Type |Schem.org Prope
 --------------------|-------------------------|-----------------|----------------
 Key | Thing/Person | Thing/Property/mainEntityOfPage | https://schema.org/mainEntityOfPage
 source | Thing/Person | Thing/Property/affiliation |http://schema.org/affiliation
-local_id | Thing | Thing/Property/disambiguatingDescription | disambiguatingDescription
+local_id | Thing | Thing/Property/disambiguatingDescription | http://schema.org/disambiguatingDescription
 last_updated | Thing/CreativeWork | Thing/Property/dateModified |http://schema.org/dateModified
 url | Thing | Thing/Property/url | http://schema.org/url
 full_name | Thing | Thing/Property/name | http://schema.org/name
@@ -28,7 +28,7 @@ Research Graph Type | Research Graph Property | Schema.org Type |Schem.org Prope
 --------------------|-------------------------|-----------------|----------------
 Key | Thing/CreativeWork/Dataset | Thing/Property/mainEntityOfPage | https://schema.org/mainEntityOfPage
 source | Thing/CreativeWork/Dataset | Thing/Property/publisher |http://schema.org/publisher
-local_id | Thing | Thing/Property/disambiguatingDescription | disambiguatingDescription
+local_id | Thing | Thing/Property/disambiguatingDescription | http://schema.org/disambiguatingDescription
 last_updated | Thing/CreativeWork | Thing/Property/dateModified |http://schema.org/dateModified
 url | Thing/CreativeWork/DataCatalog | Thing/Property/url | http://schema.org/url
 title | Thing/CreativeWork | Thing/Property/headline | http://schema.org/headline
@@ -42,7 +42,7 @@ Research Graph Type | Research Graph Property | Schema.org Type |Schem.org Prope
 --------------------|-------------------------|-----------------|----------------
 Key | Thing/Person | Thing/Property/mainEntityOfPage | https://schema.org/mainEntityOfPage
 source | Thing/Person | Thing/Property/affiliation |http://schema.org/affiliation
-local_id | Thing | Thing/Property/disambiguatingDescription | disambiguatingDescription
+local_id | Thing | Thing/Property/disambiguatingDescription | http://schema.org/disambiguatingDescription
 last_updated | Thing/CreativeWork | Thing/Property/dateModified |http://schema.org/dateModified
 url | Thing | Thing/Property/url | http://schema.org/url
 title | Thing/CreativeWork | Thing/Property/headline | http://schema.org/headline
