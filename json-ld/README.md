@@ -1,5 +1,5 @@
 #For Type Publication: 
-Research Graph Type | Research Graph Property | Schema.org Type |Schem.org Property
+Research Graph Type | Research Graph Property | Schema.org Type |Schema.org Property
 --------------------|-------------------------|-----------------|----------------
 Key | Thing/CreativeWork | Thing/Property/mainEntityOfPage | https://schema.org/mainEntityOfPage
 source | Thing/CreativeWork | Thing/Property/publisher |http://schema.org/publisher
