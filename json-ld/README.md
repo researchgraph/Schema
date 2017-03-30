@@ -12,7 +12,7 @@ doi | Thing/CreativeWork/Article/SholarlyArticle | Thing/Property/sameAs |http:/
 publication_year |Thing/CreativeWork |Thing/Property/datePublished |http://schema.org/datePublished
 
 #For Type Researcher: 
-Research Graph Type | Research Graph Property | Schema.org Type |Schem.org Property
+Research Graph Type | Research Graph Property | Schema.org Type |Schema.org Property
 --------------------|-------------------------|-----------------|----------------
 Key | Thing/Person | Thing/Property/mainEntityOfPage | https://schema.org/mainEntityOfPage
 source | Thing/Person | Thing/Property/affiliation |http://schema.org/affiliation
@@ -24,7 +24,7 @@ first_name | Thing/Person | Thing/Property/givenName | http://schema.org/givenNa
 last_name | Thing/Person | Thing/Property/familyName | http://schema.org/familyName
 
 #For Type Dataset: 
-Research Graph Type | Research Graph Property | Schema.org Type |Schem.org Property
+Research Graph Type | Research Graph Property | Schema.org Type |Schema.org Property
 --------------------|-------------------------|-----------------|----------------
 Key | Thing/CreativeWork/Dataset | Thing/Property/mainEntityOfPage | https://schema.org/mainEntityOfPage
 source | Thing/CreativeWork/Dataset | Thing/Property/publisher |http://schema.org/publisher
@@ -38,7 +38,7 @@ license | Thing/CreativeWork | Thing/Property/license |http://schema.org/license
 megabyte | Thing/CreativeWork/MediaObject | Thing/Property/contentSize |http://schema.org/contentSize
 
 #For Type Grant: 
-Research Graph Type | Research Graph Property | Schema.org Type |Schem.org Property
+Research Graph Type | Research Graph Property | Schema.org Type |Schema.org Property
 --------------------|-------------------------|-----------------|----------------
 Key | Thing/Person | Thing/Property/mainEntityOfPage | https://schema.org/mainEntityOfPage
 source | Thing/Person | Thing/Property/affiliation |http://schema.org/affiliation
