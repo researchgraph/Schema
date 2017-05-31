@@ -1,40 +1,48 @@
 {
     "@context": {
         "@vocab": "http://schema.org/",
-        "ands_group": "http://schema.org/funder",
-        "arc_id": {
-            "@id": "http://schema.org/disambiguatingDescription",
+        "key": {
+            "@id": "http://schema.org/mainEntityOfPage",
             "@type": "@id"
         },
+        "source": {
+            "@id": "http://schema.org/url",
+            "@type": "http://schema.org/Organization"
+            },
+        "local_id": "http://schema.org/alternateName",
+        "last_updated": "http://schema.org/dateModified",
+        "url": "http://schema.org/url",
+        "title": "http://schema.org/headline",
         "authors_list": "http://schema.org/author",
         "doi": {
             "@id": "http://schema.org/sameAs",
             "@type": "@id"
         },
-        "inspire_id": {
-            "@id": "http://schema.org/disambiguatingDescription",
-            "@type": "@id"
-        },
-        "key": {
-            "@id": "http://schema.org/mainEntityOfPage",
-            "@type": "@id"
-        },
-        "last_updated": "http://schema.org/dateModified",
-        "local_id": {
-            "@id": "http://schema.org/disambiguatingDescription",
-            "@type": "@id"
-        },
-        "node_source": "http://schema.org/sourceOrganization",
-        "original_key": {
+        "publication_year": "http://schema.org/datePublished",
+        "full_name": "http://schema.org/name",
+        "first_name": "http://schema.org/givenName",
+        "last_name": "http://schema.org/familyName",
+        "orcid": {
             "@id": "http://schema.org/sameAs",
             "@type": "@id"
         },
+        "scopus_author_id": {
+            "@id": "http://schema.org/sameAs",
+            "@type": "@id"
+        },
+        "scopus_eid": {
+            "@id": "http://schema.org/sameAs",
+            "@type": "@id"
+        },
+        "license": "http://schema.org/license",
+        "megatype": "http://schema.org/contentSize",
+        "funder": "http://schema.org/funder",
+        "start_year": "http://schema.org/startDate",
+        "end_year": "http://schema.org/endDate",
         "purl": {
             "@id": "http://schema.org/sameAs",
             "@type": "@id"
         },
-        "source": "http://schema.org/sourceOrganization",
-        "start_year": "http://schema.org/datePublished",
-        "title": "http://schema.org/headline"
+        "participant_list": "http://schema.org/author"
     }
 }
