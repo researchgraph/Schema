@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<registryObjects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns="http://researchgraph.org/schema/v2.0/xml/nodes"
+                 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                 xsi:schemaLocation="http://researchgraph.org/schema/v2.0/xml/nodes https://raw.githubusercontent.com/researchgraph/Schema/master/xsd/registryObjects.xsd">
+   <datasets>
+      <dataset>
+         <key>researchgraph.org/figshare/10.1371/journal.pone.0008619</key>
+         <source>figshare.com</source>
+         <local_id>10.1371/journal.pone.0008619</local_id>
+         <last_updated>2010-01-08T01:24:55Z</last_updated>
+         <url>https://figshare.com/articles/A_Modular_BAM_Complex_in_the_Outer_Membrane_of_the_Proteobacterium_em_Caulobacter_crescentus_em_/145088</url>
+         <title>A Modular BAM Complex in the Outer Membrane of the α-Proteobacterium</title>
+         <doi>doi.org/10.1371/journal.pone.0008619</doi>
+         <publication_year>2010</publication_year>
+      </dataset>
+   </datasets>
+   <publications>
+      <publication>
+         <key>researchgraph.org/figshare/10.4225/49/552b658019d34</key>
+         <source>figshare.com</source>
+         <local_id>10.4225/49/552b658019d34</local_id>
+         <last_updated>2015-04-13T06:43:17Z</last_updated>
+         <url>https://figshare.com/articles/testShare/2000066</url>
+         <title>Research Cloud Data Communities</title>
+         <authors_list>ANDY TSENG</authors_list>
+         <doi>doi.org/10.4225/49/552b658019d34</doi>
+         <publication_year>2015</publication_year>
+      </publication>
+   </publications>
+   <researchers>
+      <researcher>
+         <key>researchgraph.org/figshare/ANDY_TSENG/1163885</key>
+         <source>figshare.com</source>
+         <local_id>ANDY_TSENG/1163885</local_id>
+         <url>https://figshare.com/authors/ANDY_TSENG/1163885</url>
+         <full_name>ANDY TSENG</full_name>
+         <first_name>ANDY</first_name>
+         <last_name>TSENG</last_name>
+         <orcid>orcid.org/0000-0003-2523-9999</orcid>
+         <scopus_author_id>35068996400<scopus_author_id>
+      </researcher>
+   </researchers>
+   <grants>
+      <grant>
+         <key>researchgraph.org/arc/DP0667253</key>
+         <source>arc.gov.au</source>
+         <local_id>DP0667253</local_id>
+         <last_updated>2015-08-13T17:12:23Z</last_updated>
+         <title>British Empire and the Natural World: the Environmental History of the British Empire and Commonwealth</title>
+         <start_year>2006</start_year>
+         <end_year>2010</end_year>
+         <purl>purl.org/au-research/grants/arc/DP0667253</purl>
+         <url>https://researchdata.ands.org.au/british-empire-natural-1600-2000/61903</purl>
+         <participant_list>Dr RH Grove</participant_list>
+         <funder>arc.gov.au</funder>
+      </grant>
+   </grants>
+   <relations>
+      <relation>
+         <from_key>researchgraph.org/figshare/ANDY_TSENG/1163885</from_key>
+         <to_uri>researchgraph.org/figshare/10.4225/49/552b658019d34</to_uri>
+         <label>authorOf</label>
+      </relation>
+      <relation>
+         <from_key>researchgraph.org/figshare/10.1371/journal.pone.0008619</from_key>
+         <to_uri>researchgraph.org/arc/DP0667253</to_uri>
+         <label>fundedBy</label>
+      </relation>
+      <relation>
+         <from_key>researchgraph.org/figshare/10.1371/journal.pone.0008619</from_key>
+         <to_uri>researchgraph.org/figshare/10.4225/49/552b658019d34</to_uri>
+         <label>citedAt</label>
+      </relation>      
+   </relations>
+</registryObjects>
