@@ -1,0 +1,18 @@
+{"type": "dataset",
+"key":
+"http://researchgraph.org/nci/f3525_9322_8600_7716/",
+"source": "National Computational Infrastructure",
+"local_id": "f3525_9322_8600_7716",
+"last_updated": "2014-12-31",
+"url":
+"http://pid.nci.org.au/dataset/f3525_9322_8600_7716",
+"title": "Coupled Model Intercomparison Project
+(CMIP5)",
+"authors_list": "Evans, Ben",
+"doi": "http://dx.doi.org/10.5072/29/5874605e6b57f",
+"datePublished": "2014-12-31",
+"license":
+"http://dapds00.nci.org.au/thredds/fileServer/
+licenses/license_ua6.txt",
+"megabyte": "1,500,000"
+}
