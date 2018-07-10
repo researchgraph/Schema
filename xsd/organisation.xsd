@@ -21,9 +21,10 @@
                 </xsd:element>
                 <xsd:element name="source" type="xsd:anyURI" minOccurs="1" maxOccurs="1"/>
                 <xsd:element name="local_id" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                <xsd:element name="name" type="xsd:string" minOccurs="1" maxOccurs="1"/>
                 <xsd:element name="last_updated" type="xsd:dateTime" minOccurs="1" maxOccurs="1"/>
-                <xsd:element name="url" type="xsd:anyURI" minOccurs="0" maxOccurs="1"/>
                 
+                <xsd:element name="url" type="xsd:anyURI" minOccurs="0" maxOccurs="1"/>
                 <xsd:element name="acronym" type="xsd:string" minOccurs="0" maxOccurs="1"/>
                 <xsd:element name="grid" type="xsd:string" minOccurs="0" maxOccurs="1"/>
                 <xsd:element name="isni" type="xsd:string" minOccurs="0" maxOccurs="1"/>
