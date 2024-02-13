@@ -1,0 +1,92 @@
+{
+  "Researcher": {
+    "type": "object",
+    "properties": {
+      "key": {"type": "string"},
+      "source": {"type": "string"},
+      "local_id": {"type": "string"},
+      "last_updated": {"type": "string", "format": "dateTime"},
+      "full_name": {"type": "string"},
+      "first_name": {"type": "string"},
+      "last_name": {"type": "string"},
+      "url": {"type": "string"},
+      "orcid": {"type": "string"},
+      "scopus_author_id": {"type": "string"}
+    },
+    "required": ["key", "source", "local_id", "last_updated", "full_name"]
+  },
+  "Publication": {
+    "type": "object",
+    "properties": {
+      "key": {"type": "string"},
+      "source": {"type": "string"},
+      "local_id": {"type": "string"},
+      "last_updated": {"type": "string", "format": "dateTime"},
+      "title": {"type": "string"},
+      "author_list": {"type": "string"},
+      "publication_type": {"type": "string"},
+      "url": {"type": "string"},
+      "doi": {"type": "string"},
+      "isbn": {"type": "string"},
+      "publication_year": {"type": "integer"},
+      "scopus_eid": {"type": "integer"}
+    },
+    "required": ["key", "source", "local_id", "last_updated", "title", "author_list"]
+  },
+  "Dataset": {
+    "type": "object",
+    "properties": {
+      "key": {"type": "string"},
+      "source": {"type": "string"},
+      "local_id": {"type": "string"},
+      "last_updated": {"type": "string", "format": "dateTime"},
+      "title": {"type": "string"},
+      "author_list": {"type": "string"},
+      "url": {"type": "string"},
+      "doi": {"type": "string"},
+      "publication_year": {"type": "integer"}
+    },
+    "required": ["key", "source", "local_id", "last_updated", "title", "author_list"]
+  },
+  "Grant": {
+    "type": "object",
+    "properties": {
+      "key": {"type": "string"},
+      "source": {"type": "string"},
+      "local_id": {"type": "string"},
+      "last_updated": {"type": "string", "format": "dateTime"},
+      "title": {"type": "string"},
+      "url": {"type": "string"},
+      "purl": {"type": "string"},
+      "doi": {"type": "string"},
+      "publication_year": {"type": "integer"},
+      "funder": {"type": "string"},
+      "funding_amount": {"type": "integer"},
+      "funding_currency": {"type": "string"},
+      "start_year": {"type": "integer"},
+      "end_year": {"type": "integer"}
+    },
+    "required": ["key", "source", "local_id", "last_updated", "title"]
+  },
+  "Organisation": {
+    "type": "object",
+    "properties": {
+      "key": {"type": "string"},
+      "source": {"type": "string"},
+      "local_id": {"type": "string"},
+      "last_updated": {"type": "string", "format": "dateTime"},
+      "name": {"type": "string"},
+      "url": {"type": "string"},
+      "grid": {"type": "string"},
+      "doi": {"type": "string"},
+      "ror": {"type": "string"},
+      "isni": {"type": "string"},
+      "wikidata": {"type": "string"},
+      "country": {"type": "string"},
+      "city": {"type": "string"},
+      "latitude": {"type": "number"},
+      "longitude": {"type": "number"}
+    },
+    "required": ["key", "source", "local_id", "last_updated", "name"]
+  }
+}
