@@ -68,6 +68,7 @@ CREATE TABLE "organisation" (
   "ror" varchar,
   "isni" varchar,
   "wikidata" varchar,
+  "abn" varchar,
   "country" varchar,
   "city" varchar,
   "latitute" numeric,
