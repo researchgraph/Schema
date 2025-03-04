@@ -13,8 +13,8 @@
       "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
     }
   },
-  "host": "researchgraph.cloud/api",
-  "basePath": "/v2",
+  "host": "researchgraph.cloud",
+  "basePath": "/api",
   
   "schemes": [
     "https",
