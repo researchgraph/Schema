@@ -226,7 +226,7 @@
             "type": "array",
             "description": "List of messages in the conversation.",
             "items": {
-              "$ref": "#/components/schemas/ChatMessage"
+              "$ref": "#/definitions/ChatMessage"
             }
           },
           "temperature": {
@@ -328,11 +328,11 @@
             "type": "array",
             "description": "List of generated choices.",
             "items": {
-              "$ref": "#/components/schemas/ChatCompletionChoice"
+              "$ref": "#/definitions/ChatCompletionChoice"
             }
           },
           "usage": {
-            "$ref": "#/components/schemas/Usage"
+            "$ref": "#/definitions/Usage"
           }
         }
       },
@@ -344,7 +344,7 @@
             "description": "Index of the choice."
           },
           "message": {
-            "$ref": "#/components/schemas/ChatMessage"
+            "$ref": "#/definitions/ChatMessage"
           },
           "finish_reason": {
             "type": "string",
