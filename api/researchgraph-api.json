@@ -71,7 +71,7 @@
         ]
       }
     },
-    "/ollama/list": {
+    "/ollama/tags": {
       "get": {
         "tags": [
           "Open Source LLMs"
