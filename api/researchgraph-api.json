@@ -39,7 +39,7 @@
     }
   ],
   "paths": {
-    "/ollama/generate": {
+    "/generate": {
       "post": {
         "tags": [
           "Open Source LLMs"
