@@ -192,6 +192,56 @@
       }
     }
   },
+  "/researchers": {
+      "get": {
+        "tags": [
+          "RGF API"
+        ],
+        "summary": "Search for researchers by name",
+        "description": "Searches the knowledge graph for researchers whose names contain the provided search term. Returns up to 3 researchers ordered by publication and funding counts.",
+        "operationId": "searchResearchers",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "name",
+            "description": "Name or partial name to search for",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with researcher information",
+            "schema": {
+              "$ref": "#/definitions/ResearcherResponse"
+            }
+          },
+          "400": {
+            "description": "Missing name parameter",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+  },
   "definitions": {
     "ollama": {
       "type": "object",
@@ -368,6 +418,79 @@
             "description": "Total number of tokens used."
           }
         }
+      },
+      "Researcher": {
+      "type": "object",
+      "properties": {
+        "orcid": {
+          "type": "string",
+          "description": "ORCID identifier for the researcher",
+          "example": "0000-0002-1825-0097"
+        },
+        "researcher_name": {
+          "type": "string",
+          "description": "Full name of the researcher",
+          "example": "Alice Smith"
+        },
+        "publication_count": {
+          "type": "integer",
+          "description": "Number of publications associated with the researcher",
+          "example": 42
+        },
+        "funding_count": {
+          "type": "integer",
+          "description": "Number of grants/funding sources associated with the researcher",
+          "example": 5
+        },
+        "affiliations": {
+          "type": "array",
+          "description": "List of organizations the researcher is affiliated with",
+          "items": {
+            "type": "string"
+          },
+          "example": [
+            "Swinburne University of Technology",
+            "Data Science Institute"
+          ]
+        }
       }
+    },
+    "ResearcherResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "description": "Response status",
+          "example": "success"
+        },
+        "count": {
+          "type": "integer",
+          "description": "Number of researchers returned",
+          "example": 3
+        },
+        "researchers": {
+          "type": "array",
+          "description": "List of researcher information",
+          "items": {
+            "$ref": "#/definitions/Researcher"
+          }
+        }
+      }
+    },
+    "ErrorResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "Error message",
+          "example": "Name parameter is required"
+        },
+        "status": {
+          "type": "integer",
+          "description": "HTTP status code",
+          "example": 400
+        }
+      }
+    }
   }
 }
