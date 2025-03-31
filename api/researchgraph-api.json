@@ -190,9 +190,9 @@
           }
         ]
       }
-    }
-  },
-  "/researchers": {
+    },
+
+    "/researchers": {
       "get": {
         "tags": [
           "RGF API"
@@ -241,6 +241,8 @@
           }
         ]
       }
+  }
+  
   },
   "definitions": {
     "ollama": {
