@@ -15,7 +15,6 @@
   },
   "host": "researchgraph.cloud",
   "basePath": "/api",
-  
   "schemes": [
     "https",
     "http"
@@ -36,6 +35,10 @@
         "description": "Find out more about our store",
         "url": "https://platform.openai.com/docs/api-reference/introduction"
       }
+    },
+    {
+      "name": "National Graph API",
+      "description": "Access to researcher and organisation information from the knowledge graph"
     }
   ],
   "paths": {
@@ -191,14 +194,13 @@
         ]
       }
     },
-
-    "/rgf/researchers": {
+    "/national-graph/researchers": {
       "get": {
         "tags": [
-          "RGF API"
+          "National Graph API"
         ],
         "summary": "Search for researchers by name",
-        "description": "Searches the knowledge graph for researchers whose names contain the provided search term. Returns up to 3 researchers ordered by publication and funding counts.",
+        "description": "Searches the knowledge graph for researchers whose names closely match the provided search term. Uses levenshtein distance fuzzy matching with an edit distance of 3 or less. Returns researchers ordered by edit distance and publication/funding counts.",
         "operationId": "searchResearchers",
         "consumes": [
           "application/json"
@@ -241,8 +243,57 @@
           }
         ]
       }
-  }
-  
+    },
+    "/national-graph/organisations": {
+      "get": {
+        "tags": [
+          "National Graph API"
+        ],
+        "summary": "Search for organisations by name",
+        "description": "Searches the knowledge graph for organisations whose names contain the provided search term. Uses levenshtein distance fuzzy matching with an edit distance of 3 or less. Returns organisations with associated researcher, publication, and funding counts.",
+        "operationId": "searchOrganisations",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "name",
+            "description": "Name or partial name to search for",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with organisation information",
+            "schema": {
+              "$ref": "#/definitions/OrganisationResponse"
+            }
+          },
+          "400": {
+            "description": "Missing name parameter",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    }
   },
   "definitions": {
     "ollama": {
@@ -264,164 +315,176 @@
           "type": "boolean",
           "example": false
         }
-        }
-      },
+      }
+    },
     "ChatCompletionRequest": {
-        "type": "object",
-        "required": ["model", "messages"],
-        "properties": {
-          "model": {
-            "type": "string",
-            "description": "ID of the model to use (e.g., gpt-4, gpt-3.5-turbo)."
-          },
-          "messages": {
-            "type": "array",
-            "description": "List of messages in the conversation.",
-            "items": {
-              "$ref": "#/definitions/ChatMessage"
-            }
-          },
-          "temperature": {
-            "type": "number",
-            "description": "Sampling temperature, between 0 and 2.",
-            "default": 1.0
-          },
-          "top_p": {
-            "type": "number",
-            "description": "Nucleus sampling, between 0 and 1.",
-            "default": 1.0
-          },
-          "n": {
-            "type": "integer",
-            "description": "Number of completions to generate.",
-            "default": 1
-          },
-          "stream": {
-            "type": "boolean",
-            "description": "Whether to stream back partial progress.",
-            "default": false
-          },
-          "stop": {
-            "oneOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              }
-            ],
-            "description": "Up to 4 sequences where the API will stop generating further tokens."
-          },
-          "max_tokens": {
-            "type": "integer",
-            "description": "Maximum number of tokens to generate."
-          },
-          "presence_penalty": {
-            "type": "number",
-            "description": "Penalty for new tokens based on their presence in the text.",
-            "default": 0
-          },
-          "frequency_penalty": {
-            "type": "number",
-            "description": "Penalty for new tokens based on their frequency in the text.",
-            "default": 0
-          },
-          "logit_bias": {
-            "type": "object",
-            "description": "Modify the likelihood of specific tokens appearing in the completion.",
-            "additionalProperties": {
-              "type": "number"
-            }
-          },
-          "user": {
-            "type": "string",
-            "description": "An optional user identifier for tracking purposes."
-          }
-        }
-      },
-      "ChatMessage": {
-        "type": "object",
-        "required": ["role", "content"],
-        "properties": {
-          "role": {
-            "type": "string",
-            "enum": ["system", "user", "assistant"],
-            "description": "Role of the message sender."
-          },
-          "content": {
-            "type": "string",
-            "description": "Content of the message."
-          }
-        }
-      },
-      "ChatCompletionResponse": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "Unique identifier for the completion."
-          },
-          "object": {
-            "type": "string",
-            "enum": ["chat.completion"]
-          },
-          "created": {
-            "type": "integer",
-            "description": "Timestamp of creation."
-          },
-          "model": {
-            "type": "string",
-            "description": "Model used for the completion."
-          },
-          "choices": {
-            "type": "array",
-            "description": "List of generated choices.",
-            "items": {
-              "$ref": "#/definitions/ChatCompletionChoice"
-            }
-          },
-          "usage": {
-            "$ref": "#/definitions/Usage"
-          }
-        }
-      },
-      "ChatCompletionChoice": {
-        "type": "object",
-        "properties": {
-          "index": {
-            "type": "integer",
-            "description": "Index of the choice."
-          },
-          "message": {
+      "type": "object",
+      "required": [
+        "model",
+        "messages"
+      ],
+      "properties": {
+        "model": {
+          "type": "string",
+          "description": "ID of the model to use (e.g., gpt-4, gpt-3.5-turbo)."
+        },
+        "messages": {
+          "type": "array",
+          "description": "List of messages in the conversation.",
+          "items": {
             "$ref": "#/definitions/ChatMessage"
-          },
-          "finish_reason": {
-            "type": "string",
-            "description": "Reason for completion finishing."
           }
-        }
-      },
-      "Usage": {
-        "type": "object",
-        "properties": {
-          "prompt_tokens": {
-            "type": "integer",
-            "description": "Number of tokens in the prompt."
-          },
-          "completion_tokens": {
-            "type": "integer",
-            "description": "Number of tokens in the completion."
-          },
-          "total_tokens": {
-            "type": "integer",
-            "description": "Total number of tokens used."
+        },
+        "temperature": {
+          "type": "number",
+          "description": "Sampling temperature, between 0 and 2.",
+          "default": 1
+        },
+        "top_p": {
+          "type": "number",
+          "description": "Nucleus sampling, between 0 and 1.",
+          "default": 1
+        },
+        "n": {
+          "type": "integer",
+          "description": "Number of completions to generate.",
+          "default": 1
+        },
+        "stream": {
+          "type": "boolean",
+          "description": "Whether to stream back partial progress.",
+          "default": false
+        },
+        "stop": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ],
+          "description": "Up to 4 sequences where the API will stop generating further tokens."
+        },
+        "max_tokens": {
+          "type": "integer",
+          "description": "Maximum number of tokens to generate."
+        },
+        "presence_penalty": {
+          "type": "number",
+          "description": "Penalty for new tokens based on their presence in the text.",
+          "default": 0
+        },
+        "frequency_penalty": {
+          "type": "number",
+          "description": "Penalty for new tokens based on their frequency in the text.",
+          "default": 0
+        },
+        "logit_bias": {
+          "type": "object",
+          "description": "Modify the likelihood of specific tokens appearing in the completion.",
+          "additionalProperties": {
+            "type": "number"
           }
+        },
+        "user": {
+          "type": "string",
+          "description": "An optional user identifier for tracking purposes."
         }
-      },
-      "Researcher": {
+      }
+    },
+    "ChatMessage": {
+      "type": "object",
+      "required": [
+        "role",
+        "content"
+      ],
+      "properties": {
+        "role": {
+          "type": "string",
+          "enum": [
+            "system",
+            "user",
+            "assistant"
+          ],
+          "description": "Role of the message sender."
+        },
+        "content": {
+          "type": "string",
+          "description": "Content of the message."
+        }
+      }
+    },
+    "ChatCompletionResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the completion."
+        },
+        "object": {
+          "type": "string",
+          "enum": [
+            "chat.completion"
+          ]
+        },
+        "created": {
+          "type": "integer",
+          "description": "Timestamp of creation."
+        },
+        "model": {
+          "type": "string",
+          "description": "Model used for the completion."
+        },
+        "choices": {
+          "type": "array",
+          "description": "List of generated choices.",
+          "items": {
+            "$ref": "#/definitions/ChatCompletionChoice"
+          }
+        },
+        "usage": {
+          "$ref": "#/definitions/Usage"
+        }
+      }
+    },
+    "ChatCompletionChoice": {
+      "type": "object",
+      "properties": {
+        "index": {
+          "type": "integer",
+          "description": "Index of the choice."
+        },
+        "message": {
+          "$ref": "#/definitions/ChatMessage"
+        },
+        "finish_reason": {
+          "type": "string",
+          "description": "Reason for completion finishing."
+        }
+      }
+    },
+    "Usage": {
+      "type": "object",
+      "properties": {
+        "prompt_tokens": {
+          "type": "integer",
+          "description": "Number of tokens in the prompt."
+        },
+        "completion_tokens": {
+          "type": "integer",
+          "description": "Number of tokens in the completion."
+        },
+        "total_tokens": {
+          "type": "integer",
+          "description": "Total number of tokens used."
+        }
+      }
+    },
+    "Researcher": {
       "type": "object",
       "properties": {
         "orcid": {
@@ -433,6 +496,51 @@
           "type": "string",
           "description": "Full name of the researcher",
           "example": "Alice Smith"
+        },
+        "key": {
+          "type": "string",
+          "description": "Unique key identifier for the researcher",
+          "example": "researcher123"
+        },
+        "source": {
+          "type": "string",
+          "description": "Source of the researcher data",
+          "example": "orcid"
+        },
+        "local_id": {
+          "type": "string",
+          "description": "Local identifier for the researcher",
+          "example": "12345"
+        },
+        "last_updated": {
+          "type": "string",
+          "description": "Date when the researcher record was last updated",
+          "example": "2023-12-01"
+        },
+        "full_name": {
+          "type": "string",
+          "description": "Full name of the researcher",
+          "example": "Alice Jane Smith"
+        },
+        "first_name": {
+          "type": "string",
+          "description": "First name of the researcher",
+          "example": "Alice"
+        },
+        "last_name": {
+          "type": "string",
+          "description": "Last name of the researcher",
+          "example": "Smith"
+        },
+        "url": {
+          "type": "string",
+          "description": "URL associated with the researcher",
+          "example": "https://researcher.org/alice-smith"
+        },
+        "scopus_author_id": {
+          "type": "string",
+          "description": "Scopus Author ID for the researcher",
+          "example": "57654321"
         },
         "publication_count": {
           "type": "integer",
@@ -446,7 +554,7 @@
         },
         "affiliations": {
           "type": "array",
-          "description": "List of organizations the researcher is affiliated with",
+          "description": "List of organisations the researcher is affiliated with",
           "items": {
             "type": "string"
           },
@@ -454,6 +562,11 @@
             "Swinburne University of Technology",
             "Data Science Institute"
           ]
+        },
+        "distance": {
+          "type": "number",
+          "description": "Edit distance between search term and researcher name",
+          "example": 1
         }
       }
     },
@@ -475,6 +588,123 @@
           "description": "List of researcher information",
           "items": {
             "$ref": "#/definitions/Researcher"
+          }
+        }
+      }
+    },
+    "Organisation": {
+      "type": "object",
+      "properties": {
+        "organisation_name": {
+          "type": "string",
+          "description": "Name of the organisation",
+          "example": "Swinburne University of Technology"
+        },
+        "key": {
+          "type": "string",
+          "description": "Unique key identifier for the organisation",
+          "example": "org123"
+        },
+        "source": {
+          "type": "string",
+          "description": "Source of the organisation data",
+          "example": "grid"
+        },
+        "local_id": {
+          "type": "string",
+          "description": "Local identifier for the organisation",
+          "example": "54321"
+        },
+        "last_updated": {
+          "type": "string",
+          "description": "Date when the organisation record was last updated",
+          "example": "2023-12-01"
+        },
+        "url": {
+          "type": "string",
+          "description": "URL associated with the organisation",
+          "example": "https://www.swinburne.edu.au"
+        },
+        "grid": {
+          "type": "string",
+          "description": "Global Research Identifier Database ID",
+          "example": "grid.1027.4"
+        },
+        "doi": {
+          "type": "string",
+          "description": "Digital Object Identifier for the organisation",
+          "example": "10.25904/1912/5674"
+        },
+        "ror": {
+          "type": "string",
+          "description": "Research Organisation Registry ID",
+          "example": "https://ror.org/12345678"
+        },
+        "isni": {
+          "type": "string",
+          "description": "International Standard Name Identifier",
+          "example": "0000000419368956"
+        },
+        "wikidata": {
+          "type": "string",
+          "description": "Wikidata ID",
+          "example": "Q1371452"
+        },
+        "country": {
+          "type": "string",
+          "description": "Country where the organisation is located",
+          "example": "Australia"
+        },
+        "city": {
+          "type": "string",
+          "description": "City where the organisation is located",
+          "example": "Melbourne"
+        },
+        "latitude": {
+          "type": "number",
+          "description": "Latitude coordinates of the organisation",
+          "example": -37.8221
+        },
+        "longitude": {
+          "type": "number",
+          "description": "Longitude coordinates of the organisation",
+          "example": 145.0382
+        },
+        "researcher_count": {
+          "type": "integer",
+          "description": "Number of researchers affiliated with the organisation",
+          "example": 150
+        },
+        "publication_count": {
+          "type": "integer",
+          "description": "Number of publications associated with the organisation",
+          "example": 2500
+        },
+        "funding_count": {
+          "type": "integer",
+          "description": "Number of grants/funding sources associated with the organisation",
+          "example": 75
+        }
+      }
+    },
+    "OrganisationResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "description": "Response status",
+          "example": "success"
+        },
+        "count": {
+          "type": "integer",
+          "description": "Number of organisations returned",
+          "example": 3
+        },
+        "organisations": {
+          "type": "array",
+          "description": "List of organisation information",
+          "items": {
+            "$ref": "#/definitions/Organisation"
           }
         }
       }
