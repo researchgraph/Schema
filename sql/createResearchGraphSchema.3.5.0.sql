@@ -164,3 +164,23 @@ ALTER TABLE "relation_publication_organisation" ADD FOREIGN KEY ("organisation_k
 ALTER TABLE "relation_grant_organisation" ADD FOREIGN KEY ("grant_key") REFERENCES "grant" ("key");
 
 ALTER TABLE "relation_grant_organisation" ADD FOREIGN KEY ("organisation_key") REFERENCES "organisation" ("key");
+
+ALTER TABLE relation_dataset_grant ADD PRIMARY KEY (dataset_key, grant_key);
+
+ALTER TABLE relation_dataset_organisation ADD PRIMARY KEY (dataset_key, organisation_key);
+
+ALTER TABLE relation_dataset_publication ADD PRIMARY KEY (dataset_key, publication_key);
+
+ALTER TABLE relation_grant_organisation ADD PRIMARY KEY (grant_key, organisation_key);
+
+ALTER TABLE relation_publication_grant ADD PRIMARY KEY (publication_key, grant_key);
+
+ALTER TABLE relation_publication_organisation ADD PRIMARY KEY (publication_key, organisation_key);
+
+ALTER TABLE relation_researcher_dataset ADD PRIMARY KEY (researcher_key, dataset_key);
+
+ALTER TABLE relation_researcher_grant ADD PRIMARY KEY (researcher_key, grant_key);
+
+ALTER TABLE relation_researcher_organisation ADD PRIMARY KEY (researcher_key, organisation_key);
+
+ALTER TABLE relation_researcher_publication ADD PRIMARY KEY (researcher_key, publication_key);
