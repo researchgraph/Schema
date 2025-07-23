@@ -39,6 +39,10 @@
     {
       "name": "National Graph API",
       "description": "Access to researcher and organisation information from the knowledge graph"
+    },
+    {
+      "name": "Nexus Graph API",
+      "description": "Retrieve research collaboration networks by ORCID or DOI identifiers"
     }
   ],
   "paths": {
@@ -117,64 +121,8 @@
         "responses": {
           "200": {
             "description": "Successful response with AI-generated message.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string",
-                      "description": "Unique identifier for the completion."
-                    },
-                    "object": {
-                      "type": "string",
-                      "example": "chat.completion"
-                    },
-                    "created": {
-                      "type": "integer",
-                      "format": "int64",
-                      "description": "Unix timestamp of completion creation."
-                    },
-                    "model": {
-                      "type": "string",
-                      "description": "Model used for completion."
-                    },
-                    "choices": {
-                      "type": "array",
-                      "description": "List of generated messages.",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "index": {
-                            "type": "integer",
-                            "description": "Choice index."
-                          },
-                          "message": {
-                            "type": "object",
-                            "properties": {
-                              "role": {
-                                "type": "string",
-                                "description": "Role of the sender (always 'assistant').",
-                                "example": "assistant"
-                              },
-                              "content": {
-                                "type": "string",
-                                "description": "The generated response.",
-                                "example": "I'm doing great! How can I help you today?"
-                              }
-                            }
-                          },
-                          "finish_reason": {
-                            "type": "string",
-                            "description": "Reason completion stopped.",
-                            "example": "stop"
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
+            "schema": {
+              "$ref": "#/definitions/ChatCompletionResponse"
             }
           },
           "400": {
@@ -293,6 +241,160 @@
           }
         ]
       }
+    },
+    "/nexus/orcid/{orcid}": {
+      "get": {
+        "tags": [
+          "Nexus Graph API"
+        ],
+        "deprecated": true,
+        "summary": "Get collaboration network by ORCID ID",
+        "description": "Retrieves the complete collaboration network for a researcher identified by their ORCID ID. This endpoint returns the researcher's profile information, collaborators and their affiliations, publications and datasets, grant funding information, organisation details with Wikipedia and ranking data, and relationship mappings between all entities. The ORCID ID should be provided in the standard format (e.g., 0000-0000-0000-0000) or just the numeric portion.",
+        "operationId": "getCollaborationNetworkByOrcid",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "orcid",
+            "in": "path",
+            "description": "ORCID identifier for the researcher (format: 0000-0000-0000-0000 or numeric only)",
+            "required": true,
+            "type": "string",
+            "pattern": "^(\\d{4}-\\d{4}-\\d{4}-\\d{3}[\\dX]|\\d{15}[\\dX])$"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved collaboration network",
+            "schema": {
+              "$ref": "#/definitions/CollaborationNetworkResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid ORCID or network too large",
+            "schema": {
+              "$ref": "#/definitions/CollaborationNetworkErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/nexus/doi/{doi}": {
+      "get": {
+        "tags": [
+          "Nexus Graph API"
+        ],
+        "deprecated": true,
+        "summary": "Get collaboration network by DOI",
+        "description": "Retrieves the collaboration network for a publication or dataset identified by its DOI. This endpoint returns the publication/dataset metadata, authors and their profiles, co-authors' other works, institutional affiliations, related grants, and collaboration relationships. The DOI can be provided in various formats: Full URL (https://doi.org/10.1000/example), with prefix (doi:10.1000/example), or clean format (10.1000/example). The API automatically normalizes the DOI format.",
+        "operationId": "getCollaborationNetworkByDoi",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "doi",
+            "in": "path",
+            "description": "DOI identifier for the publication or dataset (various formats accepted)",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved collaboration network",
+            "schema": {
+              "$ref": "#/definitions/CollaborationNetworkResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid DOI or network too large",
+            "schema": {
+              "$ref": "#/definitions/CollaborationNetworkErrorResponse"
+            }
+          }
+        }
+      }
+    },
+
+    "/national-graph/orcid/{orcid}": {
+      "get": {
+        "tags": [
+          "National Graph API"
+        ],
+        "summary": "Get collaboration network by ORCID ID",
+        "description": "Retrieves the complete collaboration network for a researcher identified by their ORCID ID. This endpoint returns the researcher's profile information, collaborators and their affiliations, publications and datasets, grant funding information, organisation details with Wikipedia and ranking data, and relationship mappings between all entities. The ORCID ID should be provided in the standard format (e.g., 0000-0000-0000-0000) or just the numeric portion.",
+        "operationId": "getCollaborationNetworkByOrcid",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "orcid",
+            "in": "path",
+            "description": "ORCID identifier for the researcher (format: 0000-0000-0000-0000 or numeric only)",
+            "required": true,
+            "type": "string",
+            "pattern": "^(\\d{4}-\\d{4}-\\d{4}-\\d{3}[\\dX]|\\d{15}[\\dX])$"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved collaboration network",
+            "schema": {
+              "$ref": "#/definitions/CollaborationNetworkResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid ORCID or network too large",
+            "schema": {
+              "$ref": "#/definitions/CollaborationNetworkErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/national-graph/doi/{doi}": {
+      "get": {
+        "tags": [
+          "National Graph API"
+        ],
+        "summary": "Get collaboration network by DOI",
+        "description": "Retrieves the collaboration network for a publication or dataset identified by its DOI. This endpoint returns the publication/dataset metadata, authors and their profiles, co-authors' other works, institutional affiliations, related grants, and collaboration relationships. The DOI can be provided in various formats: Full URL (https://doi.org/10.1000/example), with prefix (doi:10.1000/example), or clean format (10.1000/example). The API automatically normalizes the DOI format.",
+        "operationId": "getCollaborationNetworkByDoi",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "doi",
+            "in": "path",
+            "description": "DOI identifier for the publication or dataset (various formats accepted)",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved collaboration network",
+            "schema": {
+              "$ref": "#/definitions/CollaborationNetworkResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid DOI or network too large",
+            "schema": {
+              "$ref": "#/definitions/CollaborationNetworkErrorResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "basicAuth": {
+      "type": "basic"
     }
   },
   "definitions": {
@@ -723,6 +825,366 @@
           "example": 400
         }
       }
+    },
+    "CollaborationNetworkResponse": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "nodes": {
+            "$ref": "#/definitions/NetworkNodes"
+          },
+          "relationships": {
+            "$ref": "#/definitions/NetworkRelationships"
+          },
+          "stats": {
+            "$ref": "#/definitions/NetworkStatistics"
+          }
+        },
+        "required": [
+          "nodes",
+          "relationships",
+          "stats"
+        ]
+      }
+    },
+    "CollaborationNetworkErrorResponse": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "nodes": {
+            "$ref": "#/definitions/NetworkNodes"
+          },
+          "relationships": {
+            "$ref": "#/definitions/NetworkRelationships"
+          },
+          "stats": {
+            "type": "object",
+            "properties": {
+              "linked-nodes": {
+                "type": "integer",
+                "description": "Number of linked nodes (for network size errors)"
+              }
+            }
+          },
+          "error": {
+            "type": "string",
+            "description": "Error message describing what went wrong"
+          }
+        },
+        "required": [
+          "nodes",
+          "relationships",
+          "stats",
+          "error"
+        ]
+      }
+    },
+    "NetworkNodes": {
+      "type": "object",
+      "properties": {
+        "researchers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NetworkResearcher"
+          }
+        },
+        "organisations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NetworkOrganisation"
+          }
+        },
+        "publications": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NetworkPublication"
+          }
+        },
+        "datasets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NetworkDataset"
+          }
+        },
+        "grants": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NetworkGrant"
+          }
+        }
+      },
+      "required": [
+        "researchers",
+        "organisations",
+        "publications",
+        "datasets",
+        "grants"
+      ]
+    },
+    "NetworkRelationships": {
+      "type": "object",
+      "properties": {
+        "researcher-researcher": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NetworkRelationship"
+          }
+        },
+        "researcher-organisation": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NetworkRelationship"
+          }
+        },
+        "researcher-grant": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NetworkRelationship"
+          }
+        },
+        "researcher-publication": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NetworkRelationship"
+          }
+        },
+        "researcher-dataset": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NetworkRelationship"
+          }
+        }
+      },
+      "required": [
+        "researcher-researcher",
+        "researcher-organisation",
+        "researcher-grant",
+        "researcher-publication",
+        "researcher-dataset"
+      ]
+    },
+    "NetworkStatistics": {
+      "type": "object",
+      "properties": {
+        "researchers": {
+          "type": "integer",
+          "description": "Number of researchers in the network"
+        },
+        "organisations": {
+          "type": "integer",
+          "description": "Number of organisations in the network"
+        },
+        "publications": {
+          "type": "integer",
+          "description": "Number of publications in the network"
+        },
+        "datasets": {
+          "type": "integer",
+          "description": "Number of datasets in the network"
+        },
+        "grants": {
+          "type": "integer",
+          "description": "Number of grants in the network"
+        },
+        "linked-nodes": {
+          "type": "integer",
+          "description": "Total number of linked nodes (present when network exceeds limits)"
+        }
+      }
+    },
+    "NetworkResearcher": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "Unique identifier for the researcher (ResearchGraph URI format)",
+          "example": "researchgraph.com/orcid/0000-0000-0000-0000"
+        },
+        "title": {
+          "type": "string",
+          "description": "Full name and title of the researcher",
+          "example": "Dr. John Smith"
+        },
+        "name": {
+          "type": "string",
+          "description": "Researcher's name",
+          "example": "John Smith"
+        },
+        "orcid": {
+          "type": "string",
+          "description": "ORCID identifier",
+          "example": "0000-0000-0000-0000"
+        },
+        "orcid_type": {
+          "type": "string",
+          "description": "ORCID record type information"
+        }
+      },
+      "required": [
+        "key"
+      ]
+    },
+    "NetworkOrganisation": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "Unique identifier for the organisation",
+          "example": "researchgraph.com/wikidata/Q123456"
+        },
+        "title": {
+          "type": "string",
+          "description": "Organisation name",
+          "example": "University of Example"
+        },
+        "url": {
+          "type": "string",
+          "description": "Wikipedia URL for the organisation",
+          "example": "https://en.wikipedia.org/wiki/University_of_Example"
+        },
+        "logo": {
+          "type": "string",
+          "description": "URL to organisation logo image"
+        },
+        "times_ranking": {
+          "type": "string",
+          "description": "Times Higher Education ranking",
+          "example": "150"
+        },
+        "times_url": {
+          "type": "string",
+          "description": "Times Higher Education profile URL"
+        }
+      },
+      "required": [
+        "key"
+      ]
+    },
+    "NetworkPublication": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "Unique identifier for the publication",
+          "example": "researchgraph.com/crossref/10.1000/example"
+        },
+        "title": {
+          "type": "string",
+          "description": "Publication title",
+          "example": "Advances in Research Methodology"
+        },
+        "doi": {
+          "type": "string",
+          "description": "DOI identifier",
+          "example": "10.1000/example"
+        },
+        "publication_year": {
+          "type": "string",
+          "description": "Year of publication",
+          "example": "2023"
+        },
+        "crossref_type": {
+          "type": "string",
+          "description": "Crossref publication type",
+          "example": "journal-article"
+        },
+        "datacite_type": {
+          "type": "string",
+          "description": "DataCite resource type (for DataCite sources)"
+        }
+      },
+      "required": [
+        "key"
+      ]
+    },
+    "NetworkDataset": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "Unique identifier for the dataset",
+          "example": "researchgraph.com/datacite/10.5555/example"
+        },
+        "title": {
+          "type": "string",
+          "description": "Dataset title",
+          "example": "Research Data Collection 2023"
+        },
+        "doi": {
+          "type": "string",
+          "description": "DOI identifier",
+          "example": "10.5555/example"
+        },
+        "publication_year": {
+          "type": "string",
+          "description": "Year of dataset publication",
+          "example": "2023"
+        },
+        "datacite_type": {
+          "type": "string",
+          "description": "DataCite resource type",
+          "example": "dataset"
+        }
+      },
+      "required": [
+        "key"
+      ]
+    },
+    "NetworkGrant": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "Unique identifier for the grant",
+          "example": "researchgraph.com/arc/DP230000000"
+        },
+        "title": {
+          "type": "string",
+          "description": "Grant title",
+          "example": "Advanced Research in Machine Learning"
+        },
+        "grant_id": {
+          "type": "string",
+          "description": "Grant ID from funding agency",
+          "example": "DP230000000"
+        },
+        "funding_amount": {
+          "type": "string",
+          "description": "Funding amount (in AUD for ARC grants)",
+          "example": "500000"
+        },
+        "funder": {
+          "type": "string",
+          "description": "Funding organisation name",
+          "example": "Australian Research Council"
+        }
+      },
+      "required": [
+        "key",
+        "grant_id",
+        "funder"
+      ]
+    },
+    "NetworkRelationship": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "type": "string",
+          "description": "Source entity key in the relationship",
+          "example": "researchgraph.com/orcid/0000-0000-0000-0000"
+        },
+        "to": {
+          "type": "string",
+          "description": "Target entity key in the relationship",
+          "example": "researchgraph.com/wikidata/Q123456"
+        }
+      },
+      "required": [
+        "from",
+        "to"
+      ]
     }
   }
 }
